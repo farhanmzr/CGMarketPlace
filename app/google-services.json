@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "145728445135",
+    "firebase_url": "https://cgmarketplace-a8727.firebaseio.com",
+    "project_id": "cgmarketplace-a8727",
+    "storage_bucket": "cgmarketplace-a8727.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145728445135:android:cc037a613e8e6f4681b5ba",
+        "android_client_info": {
+          "package_name": "com.example.cgmarketplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145728445135-i913823iiso63sp50upa9og8iel2b61r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cgmarketplace",
+            "certificate_hash": "31dde6bac89f68e5d7dc34233707d77cfc420a3d"
+          }
+        },
+        {
+          "client_id": "145728445135-0055ovkavh16ef1rinh6ih42ni63tg3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB91MvBRd-H-x3OanSwP8HahTxIQECzD6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145728445135-0055ovkavh16ef1rinh6ih42ni63tg3f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
