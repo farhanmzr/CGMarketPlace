@@ -6,4 +6,104 @@
     android:layout_height="match_parent"
     tools:context=".activities.LandingPage1Activity">
 
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="289dp"
+            android:layout_height="280dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/img_landingpage1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="About Mr CG"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="321dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="Christopher Guy Harrison first became
+inspired by the world of decorative
+stylewhile growing up in the 1970s along the
+shoreline of the French Riviera."
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="39dp"
+            android:layout_height="7dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/ic_bullet_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <LinearLayout
+
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+        <Button
+            android:id="@+id/btn_skip"
+            android:layout_width="155dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_btn_skip"
+            android:fontFamily="@font/montserrat"
+            android:text="SKIP"
+            android:textColor="#2699FB"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="155dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="19dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="155dp"
+                android:layout_height="48dp"
+                android:text="NEXT"
+                android:fontFamily="@font/montserrat"
+                android:textColor="#FFFF"
+                android:textSize="14sp"
+                android:background="@drawable/bg_btn_blue"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

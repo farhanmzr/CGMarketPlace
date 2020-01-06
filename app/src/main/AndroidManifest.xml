@@ -12,11 +12,11 @@
         <activity android:name=".activities.LandingPage3Activity"></activity>
         <activity android:name=".activities.LandingPage2Activity" />
         <activity android:name=".activities.LandingPage1Activity" />
-        <activity android:name=".activities.SplashActivity" />
+        <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.DetailActivity" />
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
