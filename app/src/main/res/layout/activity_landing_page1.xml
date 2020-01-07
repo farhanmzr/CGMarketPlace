@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/img_landingpage1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +30,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="About Mr CG"
+        android:text="@string/land_page_1_title"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -51,10 +51,7 @@
         android:paddingEnd="8dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:text="Christopher Guy Harrison first became
-inspired by the world of decorative
-stylewhile growing up in the 1970s along the
-shoreline of the French Riviera."
+        android:text="@string/land_page_1_desc"
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +100,7 @@ shoreline of the French Riviera."
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_btn_skip"
                 android:fontFamily="@font/montserrat"
-                android:text="SKIP"
+                android:text="@string/tv_skip"
                 android:textColor="#2699FB"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -121,7 +118,7 @@ shoreline of the French Riviera."
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_btn_blue"
                 android:fontFamily="@font/montserrat"
-                android:text="NEXT"
+                android:text="@string/tv_next"
                 android:textColor="#FFFF"
                 android:textSize="14sp" />
 

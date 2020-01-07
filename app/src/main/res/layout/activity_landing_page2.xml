@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/img_landingpage_2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="How We Made"
+        android:text="@string/land_page_2_title"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,10 +42,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:text="Christopher guy always makes furniture
-designs very calculated. so, produce a
-good product and in accordance with
-buyer expectations"
+        android:text="@string/land_page_2_desc"
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,14 +81,14 @@ buyer expectations"
             android:layout_height="48dp"
             android:background="@drawable/bg_btn_skip"
             android:fontFamily="@font/montserrat"
-            android:text="SKIP"
+            android:text="@string/tv_skip"
             android:textColor="#2699FB"
             android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="155dp"
             android:layout_height="48dp"
-            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
             android:orientation="vertical">
 
             <Button
@@ -100,7 +97,7 @@ buyer expectations"
                 android:layout_height="48dp"
                 android:background="@drawable/bg_btn_blue"
                 android:fontFamily="@font/montserrat"
-                android:text="NEXT"
+                android:text="@string/tv_next"
                 android:textColor="#FFFF"
                 android:textSize="14sp" />
 

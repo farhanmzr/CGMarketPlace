@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/img_landing3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="What is Christopher Guy App ?"
+        android:text="@string/land_page_3_title"
         android:textColor="#000000"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,9 +42,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:text="This application is a marketplace that
-provides a variety of home furniture.
-So, do you want "
+        android:text="@string/land_page_3_desc"
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +82,7 @@ So, do you want "
             android:layout_height="48dp"
             android:background="@drawable/bg_btn_blue"
             android:fontFamily="@font/montserrat"
-            android:text="LOGIN"
+            android:text="@string/tv_login"
             android:textColor="#FFFF"
             android:textSize="14sp" />
 
