@@ -35,7 +35,6 @@
     <style name="bg_btn_blue">
         <item name="android:buttonCornerRadius">8dp</item>
         <item name="android:backgroundTint">#2699FB</item>
-
     </style>
 
 

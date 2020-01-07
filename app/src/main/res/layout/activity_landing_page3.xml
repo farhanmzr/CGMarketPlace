@@ -13,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/img_landingpage3"
+        android:background="@drawable/img_landing3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -56,7 +56,7 @@ So, do you want "
         android:layout_width="39dp"
         android:layout_height="7dp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/ic_bullet_3"
+        android:background="@drawable/bullet_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />

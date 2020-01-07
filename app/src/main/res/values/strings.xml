@@ -2,4 +2,7 @@
     <string name="app_name">CGMarketPlace</string>
     <string name="login">WELCOME,</string>
     <string name="sub_login">LET\'S SIGN IN</string>
+    <string name="tv_login">Login</string>
+    <string name="tv_password">Password</string>
+    <string name="tv_email">Email</string>
 </resources>

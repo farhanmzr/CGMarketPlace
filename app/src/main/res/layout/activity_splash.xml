@@ -10,8 +10,8 @@
     <ImageView
         android:id="@+id/img_splash"
         android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:src="@drawable/img_splashscreen"
+        android:layout_height="125dp"
+        android:src="@drawable/logocg_splash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
