@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CGMarketPlace</string>
+    <string name="login">WELCOME,</string>
+    <string name="sub_login">LET\'S SIGN IN</string>
 </resources>

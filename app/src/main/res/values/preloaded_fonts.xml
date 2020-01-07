@@ -4,5 +4,7 @@
         <item>@font/montserrat</item>
         <item>@font/montserrat_bold</item>
         <item>@font/montserrat_subrayada</item>
+        <item>@font/nunito</item>
+        <item>@font/playfair_display_bold</item>
     </array>
 </resources>
