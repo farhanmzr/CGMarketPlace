@@ -52,6 +52,28 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void checkIfEmailVerified()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user.isEmailVerified())
+        {
+            // user is verified, so you can finish this activity or send user to activity which you want.
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else
+        {
+            // email is not verified, so just prompt the message to the user and restart this activity.
+            // NOTE: don't forget to log out the user.
+            FirebaseAuth.getInstance().signOut();
+
+            //restart this activity
+
+        }
+    }
+
     private void login() {
 
         btn_login.setOnClickListener(new View.OnClickListener() {
@@ -77,9 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // Login sukses, masuk ke Main Activity
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    checkIfEmailVerified();
                                 } else {
                                     // Jika Login gagal, memberikan pesan
                                     Toast.makeText(LoginActivity.this, "Proses Login gagal : " +  task.getException(),
