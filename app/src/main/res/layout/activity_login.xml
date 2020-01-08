@@ -105,7 +105,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            android:text="@string/tv_login"
+            android:text="@string/tv_login_button"
             android:textSize="12sp"
             android:textColor="@android:color/white" />
 

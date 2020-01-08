@@ -23,4 +23,8 @@
     <string name="land_page_3_title">What is Christopher Guy App ?</string>
     <string name="land_page_3_desc">This application is a marketplace that provides a variety of home furniture. So, do you want</string>
     <string name="tv_logout">Logout</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

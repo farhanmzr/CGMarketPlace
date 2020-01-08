@@ -37,6 +37,12 @@
         <item name="android:backgroundTint">#2699FB</item>
     </style>
 
+    <style name="LinearTheme">
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
 
 
 

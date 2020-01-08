@@ -83,7 +83,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/bg_btn_blue"
             android:fontFamily="@font/montserrat"
-            android:text="@string/tv_login"
+            android:text="@string/tv_login_button"
             android:textColor="#FFFF"
             android:textSize="14sp" />
 
