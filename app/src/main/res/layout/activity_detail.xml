@@ -46,7 +46,6 @@
             android:layout_height="48dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="16dp"
-            app:ci_animator="R.animator.scale_with_alpha"
             app:ci_gravity="center"
             app:ci_margin="5dp"
             app:ci_orientation="horizontal" />

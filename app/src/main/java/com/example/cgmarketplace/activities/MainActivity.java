@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cgmarketplace.R;
@@ -17,12 +18,23 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
+    ImageView detailcoba;
     TextView logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        detailcoba=findViewById(R.id.detailcoba);
+
+        detailcoba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gotonextlandingpage = new Intent(MainActivity.this,DetailActivity.class);
+                startActivity(gotonextlandingpage);
+                finish();
+            }
+        });
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // set selected home
