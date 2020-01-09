@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/ic_home_noclick" />
+
+    <item
+        android:id="@+id/cart"
+        android:title="Cart"
+        android:icon="@drawable/ic_cart_noclick"/>
+
+    <item
+        android:id="@+id/wishlist"
+        android:title="Wishlist"
+        android:icon="@drawable/ic_wishlist_noclick"/>
+
+    <item
+        android:id="@+id/transaction"
+        android:title="Transaction"
+        android:icon="@drawable/ic_transaction_noclick"/>
+
+</menu>

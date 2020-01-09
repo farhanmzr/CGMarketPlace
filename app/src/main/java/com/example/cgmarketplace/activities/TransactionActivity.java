@@ -6,27 +6,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.example.cgmarketplace.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class TransactionActivity extends AppCompatActivity {
 
-    private FirebaseAuth auth;
-    TextView logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_transaction);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // set selected home
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setSelectedItemId(R.id.transaction);
 
         // item selected listener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -34,12 +28,14 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.home:
-                    return true;
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
 
                     case R.id.cart:
-                    startActivity(new Intent(getApplicationContext(),CartActivity.class));
-                    overridePendingTransition(0,0);
-                    return true;
+                        startActivity(new Intent(getApplicationContext(),CartActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
 
                     case R.id.wishlist:
                         startActivity(new Intent(getApplicationContext(),WishlistActivity.class));
@@ -47,22 +43,12 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.transaction:
-                        startActivity(new Intent(getApplicationContext(),TransactionActivity.class));
-                        overridePendingTransition(0,0);
                         return true;
                 }
 
                 return false;
             }
         });
-
-        auth = FirebaseAuth.getInstance();
-        final FirebaseUser user = auth.getCurrentUser();
-        //Pengecekan, jika tidak ada login. Di arahkan ke Login activity.
-        if (user == null) {
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            finish();
-        }
 
     }
 }
