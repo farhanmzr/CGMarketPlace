@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
     Button btn_register;
+    ImageView ic_back;
     EditText input_username_reg, input_email_reg, input_password_reg, input_confirm_password;
     TextView tv_login;
     String username, email, password, confirm_password, userId;
@@ -54,6 +56,15 @@ public class RegisterActivity extends AppCompatActivity {
         input_password_reg = findViewById(R.id.input_password_reg);
         input_confirm_password = findViewById(R.id.input_confirm_password);
         tv_login = findViewById(R.id.tv_login);
+        ic_back = findViewById(R.id.ic_back);
+
+        ic_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
