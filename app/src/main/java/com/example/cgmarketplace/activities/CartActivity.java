@@ -28,7 +28,8 @@ public class CartActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
 
@@ -36,12 +37,14 @@ public class CartActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.wishlist:
-                        startActivity(new Intent(getApplicationContext(),WishlistActivity.class));
+                        startActivity(new Intent(getApplicationContext(),WishlistActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.transaction:
-                        startActivity(new Intent(getApplicationContext(),TransactionActivity.class));
+                        startActivity(new Intent(getApplicationContext(),TransactionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                 }

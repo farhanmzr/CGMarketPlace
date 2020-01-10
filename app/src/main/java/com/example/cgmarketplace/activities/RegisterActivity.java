@@ -25,6 +25,7 @@ import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.core.Tag;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -129,7 +130,6 @@ public class RegisterActivity extends AppCompatActivity {
                                     documentReference.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-
                                             sendVerificationEmail();
                                         }
                                     });
@@ -147,7 +147,15 @@ public class RegisterActivity extends AppCompatActivity {
     private void sendVerificationEmail()
     {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
 
+        user.updateProfile(profileUpdate)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "User Profile Updated");
+                    }
+                });
         user.sendEmailVerification()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -162,6 +170,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     FirebaseAuth.getInstance().signOut();
                                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
                                     finish();
                                 }

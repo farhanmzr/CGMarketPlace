@@ -16,7 +16,9 @@
         <activity android:name=".activities.LandingPage2Activity" />
         <activity android:name=".activities.LandingPage1Activity" />
         <activity android:name=".activities.MainActivity" />
-        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.RegisterActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.DetailActivity" />
         <activity android:name=".activities.SplashActivity">

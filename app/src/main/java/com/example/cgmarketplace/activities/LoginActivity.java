@@ -98,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Login sukses, masuk ke Main Activity
-                                    FirebaseUser user = mAuth.getCurrentUser();
                                     checkIfEmailVerified();
                                 } else {
                                     // Jika Login gagal, memberikan pesan
