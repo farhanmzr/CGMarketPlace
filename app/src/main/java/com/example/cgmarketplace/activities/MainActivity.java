@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    ImageView img_profile;
+    ImageView img_profile, detailcoba;
     FirebaseAuth mAuth;
     TextView hello_user;
 
@@ -29,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         img_profile = findViewById(R.id.img_profile);
         mAuth = FirebaseAuth.getInstance();
+        detailcoba=findViewById(R.id.detailcoba);
+
+        detailcoba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gotonextlandingpage = new Intent(MainActivity.this,DetailActivity.class);
+                startActivity(gotonextlandingpage);
+                finish();
+            }
+        });
 
 
         // Check if user is signed in (non-null) and update UI accordingly.
