@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="164dp"
-    android:layout_height="224dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/discover_card_view"
     style="@style/LinearTheme"
     android:layout_marginBottom="8dp">
 
     <LinearLayout
-        android:layout_width="164dp"
-        android:layout_height="224dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/discover_img"
-            android:layout_width="148dp"
-            android:layout_height="148dp"
-            android:scaleType="centerCrop"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/logo_cg_login"/>
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/logo_cg_login"
+            android:scaleType="centerInside"
+            android:layout_gravity="center_horizontal"/>
 
         <TextView
             android:id="@+id/discover_title"
@@ -35,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:text="$ 12,999"
@@ -43,11 +44,4 @@
             android:fontFamily="@font/montserrat" />
 
     </LinearLayout>
-
-
-
-
-
-
-
 </androidx.cardview.widget.CardView>

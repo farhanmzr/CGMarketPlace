@@ -1,4 +1,4 @@
 package com.example.cgmarketplace.model;
 
-public class User {
+public class OrderModel {
 }

@@ -11,6 +11,7 @@ import com.example.cgmarketplace.R;
 import me.relex.circleindicator.CircleIndicator3;
 
 public class DetailActivity extends AppCompatActivity {
+    public static final String KEY_RESTAURANT_ID = "key_restaurant_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
