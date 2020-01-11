@@ -29,7 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/ic_back"
+                    android:id="@+id/btn_back"
                     style="@style/LinearTheme"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
@@ -109,7 +109,7 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                android:id="@+id/tv_namabarang"
+                                android:id="@+id/tv_nama"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/montserrat_bold"
@@ -173,7 +173,7 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/tv_desc_barang"
+                        android:id="@+id/tv_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
@@ -422,8 +422,8 @@ classic and contemporary interiors."
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="8dp"
                             android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -437,7 +437,7 @@ classic and contemporary interiors."
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/montserrat"
-                                android:text="- Doweled mortise and tenon frame in solid"
+                                android:text="- Doweled mortise and tenon"
                                 android:textColor="@android:color/black"
                                 android:textSize="12sp" />
 

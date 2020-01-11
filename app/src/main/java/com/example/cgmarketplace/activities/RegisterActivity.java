@@ -61,7 +61,11 @@ public class RegisterActivity extends AppCompatActivity {
         ic_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent gotologin = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(gotologin);
+                finish();
+                overridePendingTransition(0,0);
+                getIntent().addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             }
         });
 

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
     private static final int LIMIT = 50;
 
     BottomNavigationView bottomNavigationView;
-    private ImageView img_profile;
+    private ImageView img_profile, detailcoba;
     private TextView hello_user;
     private RecyclerView discover_recyclerview;
 
@@ -49,6 +49,18 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         img_profile = findViewById(R.id.img_profile);
+        detailcoba = findViewById(R.id.detailcoba);
+
+        detailcoba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gotologin = new Intent(MainActivity.this, DetailActivity.class);
+                startActivity(gotologin);
+                finish();
+                overridePendingTransition(0,0);
+                getIntent().addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            }
+        });
         discover_recyclerview = findViewById(R.id.discover_recyclerview);
         mAuth = FirebaseAuth.getInstance();
 
