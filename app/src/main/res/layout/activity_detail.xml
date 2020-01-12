@@ -45,7 +45,7 @@
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
@@ -422,13 +422,7 @@ classic and contemporary interiors."
 
                     </LinearLayout>
 
-
                 </LinearLayout>
-
-
-
-
-
 
             </LinearLayout>
 
@@ -437,9 +431,7 @@ classic and contemporary interiors."
                 style="@style/LinearTheme"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="32dp"
                 android:background="@drawable/bg_btn_blue"
                 android:fontFamily="@font/montserrat_bold"

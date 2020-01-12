@@ -6,11 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.cgmarketplace.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class WishlistActivity extends AppCompatActivity {
+
+    ImageView btn_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +22,7 @@ public class WishlistActivity extends AppCompatActivity {
         setContentView(R.layout.activity_wishlist);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        btn_back = findViewById(R.id.btn_back);
 
         // set selected home
         bottomNavigationView.setSelectedItemId(R.id.wishlist);
@@ -50,6 +55,17 @@ public class WishlistActivity extends AppCompatActivity {
                 }
 
                 return false;
+            }
+        });
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent backtohome = new Intent(WishlistActivity.this, MainActivity.class);
+                startActivity(backtohome);
+                finish();
+                overridePendingTransition(0,0);
+                getIntent().addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             }
         });
 
