@@ -190,6 +190,7 @@
                     android:minHeight="200dp">
 
                     <ImageView
+                        android:id="@+id/profilecoba"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"

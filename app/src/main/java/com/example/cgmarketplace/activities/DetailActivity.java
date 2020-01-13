@@ -1,20 +1,18 @@
 package com.example.cgmarketplace.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import com.example.cgmarketplace.R;
-import com.example.cgmarketplace.adapter.ViewPagerAdapter;
+import com.example.cgmarketplace.adapters.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -34,16 +32,6 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        img=new int[]{R.drawable.img_sofa, R.drawable.img_sofa2, R.drawable.img_sofa3};
-        //view pager code
-        viewPager=(ViewPager) findViewById(R.id.pager);
-        adapter=new ViewPagerAdapter(DetailActivity.this, img);
-        viewPager.setAdapter(adapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.setupWithViewPager(viewPager, true);
-
-
         btn_back = findViewById(R.id.btn_back);
         tv_nama = findViewById(R.id.tv_nama);
         tv_price = findViewById(R.id.tv_price);
@@ -58,6 +46,14 @@ public class DetailActivity extends AppCompatActivity {
         tv_details_3 = findViewById(R.id.tv_details_3);
         tv_details_4 = findViewById(R.id.tv_details_4);
 
+        img=new int[]{R.drawable.img_sofa, R.drawable.img_sofa2, R.drawable.img_sofa3};
+        //view pager code
+        viewPager=(ViewPager) findViewById(R.id.pager);
+        adapter=new ViewPagerAdapter(DetailActivity.this, img);
+        viewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(viewPager, true);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override

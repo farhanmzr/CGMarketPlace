@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,7 +25,6 @@
                 android:id="@+id/linearLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -62,7 +62,7 @@
                     android:layout_alignBottom="@+id/pager"
                     app:tabBackground="@drawable/tab_selector"
                     app:tabGravity="center"
-                    app:tabIndicatorHeight="0dp"/>
+                    app:tabIndicatorHeight="0dp" />
 
             </RelativeLayout>
 
@@ -73,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_detail"
                 android:orientation="vertical"
@@ -156,32 +156,31 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Description"
                     android:fontFamily="@font/montserrat_bold"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black"/>
+                    android:text="Description"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_desc"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="This elegant sofa, with a central oval upholstered
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat"
+                        android:text="This elegant sofa, with a central oval upholstered
 feature in solid hand-carved mahogany within the
 ‘sweetheart’ shaped back, brings a fresh look to
 classic and contemporary interiors."
-                    android:fontFamily="@font/montserrat"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black"/>
+                        android:textSize="14sp" />
 
-            </LinearLayout>
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -189,102 +188,102 @@ classic and contemporary interiors."
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Dimension"
                     android:fontFamily="@font/montserrat_bold"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black"/>
-
-            <LinearLayout
-
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:orientation="horizontal">
+                    android:text="Dimension"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
 
-                    <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="Width"
-                    android:fontFamily="@font/montserrat"
-                    android:textSize="12sp"/>
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Height"
-                        android:fontFamily="@font/montserrat"
-                        android:textSize="12sp"/>
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:text="Width"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:text="Height"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:text="Dense"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Dense"
-                        android:fontFamily="@font/montserrat"
-                        android:textSize="12sp"/>
+                        android:layout_marginStart="48dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_width"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:text="238 cm"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_height"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:text="80 cm"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_dense"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/montserrat"
+                            android:text="75 cm"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="48dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_width"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="238 cm"
-                        android:fontFamily="@font/montserrat"
-                        android:textColor="@android:color/black"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:id="@+id/tv_height"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="80 cm"
-                        android:fontFamily="@font/montserrat"
-                        android:textColor="@android:color/black"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:id="@+id/tv_dense"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="75 cm"
-                        android:fontFamily="@font/montserrat"
-                        android:textColor="@android:color/black"
-                        android:textSize="12sp"/>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Product Spesification"
                     android:fontFamily="@font/montserrat_bold"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black"/>
+                    android:text="Product Spesification"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
 
                 <LinearLayout
 
@@ -304,17 +303,17 @@ classic and contemporary interiors."
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="Finishing"
                             android:fontFamily="@font/montserrat"
-                            android:textSize="12sp"/>
+                            android:text="Finishing"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="12dp"
-                            android:text="Material"
                             android:fontFamily="@font/montserrat"
-                            android:textSize="12sp"/>
+                            android:text="Material"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -329,20 +328,20 @@ classic and contemporary interiors."
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="Java Cafe"
                             android:fontFamily="@font/montserrat"
+                            android:text="Java Cafe"
                             android:textColor="@android:color/black"
-                            android:textSize="12sp"/>
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_material"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="Solid Wood"
                             android:fontFamily="@font/montserrat"
+                            android:text="Solid Wood"
                             android:textColor="@android:color/black"
-                            android:textSize="12sp"/>
+                            android:textSize="12sp" />
 
 
                     </LinearLayout>
@@ -353,9 +352,9 @@ classic and contemporary interiors."
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -367,9 +366,9 @@ classic and contemporary interiors."
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="Details"
                             android:fontFamily="@font/montserrat"
-                            android:textSize="12sp"/>
+                            android:text="Details"
+                            android:textSize="12sp" />
 
 
                     </LinearLayout>
@@ -388,7 +387,7 @@ classic and contemporary interiors."
                             android:fontFamily="@font/montserrat"
                             android:text="- Doweled mortise and tenon frame in solid"
                             android:textColor="@android:color/black"
-                            android:textSize="12sp"/>
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_details_2"
@@ -398,7 +397,7 @@ classic and contemporary interiors."
                             android:fontFamily="@font/montserrat"
                             android:text="- Mahogany from certified source"
                             android:textColor="@android:color/black"
-                            android:textSize="12sp"/>
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_details_3"
@@ -408,7 +407,7 @@ classic and contemporary interiors."
                             android:fontFamily="@font/montserrat"
                             android:text="- Sculptured by our Master-Carvers"
                             android:textColor="@android:color/black"
-                            android:textSize="12sp"/>
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_details_4"
@@ -418,7 +417,7 @@ classic and contemporary interiors."
                             android:fontFamily="@font/montserrat"
                             android:text="- Eight-way hand tied springs"
                             android:textColor="@android:color/black"
-                            android:textSize="12sp"/>
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 

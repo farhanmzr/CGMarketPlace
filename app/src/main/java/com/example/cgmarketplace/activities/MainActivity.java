@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
     private static final int LIMIT = 50;
 
     BottomNavigationView bottomNavigationView;
-    private ImageView img_profile, detailcoba;
+    private ImageView img_profile, detailcoba, profilecoba;
     private TextView hello_user;
     private RecyclerView discover_recyclerview;
 
@@ -50,6 +50,18 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         img_profile = findViewById(R.id.img_profile);
         detailcoba = findViewById(R.id.detailcoba);
+        profilecoba = findViewById(R.id.profilecoba);
+
+        profilecoba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gotoprofile = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(gotoprofile);
+                finish();
+                overridePendingTransition(0,0);
+                getIntent().addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            }
+        });
 
         detailcoba.setOnClickListener(new View.OnClickListener() {
             @Override

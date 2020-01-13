@@ -1,4 +1,4 @@
-package com.example.cgmarketplace.adapter;
+package com.example.cgmarketplace.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
