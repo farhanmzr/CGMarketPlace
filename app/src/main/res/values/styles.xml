@@ -1,11 +1,13 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:actionBarStyle">@color/colorPrimary</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_back_white</item>
     </style>
 
     <style name="TextContent" parent="@style/TextAppearance.AppCompat">
@@ -35,7 +37,7 @@
     </style>
 
     <style name="bg_btn_blue">
-        <item name="android:buttonCornerRadius">8dp</item>
+        <item name="android:buttonCornerRadius" tools:targetApi="p">8dp</item>
         <item name="android:backgroundTint">#2699FB</item>
     </style>
 
@@ -44,8 +46,5 @@
         <item name="android:layout_marginEnd">24dp</item>
         <item name="android:layout_marginTop">16dp</item>
     </style>
-
-
-
 
 </resources>

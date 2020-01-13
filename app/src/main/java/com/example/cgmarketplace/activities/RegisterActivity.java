@@ -50,6 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        getSupportActionBar().hide();
+
         btn_register = findViewById(R.id.btn_register);
         input_username_reg = findViewById(R.id.input_username_reg);
         input_email_reg = findViewById(R.id.input_email_reg);

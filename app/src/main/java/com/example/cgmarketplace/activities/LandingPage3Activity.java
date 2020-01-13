@@ -18,6 +18,8 @@ public class LandingPage3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page3);
 
+        getSupportActionBar().hide();
+
         btn_login=findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override

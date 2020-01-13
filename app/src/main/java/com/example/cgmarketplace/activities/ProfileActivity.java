@@ -1,9 +1,12 @@
 package com.example.cgmarketplace.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,8 +19,9 @@ import com.google.firebase.firestore.Query;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+
     Button btn_logout;
-    ImageView btn_back;
 
 
     @Override
@@ -25,30 +29,40 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.action_bar_layout);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         btn_logout = findViewById(R.id.btn_logout);
-        btn_back= findViewById(R.id.btn_back);
-
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(ProfileActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
-                overridePendingTransition(0,0);
-                getIntent().addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            }
-        });
 
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                mAuth.signOut();
                 Intent i = new Intent(ProfileActivity.this, LoginActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
                 finish();
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            startActivity(new Intent(getApplicationContext(),MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
+            overridePendingTransition(0,0);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

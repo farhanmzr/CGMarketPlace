@@ -18,6 +18,8 @@ public class LandingPage2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page2);
 
+        getSupportActionBar().hide();
+
         btn_next =findViewById(R.id.btn_next);
         btn_skip=findViewById(R.id.btn_skip);
 

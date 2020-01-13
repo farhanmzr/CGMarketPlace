@@ -11,17 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.activities.DetailActivity;
 
 public class ViewPagerAdapter extends PagerAdapter {
 
-    int[] image;
-    LayoutInflater inflater;
-    Context context;
+    private String[] image = {"image1", "image2", "image3"};
+    private LayoutInflater inflater;
+    private Context context;
     int position =3;
 
-    public ViewPagerAdapter(DetailActivity detailActivity,int[] img)
+    public ViewPagerAdapter(DetailActivity detailActivity,String[] img)
     {
         this.context=detailActivity;
         this.image=img;
@@ -41,10 +42,15 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ImageView img_pager;
+
         inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         View itemview=inflater.inflate(R.layout.item_pager,container,false);
         img_pager=(ImageView) itemview.findViewById(R.id.img_pager);
-        img_pager.setImageResource(image[position]);
+
+        Glide.with(context)
+                .load(image[position])
+                .into(img_pager);
 
         //add item_pager to ViewPager
         ((ViewPager)container).addView(itemview);

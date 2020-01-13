@@ -17,6 +17,12 @@ public class TransactionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
 
+        bottomNav();
+
+    }
+
+    private void bottomNav() {
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // set selected home
@@ -51,6 +57,5 @@ public class TransactionActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 }

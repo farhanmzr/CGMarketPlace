@@ -31,4 +31,6 @@
     <string name="tv_discover">Discover</string>
     <string name="tv_greet_user">Halo, User!</string>
     <string name="tv_reg_btn">Register</string>
+    <string name="wishlist_title">Your WishList</string>
+    <string name="cart_title">Cart</string>
 </resources>

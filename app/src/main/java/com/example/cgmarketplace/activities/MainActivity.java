@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
     private static final int LIMIT = 50;
 
     BottomNavigationView bottomNavigationView;
-    private ImageView img_profile, detailcoba, profilecoba;
+    private ImageView img_profile;
     private TextView hello_user;
     private RecyclerView discover_recyclerview;
 
@@ -47,32 +47,12 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         img_profile = findViewById(R.id.img_profile);
-        detailcoba = findViewById(R.id.detailcoba);
-        profilecoba = findViewById(R.id.profilecoba);
 
-        profilecoba.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent gotoprofile = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(gotoprofile);
-                finish();
-                overridePendingTransition(0,0);
-                getIntent().addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            }
-        });
 
-        detailcoba.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent gotologin = new Intent(MainActivity.this, DetailActivity.class);
-                startActivity(gotologin);
-                finish();
-                overridePendingTransition(0,0);
-                getIntent().addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            }
-        });
         discover_recyclerview = findViewById(R.id.discover_recyclerview);
         mAuth = FirebaseAuth.getInstance();
 
@@ -88,12 +68,8 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
         img_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.signOut();
-
-                Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(i);
-                finish();
+                Intent gotoprofile = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(gotoprofile);
             }
         });
 
@@ -213,8 +189,9 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
     @Override
     public void onProductSelected(DocumentSnapshot productModel) {
         // Go to the details page for the selected restaurant
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(DetailActivity.KEY_PRODUCT_ID, productModel.getId());
 
-        Toast.makeText(MainActivity.this, productModel.getId(),
-                Toast.LENGTH_LONG).show();
+        startActivity(intent);
     }
 }

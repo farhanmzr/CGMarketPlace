@@ -2,27 +2,28 @@ package com.example.cgmarketplace.model;
 
 public class ProductModel {
 
-    private String desc, details1, details2, details3, details4, dimens, finish, image1, image2, image3, material, name;
+    private String desc, details1, details2, details3, details4, finish, image1, image2, image3, material, name, width, height, dense;
     private int price, stock;
 
     public  ProductModel(){}
 
-    public ProductModel(String desc, String details1, String details2, String details3, String details4, String dimens, String finish, String image1, String image2, String image3, String material, String name, int price, int stock) {
+    public ProductModel(String desc, String details1, String details2, String details3, String details4, String finish, String image1, String image2, String image3, String material, String name, String width, String height, String dense, int price, int stock) {
         this.desc = desc;
         this.details1 = details1;
         this.details2 = details2;
         this.details3 = details3;
         this.details4 = details4;
-        this.dimens = dimens;
         this.finish = finish;
         this.image1 = image1;
         this.image2 = image2;
         this.image3 = image3;
         this.material = material;
         this.name = name;
+        this.width = width;
+        this.height = height;
+        this.dense = dense;
         this.price = price;
         this.stock = stock;
-
     }
 
     public String getDesc() {
@@ -63,14 +64,6 @@ public class ProductModel {
 
     public void setDetails4(String details4) {
         this.details4 = details4;
-    }
-
-    public String getDimens() {
-        return dimens;
-    }
-
-    public void setDimens(String dimens) {
-        this.dimens = dimens;
     }
 
     public String getFinish() {
@@ -119,6 +112,30 @@ public class ProductModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getWidth() {
+        return width;
+    }
+
+    public void setWidth(String width) {
+        this.width = width;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getDense() {
+        return dense;
+    }
+
+    public void setDense(String dense) {
+        this.dense = dense;
     }
 
     public int getPrice() {
