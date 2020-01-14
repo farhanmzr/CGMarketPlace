@@ -92,7 +92,7 @@
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/montserrat_bold"
                                 android:gravity="center"
-                                android:text="Feraud Sofa"
+                                android:text="@string/item_nama"
                                 android:textColor="@android:color/black"
                                 android:textSize="16sp" />
 
@@ -101,7 +101,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/montserrat"
-                                android:text="$ 12,862"
+                                android:text="@string/item_price"
                                 android:textColor="@android:color/black"
                                 android:textSize="16sp" />
                         </LinearLayout>
@@ -136,7 +136,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Description"
+                    android:text="@string/description"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
@@ -153,10 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
-                        android:text="This elegant sofa, with a central oval upholstered
-feature in solid hand-carved mahogany within the
-‘sweetheart’ shaped back, brings a fresh look to
-classic and contemporary interiors."
+                        android:text="@string/item_desc"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -168,7 +165,7 @@ classic and contemporary interiors."
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Dimension"
+                    android:text="@string/dimension"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
@@ -192,7 +189,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="Width"
+                            android:text="@string/width"
                             android:textSize="12sp" />
 
                         <TextView
@@ -200,7 +197,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="Height"
+                            android:text="@string/height"
                             android:textSize="12sp" />
 
                         <TextView
@@ -208,7 +205,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="Dense"
+                            android:text="@string/dense"
                             android:textSize="12sp" />
 
                     </LinearLayout>
@@ -225,7 +222,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="238 cm"
+                            android:text="@string/item_width"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
@@ -235,7 +232,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="80 cm"
+                            android:text="@string/item_height"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
@@ -245,7 +242,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="75 cm"
+                            android:text="@string/item_dense"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
@@ -260,7 +257,7 @@ classic and contemporary interiors."
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Product Spesification"
+                    android:text="@string/product_spesification"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
@@ -283,7 +280,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="Finishing"
+                            android:text="@string/finishing"
                             android:textSize="12sp" />
 
                         <TextView
@@ -291,7 +288,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="12dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="Material"
+                            android:text="@string/material"
                             android:textSize="12sp" />
 
                     </LinearLayout>
@@ -308,7 +305,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="Java Cafe"
+                            android:text="@string/item_finishing"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
@@ -318,7 +315,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="Solid Wood"
+                            android:text="@string/item_material"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
@@ -346,7 +343,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="Details"
+                            android:text="@string/details"
                             android:textSize="12sp" />
 
 
@@ -364,7 +361,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="- Doweled mortise and tenon frame in solid"
+                            android:text="@string/details_1"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
@@ -374,7 +371,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="- Mahogany from certified source"
+                            android:text="@string/details_2"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
@@ -384,7 +381,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="- Sculptured by our Master-Carvers"
+                            android:text="@string/details_3"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
@@ -394,7 +391,7 @@ classic and contemporary interiors."
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:text="- Eight-way hand tied springs"
+                            android:text="@string/details_4"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
@@ -413,7 +410,7 @@ classic and contemporary interiors."
                 android:layout_marginBottom="32dp"
                 android:background="@drawable/bg_btn_blue"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="ADD TO CART"
+                android:text="@string/add_to_cart"
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
