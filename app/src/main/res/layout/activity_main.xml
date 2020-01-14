@@ -144,6 +144,7 @@
                     app:cardBackgroundColor="@color/view">
 
                     <ImageView
+                        android:id="@+id/all_category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -160,7 +161,7 @@
                     android:layout_marginBottom="4dp">
 
                     <ImageView
-                        android:id="@+id/detailcoba"
+                        android:id="@+id/category_seats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -179,7 +180,7 @@
                     android:minHeight="200dp">
 
                     <ImageView
-                        android:id="@+id/profilecoba"
+                        android:id="@+id/category_bedroom"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"
@@ -244,7 +245,7 @@
 
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tvTitleCategory"
         style="@style/LinearTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -267,7 +268,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleCategory"
         tools:listitem="@layout/item_discover">
 
     </androidx.recyclerview.widget.RecyclerView>

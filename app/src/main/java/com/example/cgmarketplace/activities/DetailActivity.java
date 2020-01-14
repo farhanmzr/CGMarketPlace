@@ -28,6 +28,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 
 public class DetailActivity extends AppCompatActivity
         implements EventListener<DocumentSnapshot> {
@@ -79,8 +82,6 @@ public class DetailActivity extends AppCompatActivity
 
         // Get reference to the db
         mProdukRef = mFirestore.collection("Produk")
-                .document("Kategori")
-                .collection("Mirror")
                 .document(productId);
     }
 
@@ -128,9 +129,10 @@ public class DetailActivity extends AppCompatActivity
 
 
     private void onProductLoaded(ProductModel product) {
+        String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(product.getPrice());
 
         tv_nama.setText(product.getName());
-        tv_price.setText(String.valueOf(product.getPrice()));
+        tv_price.setText(priceFormat);
         tv_desc.setText(product.getDesc());
         tv_finishing.setText(product.getFinish());
         tv_material.setText(product.getMaterial());
@@ -154,9 +156,5 @@ public class DetailActivity extends AppCompatActivity
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager, true);
 
-        // Background image
-//        Glide.with(img_sofa.getContext())
-//                .load(restaurant.getPhoto())
-//                .into(mImageView);
     }
 }

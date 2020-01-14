@@ -16,6 +16,9 @@ import com.example.cgmarketplace.model.ProductModel;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class ProductAdapter extends FirestoreAdapter<ProductAdapter.ViewHolder> {
 
     public interface OnProductSelectedListener {
@@ -61,13 +64,15 @@ public class ProductAdapter extends FirestoreAdapter<ProductAdapter.ViewHolder> 
 
             ProductModel productModel = snapshot.toObject(ProductModel.class);
 
+            String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(productModel.getPrice());
+
             // Load image
             Glide.with(discover_img.getContext())
                     .load(productModel.getImage1())
                     .into(discover_img);
 
             title.setText(productModel.getName());
-            subtitle.setText(String.valueOf(productModel.getPrice()));
+            subtitle.setText(priceFormat);
 
             // Click listener
             itemView.setOnClickListener(new View.OnClickListener() {

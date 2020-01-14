@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.adapters.ProductAdapter;
@@ -20,6 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
     private static final int LIMIT = 50;
 
     BottomNavigationView bottomNavigationView;
-    private ImageView img_profile;
-    private TextView hello_user;
+    private ImageView img_profile, img_seats, img_bedroom, img_allcat;
+    private TextView hello_user, titleCategory;
     private RecyclerView discover_recyclerview;
 
 
@@ -51,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         img_profile = findViewById(R.id.img_profile);
+        img_seats = findViewById(R.id.category_seats);
+        img_bedroom = findViewById(R.id.category_bedroom);
+        img_allcat = findViewById(R.id.all_category);
+        titleCategory = findViewById(R.id.tvTitleCategory);
 
 
         discover_recyclerview = findViewById(R.id.discover_recyclerview);
@@ -61,10 +65,13 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
 
         // Initialize Firestore and the main RecyclerView
         initFirestore();
+        categorySeats();
+        categoryBedroom();
         updateUI(currentUser);
 
 
         bottomNav();
+
         img_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,13 +82,51 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
 
     }
 
+    private void categoryBedroom() {
+
+        img_bedroom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                titleCategory.setText("Bedroom");
+// Errorr
+//                mFirestore = FirebaseFirestore.getInstance();
+//
+//                CollectionReference product = mFirestore.collection("Produk");
+//
+//                mQuery = product.whereEqualTo("category", "bedroom");
+
+            }
+        });
+    }
+
+    private void categorySeats() {
+
+        img_seats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+// sek Error wqwq
+//                titleCategory.setText("Seating");
+//
+//                mFirestore = FirebaseFirestore.getInstance();
+//
+//                CollectionReference product = mFirestore.collection("Produk");
+//
+//                mQuery = product.whereEqualTo("category", "seats");
+
+            }
+        });
+    }
+
     private void initFirestore() {
 
         mFirestore = FirebaseFirestore.getInstance();
 
-        mQuery = mFirestore.collection("Produk")
-        .document("Kategori")
-        .collection("Mirror");
+        mQuery = mFirestore.collection("Produk");
+
+//          Query buat kategori
+//        CollectionReference product = mFirestore.collection("Produk");
+//
+//        mQuery = product.whereEqualTo("category", "seats");
     }
 
     private void initRecyclerView() {
