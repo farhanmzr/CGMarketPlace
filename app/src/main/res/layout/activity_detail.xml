@@ -169,87 +169,91 @@
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
-                <LinearLayout
-
-                    android:layout_width="200dp"
+                <TableLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:orientation="horizontal">
+                    android:stretchColumns="1">
 
-                    <LinearLayout
+                    <TableRow
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginBottom="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/width"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/height"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/dense"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="48dp"
-                        android:orientation="vertical">
-
-                        <TextView
                             android:id="@+id/tv_width"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginEnd="32dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/item_width"
                             android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:text="@string/height"
                             android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_height"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginEnd="32dp"
                             android:text="@string/item_height"
                             android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:text="@string/dense"
                             android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_dense"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginEnd="32dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/item_dense"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
-                    </LinearLayout>
+                    </TableRow>
 
-
-                </LinearLayout>
+                </TableLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -261,143 +265,179 @@
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
-                <LinearLayout
-
-                    android:layout_width="200dp"
+                <TableLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:orientation="horizontal">
+                    android:stretchColumns="1">
 
-                    <LinearLayout
+                    <TableRow
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/finishing"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/material"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="36dp"
-                        android:orientation="vertical">
-
-                        <TextView
                             android:id="@+id/tv_finishing"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/item_finishing"
                             android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:text="@string/material"
                             android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_material"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/item_material"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
 
-                    </LinearLayout>
+                    </TableRow>
 
-                </LinearLayout>
+                </TableLayout>
 
-                <LinearLayout
-
+                <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:orientation="horizontal">
+                    android:stretchColumns="1">
 
-                    <LinearLayout
+                    <TableRow
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginBottom="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/details"
                             android:textSize="12sp" />
 
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="42dp"
-                        android:orientation="vertical">
-
                         <TextView
                             android:id="@+id/tv_details_1"
                             android:layout_width="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/details_1"
                             android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:text=""
                             android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_details_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="0dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/details_2"
                             android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:text=""
                             android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_details_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="0dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/details_3"
                             android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:text=""
                             android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_details_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="0dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/details_4"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
-                    </LinearLayout>
+                    </TableRow>
 
-                </LinearLayout>
+                </TableLayout>
+
+
 
             </LinearLayout>
 
