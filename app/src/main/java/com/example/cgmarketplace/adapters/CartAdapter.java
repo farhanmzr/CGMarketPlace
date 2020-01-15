@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
+import com.example.cgmarketplace.model.CartModel;
 import com.example.cgmarketplace.model.ProductModel;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
@@ -23,7 +24,8 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
 
     public interface OnProductSelectedListener {
 
-        void onProductSelected(DocumentSnapshot productModel);
+        void onProductSelected(DocumentSnapshot cartModel);
+        void onDeleteSelected(DocumentSnapshot cartModel);
 
     }
 
@@ -42,7 +44,7 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(getSnapshot(position), mListener);
     }
 
@@ -52,7 +54,8 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
         TextView tvNama;
         TextView tvPrice;
         Button btn_minus, btn_plus;
-        TextView tv_jumlah_cart, tvTitle;
+        TextView tv_jumlah_cart;
+        ImageView delItem;
 
 
         public ViewHolder(View itemView) {
@@ -63,28 +66,28 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
             btn_minus = itemView.findViewById(R.id.btn_minus);
             btn_plus = itemView.findViewById(R.id.btn_plus);
             tv_jumlah_cart = itemView.findViewById(R.id.tv_jumlah_cart);
+            delItem = itemView.findViewById(R.id.del_item);
         }
 
         public void bind(final DocumentSnapshot snapshot,
-                         final CartAdapter.OnProductSelectedListener listener) {
+                         final OnProductSelectedListener listener) {
 
-            ProductModel productModel = snapshot.toObject(ProductModel.class);
+            CartModel cartModel = snapshot.toObject(CartModel.class);
 
-            int valuejumlahcart = 1;
-
-            String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(productModel.getPrice());
+            String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(cartModel.getPrice());
 
             // Load image
             Glide.with(img_cart.getContext())
-                    .load(productModel.getImage1())
+                    .load(cartModel.getImage())
                     .into(img_cart);
 
-            tvNama.setText(productModel.getName());
+            tvNama.setText(cartModel.getName());
             tvPrice.setText(priceFormat);
-            tv_jumlah_cart.setText(String.valueOf(valuejumlahcart));
+            tv_jumlah_cart.setText(String.valueOf(cartModel.getQty()));
             // secara default, we hide btn_minus
             btn_minus.animate().alpha(0).setDuration(300).start();
             btn_minus.setEnabled(false);
+
 
             // Click listener
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +95,15 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
                 public void onClick(View view) {
                     if (listener != null) {
                         listener.onProductSelected(snapshot);
+                    }
+                }
+            });
+
+            delItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onDeleteSelected(snapshot);
                     }
                 }
             });

@@ -36,6 +36,8 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.action_bar_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mAuth = FirebaseAuth.getInstance();
+
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.profile_title);
 

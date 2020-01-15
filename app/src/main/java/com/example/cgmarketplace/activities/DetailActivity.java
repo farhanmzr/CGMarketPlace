@@ -188,6 +188,7 @@ public class DetailActivity extends AppCompatActivity
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(DetailActivity.this, "Successfully Add To Cart",
                                 Toast.LENGTH_LONG).show();
+                        finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

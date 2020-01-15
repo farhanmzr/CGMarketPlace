@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.adapters.CartAdapter;
@@ -22,6 +24,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -52,6 +55,9 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mAuth = FirebaseAuth.getInstance();
 
+        mFirestore = FirebaseFirestore.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
+
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.cart_title);
         rv_cart = findViewById(R.id.rv_cart);
@@ -65,13 +71,10 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
 
     private void initFirestore() {
 
-        mFirestore = FirebaseFirestore.getInstance();
-        userId = mAuth.getCurrentUser().getUid();
+
         tvTitle.setText(userId);
 
-        mQuery = mFirestore.collection("User")
-        .document(userId)
-        .collection("Cart");
+        mQuery = mFirestore.collection("Users").document(userId).collection("Cart");
     }
 
     private void bottomNav() {
@@ -162,7 +165,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
             }
         };
 
-        rv_cart.setLayoutManager(new GridLayoutManager(this, 2));
+        rv_cart.setLayoutManager(new LinearLayoutManager(CartActivity.this));
         rv_cart.setAdapter(mAdapter);
     }
 
@@ -184,11 +187,20 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
     }
 
     @Override
-    public void onProductSelected(DocumentSnapshot productModel) {
+    public void onProductSelected(DocumentSnapshot cartModel) {
         // Go to the details page for the selected restaurant
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(DetailActivity.KEY_PRODUCT_ID, productModel.getId());
+        intent.putExtra(DetailActivity.KEY_PRODUCT_ID, cartModel.getId());
 
         startActivity(intent);
+    }
+
+    @Override
+    public void onDeleteSelected(DocumentSnapshot cartModel) {
+
+        String deletedProduct = cartModel.getId();
+        mFirestore.collection("Users").document(userId).collection("Cart").document(deletedProduct).delete();
+        Toast.makeText(CartActivity.this, "Product with ID" + deletedProduct + "Deleted From Cart",
+                Toast.LENGTH_LONG).show();
     }
 }
