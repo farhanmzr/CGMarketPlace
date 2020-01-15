@@ -1,21 +1,32 @@
 package com.example.cgmarketplace.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.cgmarketplace.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class TransactionActivity extends AppCompatActivity {
 
+    TextView tvTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.action_bar_layout);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        tvTitle = findViewById(R.id.tvTitle);
+        tvTitle.setText(R.string.transaction_title);
 
         bottomNav();
 

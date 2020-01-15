@@ -11,7 +11,7 @@
                 android:id="@+id/view3"
                 android:layout_width="match_parent"
                 android:layout_height="171dp"
-                android:background="@color/view"
+                android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -141,7 +141,7 @@
                     android:layout_marginTop="@dimen/mtrl_card_spacing"
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
                     android:layout_marginBottom="4dp"
-                    app:cardBackgroundColor="@color/view">
+                    app:cardBackgroundColor="@color/colorPrimary">
 
                     <ImageView
                         android:id="@+id/all_category"
@@ -158,14 +158,15 @@
                     android:layout_marginLeft="@dimen/mtrl_card_spacing"
                     android:layout_marginTop="@dimen/mtrl_card_spacing"
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
-                    android:layout_marginBottom="4dp">
+                    android:layout_marginBottom="4dp"
+                    app:cardBackgroundColor="@color/colorPrimary">
 
                     <ImageView
                         android:id="@+id/category_seats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_chair_noclick" />
+                        android:background="@drawable/ic_chair" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -177,14 +178,15 @@
                     android:layout_marginTop="@dimen/mtrl_card_spacing"
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
                     android:layout_marginBottom="4dp"
-                    android:minHeight="200dp">
+                    android:minHeight="200dp"
+                    app:cardBackgroundColor="@color/colorPrimary">
 
                     <ImageView
                         android:id="@+id/category_bedroom"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_bed_noclick" />
+                        android:background="@drawable/ic_bed" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -194,13 +196,14 @@
                     android:layout_marginLeft="@dimen/mtrl_card_spacing"
                     android:layout_marginTop="@dimen/mtrl_card_spacing"
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
-                    android:layout_marginBottom="4dp">
+                    android:layout_marginBottom="4dp"
+                    app:cardBackgroundColor="@color/colorPrimary">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_cabinet_noclick" />
+                        android:background="@drawable/ic_cabinet" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -211,13 +214,14 @@
                     android:layout_marginTop="@dimen/mtrl_card_spacing"
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
                     android:layout_marginBottom="4dp"
-                    android:minHeight="200dp">
+                    android:minHeight="200dp"
+                    app:cardBackgroundColor="@color/colorPrimary">
 
                     <ImageView
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_cabinet_noclick" />
+                        android:background="@drawable/ic_table" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -229,13 +233,14 @@
                     android:layout_marginTop="@dimen/mtrl_card_spacing"
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
                     android:layout_marginBottom="4dp"
-                    android:minHeight="200dp">
+                    android:minHeight="200dp"
+                    app:cardBackgroundColor="@color/colorPrimary">
 
                     <ImageView
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_mirror_noclick" />
+                        android:background="@drawable/ic_mirror" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -261,10 +266,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/discover_recyclerview"
         style="@style/LinearTheme"
+        android:paddingBottom="16dp"
         android:layout_width="match_parent"
-        android:layout_height="327dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/discover_card_view"
-    style="@style/LinearTheme"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
     android:layout_marginBottom="8dp">
 
     <LinearLayout
@@ -17,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:src="@drawable/logo_cg_login"
-            android:scaleType="centerInside"
+            android:scaleType="fitXY"
             android:layout_gravity="center_horizontal"/>
 
         <TextView
@@ -34,7 +36,7 @@
             android:id="@+id/discover_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
