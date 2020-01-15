@@ -88,12 +88,6 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
             @Override
             public void onClick(View v) {
                 titleCategory.setText("Bedroom");
-// Errorr
-//                mFirestore = FirebaseFirestore.getInstance();
-//
-//                CollectionReference product = mFirestore.collection("Produk");
-//
-//                mQuery = product.whereEqualTo("category", "bedroom");
 
             }
         });

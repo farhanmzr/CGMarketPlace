@@ -1,5 +1,6 @@
 package com.example.cgmarketplace.activities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
@@ -12,15 +13,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.adapters.ViewPagerAdapter;
 import com.example.cgmarketplace.model.ProductModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -29,7 +37,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
 import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class DetailActivity extends AppCompatActivity
@@ -40,14 +50,17 @@ public class DetailActivity extends AppCompatActivity
 
     private FirebaseFirestore mFirestore;
     private DocumentReference mProdukRef;
+    private FirebaseAuth mAuth;
     private ListenerRegistration mProductRegistration;
+    private String userId;
 
     ViewPager viewPager;
     PagerAdapter adapter;
     String[] img;
 
     private TextView tv_nama, tv_price, tv_desc, tv_width, tv_height, tv_dense, tv_finishing, tv_material, tv_details_1, tv_details_2, tv_details_3, tv_details_4;
-    private String image1, image2, image3;
+    private String image1, image2, image3, productId;
+    private Button btnAddToCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,18 +84,21 @@ public class DetailActivity extends AppCompatActivity
         tv_details_2 = findViewById(R.id.tv_details_2);
         tv_details_3 = findViewById(R.id.tv_details_3);
         tv_details_4 = findViewById(R.id.tv_details_4);
+        btnAddToCart = findViewById(R.id.btn_add_to_cart);
 
-        String productId = getIntent().getExtras().getString(KEY_PRODUCT_ID);
+        productId = getIntent().getExtras().getString(KEY_PRODUCT_ID);
         if (productId == null) {
             throw new IllegalArgumentException("Must pass extra " + KEY_PRODUCT_ID);
         }
 
         // Initialize Firestore
         mFirestore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         // Get reference to the db
         mProdukRef = mFirestore.collection("Produk")
                 .document(productId);
+
     }
 
     @Override
@@ -128,7 +144,7 @@ public class DetailActivity extends AppCompatActivity
     }
 
 
-    private void onProductLoaded(ProductModel product) {
+    private void onProductLoaded(final ProductModel product) {
         String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(product.getPrice());
 
         tv_nama.setText(product.getName());
@@ -155,6 +171,34 @@ public class DetailActivity extends AppCompatActivity
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager, true);
+
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                userId = mAuth.getCurrentUser().getUid();
+                DocumentReference documentReference = mFirestore.collection("Users").document(userId).collection("Cart").document(productId);
+                Map<String, Object> userCart = new HashMap<>();
+                userCart.put("name", product.getName());
+                userCart.put("image", product.getImage1());
+                userCart.put("price", product.getPrice());
+                userCart.put("qty", 1);
+                documentReference.set(userCart).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(DetailActivity.this, "Successfully Add To Cart",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(DetailActivity.this, "Failed Add To Cart",
+                                Toast.LENGTH_LONG).show();
+
+                    }
+                });
+            }
+    });
 
     }
 }
