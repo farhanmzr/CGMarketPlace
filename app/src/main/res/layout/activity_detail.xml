@@ -118,11 +118,12 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="1.0">
 
-                            <de.hdodenhof.circleimageview.CircleImageView
+                            <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/ic_love"
                                 android:scaleType="centerCrop" />
+
                         </LinearLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -448,7 +449,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="32dp"
-                android:background="@drawable/bg_btn_blue"
+                android:background="@drawable/bg_btn_black"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/add_to_cart"
                 android:textColor="@android:color/white"

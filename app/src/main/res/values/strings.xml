@@ -31,7 +31,7 @@
     <string name="tv_discover">Discover</string>
     <string name="tv_greet_user">Halo, User!</string>
     <string name="tv_reg_btn">Register</string>
-    <string name="wishlist_title">Your WishList</string>
+    <string name="wishlist_title">My WishList</string>
     <string name="cart_title">Cart</string>
     <string name="add_to_cart">ADD TO CART</string>
     <string name="details_4">- Eight-way hand tied springs</string>
@@ -61,4 +61,14 @@
     <string name="your_cart_is_empty">Your cart is empty!</string>
     <string name="explore_more_and_shortlist_some_furniture">Explore more and shortlist some furniture</string>
     <string name="start_shopping">START SHOPPING</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="address">Address</string>
+    <string name="log_out">LOG OUT</string>
+    <string name="tv_item_username">farhanmzr</string>
+    <string name="tv_phone_number">081227157854</string>
+    <string name="tv_item_address">Jalan Depok Sari Raya, Semarang</string>
+    <string name="tv_item_password">123***</string>
+    <string name="profile_title">My Profile</string>
+    <string name="transaction_title">Transaction</string>
+    <string name="sort_by">Sort By</string>
 </resources>

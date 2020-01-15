@@ -85,9 +85,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_btn_skip"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/montserrat_bold"
             android:text="@string/tv_skip"
-            android:textColor="#2699FB"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp" />
 
     </LinearLayout>
@@ -102,8 +102,8 @@
                 android:id="@+id/btn_next"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/bg_btn_blue"
-                android:fontFamily="@font/montserrat"
+                android:background="@drawable/bg_btn_black"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="@string/tv_next"
                 android:textColor="#FFFF"
                 android:textSize="14sp" />

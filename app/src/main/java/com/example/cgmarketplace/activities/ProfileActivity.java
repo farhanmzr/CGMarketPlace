@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.cgmarketplace.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+    TextView tvTitle;
     Button btn_logout;
 
 
@@ -33,6 +35,9 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        tvTitle = findViewById(R.id.tvTitle);
+        tvTitle.setText(R.string.profile_title);
 
         btn_logout = findViewById(R.id.btn_logout);
 
