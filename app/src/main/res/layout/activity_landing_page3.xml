@@ -80,13 +80,13 @@
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_btn_black"
-            android:fontFamily="@font/montserrat"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn_blue"
+            android:fontFamily="@font/montserrat_bold"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
             android:text="@string/tv_login_button"
-            android:textColor="#FFFF"
+            android:textColor="@android:color/white"
             android:textSize="14sp" />
 
 

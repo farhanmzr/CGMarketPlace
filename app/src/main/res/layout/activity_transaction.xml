@@ -8,14 +8,33 @@
     android:layout_height="match_parent"
     tools:context=".activities.CartActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TRANSACTION ACTIVITY"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabs_not_confirmed"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/not_confirmed" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabs_confirmed"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/confirmed" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabs_deliver"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/deliver" />
+
+    </com.google.android.material.tabs.TabLayout>
 
 
 

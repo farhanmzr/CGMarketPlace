@@ -35,9 +35,11 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
     private static final String TAG = "CartActivity";
     private static final int LIMIT = 50;
 
-    private TextView  tvTitle;
+    private Button btn_minus, btn_plus, btn_goto_payment;
+    private TextView  tvTitle, tv_jumlah_cart, tv_total_price;
     private RecyclerView rv_cart;
     private String userId;
+    private Integer valuetotalprice = 0;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
@@ -61,6 +63,11 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.cart_title);
         rv_cart = findViewById(R.id.rv_cart);
+        btn_minus = findViewById(R.id.btn_minus);
+        btn_plus = findViewById(R.id.btn_plus);
+        btn_goto_payment = findViewById(R.id.btn_goto_payment);
+        tv_jumlah_cart = findViewById(R.id.tv_jumlah_cart);
+        tv_total_price = findViewById(R.id.tv_total_price);
 
 
         bottomNav();
@@ -72,7 +79,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
     private void initFirestore() {
 
 
-        tvTitle.setText(userId);
+        tvTitle.setText(R.string.cart_title);
 
         mQuery = mFirestore.collection("Users").document(userId).collection("Cart");
     }
@@ -204,3 +211,5 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
                 Toast.LENGTH_LONG).show();
     }
 }
+
+

@@ -291,8 +291,8 @@
                             android:id="@+id/tv_finishing"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginEnd="18dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/item_finishing"
                             android:textColor="@android:color/black"
@@ -316,8 +316,8 @@
                             android:id="@+id/tv_material"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginEnd="18dp"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/item_material"
                             android:textColor="@android:color/black"
@@ -333,8 +333,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:stretchColumns="1">
+                    android:layout_marginBottom="16dp">
 
                     <TableRow
                         android:layout_width="wrap_content"
@@ -347,6 +346,8 @@
                             android:fontFamily="@font/montserrat"
                             android:text="@string/details"
                             android:textSize="12sp" />
+
+
 
                         <TextView
                             android:id="@+id/tv_details_1"
@@ -449,7 +450,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="32dp"
-                android:background="@drawable/bg_btn_black"
+                android:background="@drawable/bg_btn_blue"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/add_to_cart"
                 android:textColor="@android:color/white"

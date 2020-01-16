@@ -101,10 +101,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_btn_black"
+            android:background="@drawable/bg_btn_blue"
             android:fontFamily="@font/montserrat_bold"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:text="@string/tv_login_button"
             android:textSize="12sp"
             android:textColor="@android:color/white" />

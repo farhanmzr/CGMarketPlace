@@ -10,7 +10,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_cart"
-            style="@style/LinearTheme"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +61,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
-        android:background="@drawable/bg_btn_black"
+        android:background="@drawable/bg_btn_blue"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/go_to_payment"
         android:textColor="@android:color/white"
