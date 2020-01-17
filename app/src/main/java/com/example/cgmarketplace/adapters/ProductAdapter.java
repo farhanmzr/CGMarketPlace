@@ -48,9 +48,9 @@ public class ProductAdapter extends FirestoreAdapter<ProductAdapter.ViewHolder> 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView discover_img;
-        TextView title;
-        TextView subtitle;
+        private ImageView discover_img;
+        private TextView title;
+        private TextView subtitle;
 
         public ViewHolder(View itemView) {
             super(itemView);

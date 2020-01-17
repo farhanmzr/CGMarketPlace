@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,76 +14,72 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.model.CartModel;
+import com.example.cgmarketplace.model.ProductModel;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
+public class WishlistAdapter extends FirestoreAdapter<WishlistAdapter.ViewHolder> {
 
     public interface OnProductSelectedListener {
 
-        void onProductSelected(DocumentSnapshot cartModel);
-        void onDeleteSelected(DocumentSnapshot cartModel);
+        void onProductSelected(DocumentSnapshot productModel);
+        void onDeleteSelected(DocumentSnapshot productModel);
 
     }
 
-    private OnProductSelectedListener mListener;
+    private WishlistAdapter.OnProductSelectedListener mListener;
 
-    public CartAdapter(Query query, CartAdapter.OnProductSelectedListener listener) {
+    public WishlistAdapter(Query query, WishlistAdapter.OnProductSelectedListener listener) {
         super(query);
         mListener = listener;
     }
 
     @NonNull
     @Override
-    public CartAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public WishlistAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new CartAdapter.ViewHolder(inflater.inflate(R.layout.item_cart, parent, false));
+        return new WishlistAdapter.ViewHolder(inflater.inflate(R.layout.item_wishlist, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull WishlistAdapter.ViewHolder holder, int position) {
         holder.bind(getSnapshot(position), mListener);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView img_cart;
+        private ImageView wishlist_img;
         private TextView tvNama;
         private TextView tvPrice;
-        private Button btn_minus, btn_plus;
-        private TextView tv_jumlah_cart;
-        private ImageView delItem;
+        private ImageButton btn_wishlist;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-            img_cart = itemView.findViewById(R.id.img_cart);
-            tvNama = itemView.findViewById(R.id.tv_name);
+            wishlist_img = itemView.findViewById(R.id.wishlist_img);
+            tvNama = itemView.findViewById(R.id.tv_nama);
             tvPrice = itemView.findViewById(R.id.tv_price);
-            btn_minus = itemView.findViewById(R.id.btn_minus);
-            btn_plus = itemView.findViewById(R.id.btn_plus);
-            tv_jumlah_cart = itemView.findViewById(R.id.tv_jumlah_cart);
-            delItem = itemView.findViewById(R.id.del_item);
+            btn_wishlist = itemView.findViewById(R.id.btn_wishlist);
         }
 
         public void bind(final DocumentSnapshot snapshot,
-                         final OnProductSelectedListener listener) {
+                         final WishlistAdapter.OnProductSelectedListener listener) {
 
-            CartModel cartModel = snapshot.toObject(CartModel.class);
+            ProductModel productModel = snapshot.toObject(ProductModel.class);
 
-            String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(cartModel.getPrice());
+            String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(productModel.getPrice());
 
             // Load image
-            Glide.with(img_cart.getContext())
-                    .load(cartModel.getImage())
-                    .into(img_cart);
+            Glide.with(wishlist_img.getContext())
+                    .load(productModel.getImage1())
+                    .into(wishlist_img);
 
-            tvNama.setText(cartModel.getName());
+            tvNama.setText(productModel.getName());
             tvPrice.setText(priceFormat);
-            tv_jumlah_cart.setText(String.valueOf(cartModel.getQty()));
+            btn_wishlist.setBackgroundResource(R.drawable.ic_love);
 
 
             // Click listener
@@ -95,7 +92,7 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
                 }
             });
 
-            delItem.setOnClickListener(new View.OnClickListener() {
+            btn_wishlist.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {

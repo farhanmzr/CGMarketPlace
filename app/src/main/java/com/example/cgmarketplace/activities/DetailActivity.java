@@ -222,7 +222,7 @@ public class DetailActivity extends AppCompatActivity
                 } else {
                     Map<String, Object> userWishlist = new HashMap<>();
                     userWishlist.put("name", product.getName());
-                    userWishlist.put("image", product.getImage1());
+                    userWishlist.put("image1", product.getImage1());
                     userWishlist.put("price", product.getPrice());
                     mWishlistRef.set(userWishlist).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
