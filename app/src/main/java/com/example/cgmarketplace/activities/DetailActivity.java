@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,8 +24,11 @@ import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.adapters.ViewPagerAdapter;
 import com.example.cgmarketplace.model.ProductModel;
+import com.example.cgmarketplace.model.WishlistModel;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -50,17 +54,21 @@ public class DetailActivity extends AppCompatActivity
 
     private FirebaseFirestore mFirestore;
     private DocumentReference mProdukRef;
+    private DocumentReference mWishlistRef;
     private FirebaseAuth mAuth;
     private ListenerRegistration mProductRegistration;
     private String userId;
 
-    ViewPager viewPager;
-    PagerAdapter adapter;
-    String[] img;
+    private ViewPager viewPager;
+    private PagerAdapter adapter;
+    private String[] img;
+    private ImageButton addWishlist;
 
     private TextView tv_nama, tv_price, tv_desc, tv_width, tv_height, tv_dense, tv_finishing, tv_material, tv_details_1, tv_details_2, tv_details_3, tv_details_4;
     private String image1, image2, image3, productId;
     private Button btnAddToCart;
+
+    boolean isWishlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +93,7 @@ public class DetailActivity extends AppCompatActivity
         tv_details_3 = findViewById(R.id.tv_details_3);
         tv_details_4 = findViewById(R.id.tv_details_4);
         btnAddToCart = findViewById(R.id.btn_add_to_cart);
+        addWishlist = findViewById(R.id.add_wishlist);
 
         productId = getIntent().getExtras().getString(KEY_PRODUCT_ID);
         if (productId == null) {
@@ -94,6 +103,7 @@ public class DetailActivity extends AppCompatActivity
         // Initialize Firestore
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
 
         // Get reference to the db
         mProdukRef = mFirestore.collection("Produk")
@@ -163,6 +173,7 @@ public class DetailActivity extends AppCompatActivity
         image2 = product.getImage2();
         image3 = product.getImage3();
 
+        wishListState();
         img=new String[]{image1, image2, image3};
         //view pager code
         viewPager=(ViewPager) findViewById(R.id.pager);
@@ -176,7 +187,6 @@ public class DetailActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                userId = mAuth.getCurrentUser().getUid();
                 DocumentReference documentReference = mFirestore.collection("Users").document(userId).collection("Cart").document(productId);
                 Map<String, Object> userCart = new HashMap<>();
                 userCart.put("name", product.getName());
@@ -201,5 +211,61 @@ public class DetailActivity extends AppCompatActivity
             }
     });
 
+        addWishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isWishlist) {
+                    mWishlistRef.delete();
+                    Toast.makeText(DetailActivity.this, "Product with ID" + productId + "Deleted From Wishlist",
+                            Toast.LENGTH_LONG).show();
+
+                } else {
+                    Map<String, Object> userWishlist = new HashMap<>();
+                    userWishlist.put("name", product.getName());
+                    userWishlist.put("image", product.getImage1());
+                    userWishlist.put("price", product.getPrice());
+                    mWishlistRef.set(userWishlist).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(DetailActivity.this, "Successfully Add To Wishlist",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(DetailActivity.this, "Failed Add To Wishlist",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+                isWishlist = !isWishlist;
+                wishListState();
+            }
+        });
+
+    }
+
+    private void wishListState() {
+
+        mWishlistRef = mFirestore.collection("Users").document(userId).collection("Wishlist").document(productId);
+        mWishlistRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "Document exists!");
+                        addWishlist.setBackgroundResource(R.drawable.ic_love);
+                        isWishlist = true;
+                    } else {
+                        Log.d(TAG, "Document does not exist!");
+                        addWishlist.setBackgroundResource(R.drawable.ic_default_love);
+                        isWishlist = false;
+                    }
+                } else {
+                    Log.d(TAG, "Failed with: ", task.getException());
+                }
+            }
+        });
     }
 }

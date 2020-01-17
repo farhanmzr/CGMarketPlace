@@ -118,11 +118,10 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="1.0">
 
-                            <ImageView
+                            <ImageButton
+                                android:id="@+id/add_wishlist"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/ic_love"
-                                android:scaleType="centerCrop" />
+                                android:layout_height="wrap_content"/>
 
                         </LinearLayout>
 
