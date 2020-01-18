@@ -322,7 +322,6 @@
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
 
-
                     </TableRow>
 
                 </TableLayout>
@@ -345,8 +344,6 @@
                             android:fontFamily="@font/montserrat"
                             android:text="@string/details"
                             android:textSize="12sp" />
-
-
 
                         <TextView
                             android:id="@+id/tv_details_1"
@@ -437,8 +434,6 @@
                     </TableRow>
 
                 </TableLayout>
-
-
 
             </LinearLayout>
 
