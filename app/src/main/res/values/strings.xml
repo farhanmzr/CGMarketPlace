@@ -74,4 +74,9 @@
     <string name="not_confirmed">Not Confirmed</string>
     <string name="confirmed">Confirmed</string>
     <string name="deliver">Deliver</string>
+    <string name="tv_sub_noconnection">Make sure wifi or cellular data is turned \n on and then try again .</string>
+    <string name="tv_noconnection">Oops, No Internet Connection</string>
+    <string name="try_again">TRY AGAIN</string>
+    <string name="your_wishlist_is_empty">Your wishlist is empty!</string>
+    <string name="int_1">1</string>
 </resources>

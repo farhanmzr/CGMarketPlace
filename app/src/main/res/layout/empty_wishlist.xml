@@ -17,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.365" />
+        app:layout_constraintVertical_bias="0.265" />
 
     <TextView
         android:id="@+id/textView8"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Your wishlist is empty!"
+        android:text="@string/your_wishlist_is_empty"
         android:textColor="@android:color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat"
-        android:text="Explore more and shortlist some furniture"
+        android:text="@string/explore_more_and_shortlist_some_furniture"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/bg_btn_blue"
         android:fontFamily="@font/montserrat_bold"
-        android:text="START SHOPPING"
+        android:text="@string/start_shopping"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:paddingTop="16dp"
     android:id="@+id/cart_card_view"
     android:layout_width="match_parent"
     android:layout_height="100dp"
@@ -51,8 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/montserrat_bold"
-                    android:gravity="center"
-                    android:text="Feraud Sofa"
+                    android:text=""
                     android:textColor="@android:color/black"
                     android:textSize="12sp" />
 
@@ -61,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/montserrat"
-                    android:text="$ 12,862"
+                    android:text=""
                     android:textColor="#707070"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -94,7 +92,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="1"
+                    android:text="@string/int_1"
                     android:textColor="@android:color/black"
                     android:textSize="12sp" />
 

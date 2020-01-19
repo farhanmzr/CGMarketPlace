@@ -9,7 +9,7 @@
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/empty_cart"
+        android:background="@drawable/no_connection"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/your_cart_is_empty"
+        android:text="@string/tv_noconnection"
         android:textColor="@android:color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,15 +35,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
         android:fontFamily="@font/montserrat"
-        android:text="@string/explore_more_and_shortlist_some_furniture"
+        android:text="@string/tv_sub_noconnection"
+        android:gravity="center"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Button
-        android:id="@+id/btn_start_shop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -52,7 +54,7 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/bg_btn_blue"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/start_shopping"
+        android:text="@string/try_again"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,18 +62,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="false"
-        android:background="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/menu_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

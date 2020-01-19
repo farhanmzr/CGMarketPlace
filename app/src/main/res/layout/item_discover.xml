@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/LinearTheme"
-            android:text="Nama Sofa"
+            android:text=""
             android:textColor="@android:color/black"
             android:textSize="14sp"
             android:fontFamily="@font/montserrat_bold"/>
@@ -40,7 +40,7 @@
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:text="$ 12,999"
+            android:text=""
             android:textColor="@android:color/black"
             android:textSize="14sp"
             android:fontFamily="@font/montserrat" />
