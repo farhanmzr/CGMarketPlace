@@ -55,6 +55,7 @@
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/tv_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -79,9 +80,11 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 
-            <EditText
+            <TextView
+                android:id="@+id/tv_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
                 android:hint="@string/tv_item_email"
                 android:inputType="textEmailAddress"
@@ -105,6 +108,7 @@
                 android:textSize="13sp" />
 
             <EditText
+                android:id="@+id/tv_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -130,6 +134,7 @@
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/tv_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -155,6 +160,7 @@
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/tv_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
