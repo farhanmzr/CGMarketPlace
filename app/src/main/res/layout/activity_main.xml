@@ -195,6 +195,7 @@
                     app:cardBackgroundColor="@android:color/white">
 
                     <ImageView
+                        android:id="@+id/category_cabinet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -213,6 +214,7 @@
                     app:cardBackgroundColor="@android:color/white">
 
                     <ImageView
+                        android:id="@+id/category_table"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"
@@ -231,7 +233,7 @@
                     app:cardBackgroundColor="@android:color/white">
 
                     <ImageView
-                        android:id="@+id/img_mirror"
+                        android:id="@+id/category_mirror"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"

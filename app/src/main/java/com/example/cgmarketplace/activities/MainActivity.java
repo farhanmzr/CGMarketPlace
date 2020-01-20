@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
     private static final int LIMIT = 50;
 
     BottomNavigationView bottomNavigationView;
-    private ImageView img_profile, img_seats, img_bedroom, img_allcat;
+    private ImageView img_profile, img_seats, img_bedroom, img_allcat, img_mirror, img_table, img_cabinet;
     private TextView hello_user, titleCategory;
     private RecyclerView discover_recyclerview;
 
@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
         img_profile = findViewById(R.id.img_profile);
         img_seats = findViewById(R.id.category_seats);
         img_bedroom = findViewById(R.id.category_bedroom);
+        img_mirror = findViewById(R.id.category_mirror);
+        img_table = findViewById(R.id.category_table);
         img_allcat = findViewById(R.id.all_category);
         titleCategory = findViewById(R.id.tvTitleCategory);
 
@@ -67,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
         initFirestore();
         categorySeats();
         categoryBedroom();
+        categoryTable();
+        categoryMirror();
+        allCategory();
         updateUI(currentUser);
 
 
@@ -88,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
             @Override
             public void onClick(View v) {
                 Intent catalog = new Intent(MainActivity.this, CatalogActivity.class);
+                catalog.putExtra(CatalogActivity.KEY_PRODUCT_CATEGORY, "Bedroom");
                 startActivity(catalog);
-                titleCategory.setText("Bedroom");
 
             }
         });
@@ -100,14 +105,52 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
         img_seats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-// sek Error wqwq
-//                titleCategory.setText("Seating");
-//
-//                mFirestore = FirebaseFirestore.getInstance();
-//
-//                CollectionReference product = mFirestore.collection("Produk");
-//
-//                mQuery = product.whereEqualTo("category", "seats");
+
+                Intent catalog = new Intent(MainActivity.this, CatalogActivity.class);
+                catalog.putExtra(CatalogActivity.KEY_PRODUCT_CATEGORY, "Seats");
+                startActivity(catalog);
+
+            }
+        });
+    }
+
+    private void categoryTable() {
+
+        img_table.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent catalog = new Intent(MainActivity.this, CatalogActivity.class);
+                catalog.putExtra(CatalogActivity.KEY_PRODUCT_CATEGORY, "Table");
+                startActivity(catalog);
+
+            }
+        });
+    }
+
+    private void allCategory() {
+
+        img_allcat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent catalog = new Intent(MainActivity.this, CatalogActivity.class);
+                catalog.putExtra(CatalogActivity.KEY_PRODUCT_CATEGORY, "All");
+                startActivity(catalog);
+
+            }
+        });
+    }
+
+    private void categoryMirror() {
+
+        img_mirror.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent catalog = new Intent(MainActivity.this, CatalogActivity.class);
+                catalog.putExtra(CatalogActivity.KEY_PRODUCT_CATEGORY, "Mirror");
+                startActivity(catalog);
 
             }
         });
