@@ -139,12 +139,29 @@
                     android:layout_marginBottom="4dp"
                     app:cardBackgroundColor="@android:color/white">
 
-                    <ImageView
-                        android:id="@+id/all_category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_allcat" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/all_category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/ic_allcat" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="All"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/montserrat"
+                            android:textSize="7dp"
+                            android:layout_gravity="center"/>
+
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -157,12 +174,29 @@
                     android:layout_marginBottom="4dp"
                     app:cardBackgroundColor="@android:color/white">
 
-                    <ImageView
-                        android:id="@+id/category_seats"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_chair" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/category_seats"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/ic_chair" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Seats"
+                            android:fontFamily="@font/montserrat"
+                            android:layout_marginTop="3dp"
+                            android:textSize="7dp"
+                            android:layout_gravity="center"/>
+
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -176,12 +210,29 @@
                     android:minHeight="200dp"
                     app:cardBackgroundColor="@android:color/white">
 
-                    <ImageView
-                        android:id="@+id/category_bedroom"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_bed" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/category_bedroom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:background="@drawable/ic_bed" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bedroom"
+                            android:fontFamily="@font/montserrat"
+                            android:layout_marginTop="3dp"
+                            android:textSize="7dp"
+                            android:layout_gravity="center"/>
+
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -193,13 +244,65 @@
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
                     android:layout_marginBottom="4dp"
                     app:cardBackgroundColor="@android:color/white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/category_cabinet"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="8dp"
                         android:layout_gravity="center"
+                        android:scaleType="fitCenter"
                         android:background="@drawable/ic_cabinet" />
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Cabinet"
+                         android:fontFamily="@font/montserrat"
+                         android:textSize="7dp"
+                         android:layout_marginTop="3dp"
+                         android:layout_gravity="center"/>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+                    android:layout_marginTop="@dimen/mtrl_card_spacing"
+                    android:layout_marginRight="@dimen/mtrl_card_spacing"
+                    android:layout_marginBottom="4dp"
+                    android:minHeight="200dp"
+                    app:cardBackgroundColor="@android:color/white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/category_table"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/ic_table" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Table"
+                            android:fontFamily="@font/montserrat"
+                            android:textSize="7dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_gravity="center"/>
+
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -213,31 +316,29 @@
                     android:minHeight="200dp"
                     app:cardBackgroundColor="@android:color/white">
 
-                    <ImageView
-                        android:id="@+id/category_table"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_table" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:id="@+id/category_mirror"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/ic_mirror" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mirror"
+                            android:fontFamily="@font/montserrat"
+                            android:textSize="7dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_gravity="center"/>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="@dimen/mtrl_card_spacing"
-                    android:layout_marginTop="@dimen/mtrl_card_spacing"
-                    android:layout_marginRight="@dimen/mtrl_card_spacing"
-                    android:layout_marginBottom="4dp"
-                    android:minHeight="200dp"
-                    app:cardBackgroundColor="@android:color/white">
-
-                    <ImageView
-                        android:id="@+id/category_mirror"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_mirror" />
+                    </LinearLayout>
 
 
                 </androidx.cardview.widget.CardView>
