@@ -79,4 +79,7 @@
     <string name="try_again">TRY AGAIN</string>
     <string name="your_wishlist_is_empty">Your wishlist is empty!</string>
     <string name="int_1">1</string>
+    <string name="tv_confirm">Confirm</string>
+    <string name="tv_item_email">farhanrio2805@gmail.com</string>
+    <string name="change_photo">Change photo</string>
 </resources>

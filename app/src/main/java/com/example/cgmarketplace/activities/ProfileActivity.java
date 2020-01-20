@@ -23,6 +23,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     TextView tvTitle;
+    ImageView img_profile;
     Button btn_logout;
 
 
@@ -40,8 +41,16 @@ public class ProfileActivity extends AppCompatActivity {
 
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.profile_title);
-
+        img_profile= findViewById(R.id.img_profile);
         btn_logout = findViewById(R.id.btn_logout);
+
+        img_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent edit = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                startActivity(edit);
+            }
+        });
 
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override

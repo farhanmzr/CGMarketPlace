@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/bg_app"
     tools:context=".activities.MainActivity">
 
             <View
@@ -20,9 +20,8 @@
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
+                style="@style/LinearTheme"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -74,8 +73,6 @@
 
                     </LinearLayout>
 
-
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
@@ -84,9 +81,8 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="24dp"
+        style="@style/LinearTheme"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_search"
         android:iconifiedByDefault="false"
@@ -101,6 +97,7 @@
             <TextView
                 android:id="@+id/textView5"
                 style="@style/LinearTheme"
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
@@ -114,8 +111,8 @@
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
                 android:layout_marginTop="8dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -140,14 +137,14 @@
                     android:layout_marginTop="@dimen/mtrl_card_spacing"
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
                     android:layout_marginBottom="4dp"
-                    app:cardBackgroundColor="@color/colorPrimary">
+                    app:cardBackgroundColor="@android:color/white">
 
                     <ImageView
                         android:id="@+id/all_category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_allcat_click" />
+                        android:background="@drawable/ic_allcat" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -158,7 +155,7 @@
                     android:layout_marginTop="@dimen/mtrl_card_spacing"
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
                     android:layout_marginBottom="4dp"
-                    app:cardBackgroundColor="@color/colorPrimary">
+                    app:cardBackgroundColor="@android:color/white">
 
                     <ImageView
                         android:id="@+id/category_seats"
@@ -177,7 +174,7 @@
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
                     android:layout_marginBottom="4dp"
                     android:minHeight="200dp"
-                    app:cardBackgroundColor="@color/colorPrimary">
+                    app:cardBackgroundColor="@android:color/white">
 
                     <ImageView
                         android:id="@+id/category_bedroom"
@@ -195,7 +192,7 @@
                     android:layout_marginTop="@dimen/mtrl_card_spacing"
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
                     android:layout_marginBottom="4dp"
-                    app:cardBackgroundColor="@color/colorPrimary">
+                    app:cardBackgroundColor="@android:color/white">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -213,7 +210,7 @@
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
                     android:layout_marginBottom="4dp"
                     android:minHeight="200dp"
-                    app:cardBackgroundColor="@color/colorPrimary">
+                    app:cardBackgroundColor="@android:color/white">
 
                     <ImageView
                         android:layout_width="28dp"
@@ -226,19 +223,20 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-
                     android:layout_marginLeft="@dimen/mtrl_card_spacing"
                     android:layout_marginTop="@dimen/mtrl_card_spacing"
                     android:layout_marginRight="@dimen/mtrl_card_spacing"
                     android:layout_marginBottom="4dp"
                     android:minHeight="200dp"
-                    app:cardBackgroundColor="@color/colorPrimary">
+                    app:cardBackgroundColor="@android:color/white">
 
                     <ImageView
+                        android:id="@+id/img_mirror"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"
                         android:background="@drawable/ic_mirror" />
+
 
                 </androidx.cardview.widget.CardView>
 
@@ -252,8 +250,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        style="@style/LinearTheme"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/tv_discover"
         android:textColor="@android:color/black"
@@ -266,9 +263,8 @@
         android:id="@+id/discover_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
+        style="@style/LinearTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

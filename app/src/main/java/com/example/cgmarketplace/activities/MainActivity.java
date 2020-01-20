@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
         img_bedroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent catalog = new Intent(MainActivity.this, CatalogActivity.class);
+                startActivity(catalog);
                 titleCategory.setText("Bedroom");
 
             }
