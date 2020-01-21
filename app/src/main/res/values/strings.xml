@@ -82,4 +82,7 @@
     <string name="tv_confirm">Confirm</string>
     <string name="tv_item_email">farhanrio2805@gmail.com</string>
     <string name="change_photo">Change photo</string>
+    <string name="tv_phone">Phone Number</string>
+    <string name="tv_address">Address</string>
+    <string name="tv_edit_profile">Edit Profile</string>
 </resources>

@@ -38,9 +38,9 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
     Button btn_register;
     ImageView ic_back;
-    EditText input_username_reg, input_email_reg, input_password_reg, input_confirm_password;
+    EditText input_username_reg, input_email_reg, input_password_reg, input_confirm_password, input_telephone, input_address;
     TextView tv_login;
-    String username, email, password, confirm_password, userId;
+    String username, email, password, confirm_password, userId, telephone, address;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
@@ -57,19 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
         input_email_reg = findViewById(R.id.input_email_reg);
         input_password_reg = findViewById(R.id.input_password_reg);
         input_confirm_password = findViewById(R.id.input_confirm_password);
+        input_telephone = findViewById(R.id.input_telephone_reg);
+        input_address = findViewById(R.id.input_address_reg);
         tv_login = findViewById(R.id.tv_login);
-        ic_back = findViewById(R.id.ic_back);
-
-        ic_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent gotologin = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(gotologin);
-                finish();
-                overridePendingTransition(0,0);
-                getIntent().addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            }
-        });
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -100,35 +90,47 @@ public class RegisterActivity extends AppCompatActivity {
                 email = input_email_reg.getText().toString();
                 password = input_password_reg.getText().toString();
                 confirm_password = input_confirm_password.getText().toString();
+                telephone = input_telephone.getText().toString();
+                address = input_address.getText().toString();
 
 
                 if (TextUtils.isEmpty(username)) {
-                    Toast.makeText(getApplicationContext(), "Masukan Username !!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Username Cannot be Empty !!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Masukan Email !!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Email Cannot be Empty !!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(telephone)) {
+                    Toast.makeText(getApplicationContext(), "Telephone Cannot be Empty !!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(address)) {
+                    Toast.makeText(getApplicationContext(), "Address Cannot be Empty!!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (!email.matches(emailPattern)) {
-                    Toast.makeText(getApplicationContext(), "Format Email!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Use valid Email !!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Masukan Password !!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Password Cannot be Empty !!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(confirm_password)) {
-                    Toast.makeText(getApplicationContext(), "Masukan Password Confirm !!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Confirm Password Cannot be Empty !!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (!password.equals(confirm_password)) {
-                    Toast.makeText(getApplicationContext(), "Password harus sama !!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Password doesn't match !!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 mAuth.createUserWithEmailAndPassword(email, password)
@@ -142,8 +144,10 @@ public class RegisterActivity extends AppCompatActivity {
                                     Map<String, Object> userData = new HashMap<>();
                                     userData.put("userName", username);
                                     userData.put("userEmail", email);
-                                    userData.put("userAddress", null);
-                                    userData.put("userTelephone", null);
+                                    userData.put("userAddress", address);
+                                    userData.put("userTelephone", telephone);
+                                    userData.put("userPass", password);
+                                    userData.put("userImg", "https://firebasestorage.googleapis.com/v0/b/cgmarketplace-a8727.appspot.com/o/UserImg%2Fimg_default_profile.png?alt=media&token=d893e8b1-f4ef-4718-834d-0b3ac76107ca");
                                     documentReference.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
