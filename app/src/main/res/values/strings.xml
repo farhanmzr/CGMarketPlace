@@ -85,4 +85,17 @@
     <string name="tv_phone">Phone Number</string>
     <string name="tv_address">Address</string>
     <string name="tv_edit_profile">Edit Profile</string>
+    <string name="manage_shipping">Manage shipping address</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="address_line">Address Line</string>
+    <string name="tv_city">City</string>
+    <string name="tv_region">Region</string>
+    <string name="zip_code">ZIP Code</string>
+    <string name="tv_country">Country</string>
+    <string name="save_address">SAVE ADDRESS</string>
+    <string name="shipping_address">Shipping Address</string>
+    <string name="tv_fullname">Full Name</string>
+    <string name="farhan_mazario">Farhan Mazario</string>
+    <string name="tv_new_password">New Password</string>
+    <string name="tv_confirm_new_password">Confirm New Password</string>
 </resources>

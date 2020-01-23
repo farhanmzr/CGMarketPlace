@@ -33,8 +33,8 @@ public class ProfileActivity extends AppCompatActivity {
     private DocumentReference mUserRef;
     private FirebaseAuth mAuth;
 
-    private TextView tvTitle, tvPhoneNumber, tvUsername, tvEmail, tvPassword, tvAddress;
-    private ImageView img_profile;
+    private TextView tvTitle, tvPhoneNumber, tvUsername, tvEmail, tvPassword, tvAddress, tvFull_name, tv_city, tv_region, tv_zip_code, tv_country, tv_new_password, tv_confirm_password;
+    private ImageView img_profile, ic_edit_profile, ic_edit_address, ic_edit_password;
     private Button btn_logout;
     private String userId;
 
@@ -62,6 +62,16 @@ public class ProfileActivity extends AppCompatActivity {
         tvAddress = findViewById(R.id.tv_address);
         img_profile = findViewById(R.id.img_profile);
         btn_logout = findViewById(R.id.btn_logout);
+        tvFull_name = findViewById(R.id.tvFull_name);
+        tv_city = findViewById(R.id.tv_city);
+        tv_region = findViewById(R.id.tv_region);
+        tv_country = findViewById(R.id.tv_country);
+        tv_new_password = findViewById(R.id.tv_new_password);
+        tv_confirm_password = findViewById(R.id.tv_confirm_password);
+        ic_edit_profile = findViewById(R.id.ic_edit_profile);
+        ic_edit_address = findViewById(R.id.ic_edit_address);
+        ic_edit_password = findViewById(R.id.ic_edit_password);
+
 
         initData();
 

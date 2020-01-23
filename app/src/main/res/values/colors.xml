@@ -7,4 +7,5 @@
     <color name="view">#187FF5</color>
     <color name="bg_app">#F5F6F8</color>
     <color name="lines">#E9E5E5E5</color>
+    <color name="text_gray">#707070</color>
 </resources>

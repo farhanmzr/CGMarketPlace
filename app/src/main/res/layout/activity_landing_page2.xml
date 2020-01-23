@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/img_landingpage_2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/land_page_2_title"
@@ -54,7 +54,7 @@
         android:layout_width="39dp"
         android:layout_height="7dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/bullet_2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,12 +65,11 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="32dp"
-        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -79,9 +78,7 @@
 
         <LinearLayout
             android:layout_width="155dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_height="50dp">
 
             <Button
                 android:id="@+id/btn_skip"
@@ -91,15 +88,14 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/tv_skip"
                 android:textColor="@color/view"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="155dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp">
 
             <Button
                 android:id="@+id/btn_next"
@@ -108,8 +104,8 @@
                 android:background="@drawable/bg_btn_blue"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/tv_next"
-                android:textColor="#FFFF"
-                android:textSize="14sp" />
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 

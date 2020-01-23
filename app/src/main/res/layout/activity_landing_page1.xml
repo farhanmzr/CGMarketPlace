@@ -6,13 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".activities.LandingPage1Activity">
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/img_landingpage1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/land_page_1_title"
@@ -63,7 +62,7 @@
         android:layout_width="39dp"
         android:layout_height="7dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/bullet_1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,12 +73,11 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="32dp"
-        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -87,10 +85,8 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
         <LinearLayout
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_width="155dp"
+            android:layout_height="50dp">
 
             <Button
                 android:id="@+id/btn_skip"
@@ -105,10 +101,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="125dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_width="155dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp">
 
             <Button
                 android:id="@+id/btn_next"

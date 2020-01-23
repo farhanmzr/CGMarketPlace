@@ -69,6 +69,15 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
         tv_jumlah_cart = findViewById(R.id.tv_jumlah_cart);
         tv_total_price = findViewById(R.id.tv_total_price);
 
+        btn_goto_payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CartActivity.this,ShippingAddressActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
 
         bottomNav();
         initFirestore();
