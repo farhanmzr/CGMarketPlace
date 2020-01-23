@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,7 +34,8 @@ public class ProfileActivity extends AppCompatActivity {
     private DocumentReference mUserRef;
     private FirebaseAuth mAuth;
 
-    private TextView tvTitle, tvPhoneNumber, tvUsername, tvEmail, tvPassword, tvAddress, tvFull_name, tv_city, tv_region, tv_zip_code, tv_country, tv_new_password, tv_confirm_password;
+    private TextView tvTitle;
+    private EditText etUsername, etEmail, etPhone_Number, etPassword, etAddress;
     private ImageView img_profile, ic_edit_profile, ic_edit_address, ic_edit_password;
     private Button btn_logout;
     private String userId;
@@ -55,22 +57,17 @@ public class ProfileActivity extends AppCompatActivity {
 
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.profile_title);
-        tvPhoneNumber = findViewById(R.id.tv_phone_number);
-        tvUsername = findViewById(R.id.tv_username);
-        tvEmail = findViewById(R.id.tv_email);
-        tvPassword = findViewById(R.id.tv_password);
-        tvAddress = findViewById(R.id.tv_address);
         img_profile = findViewById(R.id.img_profile);
         btn_logout = findViewById(R.id.btn_logout);
-        tvFull_name = findViewById(R.id.tvFull_name);
-        tv_city = findViewById(R.id.tv_city);
-        tv_region = findViewById(R.id.tv_region);
-        tv_country = findViewById(R.id.tv_country);
-        tv_new_password = findViewById(R.id.tv_new_password);
-        tv_confirm_password = findViewById(R.id.tv_confirm_password);
         ic_edit_profile = findViewById(R.id.ic_edit_profile);
         ic_edit_address = findViewById(R.id.ic_edit_address);
         ic_edit_password = findViewById(R.id.ic_edit_password);
+        etAddress = findViewById(R.id.etAddress);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        etPhone_Number = findViewById(R.id.etPhone_Number);
+        etUsername = findViewById(R.id.etUsername);
+
 
 
         initData();
@@ -106,11 +103,11 @@ public class ProfileActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "Document exists!");
-                        tvUsername.setText(document.getString("userName"));
-                        tvEmail.setText(document.getString("userEmail"));
-                        tvAddress.setText(document.getString("userAddress"));
-                        tvPassword.setText(document.getString("userPass"));
-                        tvPhoneNumber.setText(document.getString("userTelephone"));
+                        etUsername.setText(document.getString("userName"));
+                        etEmail.setText(document.getString("userEmail"));
+                        etAddress.setText(document.getString("userAddress"));
+                        etPassword.setText(document.getString("userPass"));
+                        etPhone_Number.setText(document.getString("userTelephone"));
 
                         Glide.with(img_profile.getContext())
                                 .load(document.getString("userImg"))

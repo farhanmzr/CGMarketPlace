@@ -26,8 +26,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private DocumentReference mUserRef;
     private FirebaseAuth mAuth;
 
-    private EditText tveditPhoneNumber, tveditUsername, tveditPassword, tveditAddress;
-    private TextView tvTitle, tveditEmail;
+//    private EditText tveditPhoneNumber, tveditUsername, tveditPassword, tveditAddress;
+//    private TextView tvTitle, tveditEmail;
     private String userId;
 
     @Override
@@ -42,39 +42,39 @@ public class EditProfileActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
         userId = mAuth.getCurrentUser().getUid();
-        tvTitle = findViewById(R.id.tvTitle);
-        tvTitle.setText(R.string.tv_edit_profile);
-        tveditPhoneNumber = findViewById(R.id.tv_phone_number);
-        tveditUsername = findViewById(R.id.tv_username);
-        tveditEmail = findViewById(R.id.tv_edit_email);
-        tveditPassword = findViewById(R.id.tv_password);
-        tveditAddress = findViewById(R.id.tv_address);
+//        tvTitle = findViewById(R.id.tvTitle);
+//        tvTitle.setText(R.string.tv_edit_profile);
+//        tveditPhoneNumber = findViewById(R.id.tv_phone_number);
+//        tveditUsername = findViewById(R.id.tv_username);
+//        tveditEmail = findViewById(R.id.tv_edit_email);
+//        tveditPassword = findViewById(R.id.tv_password);
+//        tveditAddress = findViewById(R.id.tv_address);
 
-        initData();
+//        initData();
     }
 
-    private void initData() {
-        mUserRef = mFirestore.collection("Users").document(userId);
-        mUserRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "Document exists!");
-                        tveditUsername.setText(document.getString("userName"));
-                        tveditEmail.setText(document.getString("userEmail"));
-                        tveditAddress.setText(document.getString("userAddress"));
-                        tveditPassword.setText(document.getString("userPass"));
-                        tveditPhoneNumber.setText(document.getString("userTelephone"));
-
-                    } else {
-                        Log.d(TAG, "Document does not exist!");
-                    }
-                } else {
-                    Log.d(TAG, "Failed with: ", task.getException());
-                }
-            }
-        });
-    }
+//    private void initData() {
+//        mUserRef = mFirestore.collection("Users").document(userId);
+//        mUserRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document.exists()) {
+//                        Log.d(TAG, "Document exists!");
+//                        tveditUsername.setText(document.getString("userName"));
+//                        tveditEmail.setText(document.getString("userEmail"));
+//                        tveditAddress.setText(document.getString("userAddress"));
+//                        tveditPassword.setText(document.getString("userPass"));
+//                        tveditPhoneNumber.setText(document.getString("userTelephone"));
+//
+//                    } else {
+//                        Log.d(TAG, "Document does not exist!");
+//                    }
+//                } else {
+//                    Log.d(TAG, "Failed with: ", task.getException());
+//                }
+//            }
+//        });
+//    }
 }

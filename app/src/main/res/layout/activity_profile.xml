@@ -20,14 +20,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/img_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/img_default_profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/img_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/img_default_profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/linearLayout3"
@@ -99,37 +99,33 @@
                 </LinearLayout>
 
                 <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/tv_fullname"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tvFull_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:backgroundTint="@color/lines"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/farhan_mazario"
-                    android:textSize="14sp" />
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/lines" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/tv_fullname"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/etFull_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:lines="1"
+                        android:backgroundTint="@color/lines"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/farhan_mazario"
+                        android:textSize="14sp" />
 
 
-            </LinearLayout>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -145,21 +141,16 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_username"
+                    <EditText
+                        android:id="@+id/etUsername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:lines="1"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/tv_item_username"
                         android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/lines" />
 
 
                 </LinearLayout>
@@ -179,21 +170,18 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_email"
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:layout_marginStart="3dp"
+                        android:backgroundTint="@color/lines"
+                        android:lines="1"
+                        android:inputType="textEmailAddress"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/tv_item_email"
                         android:textSize="14sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/lines" />
 
                 </LinearLayout>
 
@@ -211,8 +199,8 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_phone_number"
+                    <EditText
+                        android:id="@+id/etPhone_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -221,11 +209,6 @@
                         android:text="@string/tv_phone_number"
                         android:textSize="14sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/lines" />
 
                 </LinearLayout>
 
@@ -302,21 +285,17 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_address"
+                    <EditText
+                        android:id="@+id/etAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:lines="1"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/tv_item_address"
                         android:textSize="14sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/lines" />
 
                 </LinearLayout>
 
@@ -334,20 +313,17 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_city"
+                    <EditText
+                        android:id="@+id/etCity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:lines="1"
+                        android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/tv_city"
                         android:textSize="14sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/lines" />
 
                 </LinearLayout>
 
@@ -365,20 +341,17 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_region"
+                    <EditText
+                        android:id="@+id/etRegion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:lines="1"
+                        android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/tv_region"
                         android:textSize="14sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/lines" />
 
                 </LinearLayout>
 
@@ -396,20 +369,17 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_zip_code"
+                    <EditText
+                        android:id="@+id/etZip_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:lines="1"
+                        android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/zip_code"
                         android:textSize="14sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/lines" />
 
                 </LinearLayout>
 
@@ -427,21 +397,16 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_country"
+                    <EditText
+                        android:id="@+id/etCountry"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:lines="1"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/tv_country"
                         android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/lines" />
 
                 </LinearLayout>
 
@@ -518,20 +483,16 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_password"
+                    <EditText
+                        android:id="@+id/etPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:lines="1"
+                        android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/tv_item_password"
                         android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/lines" />
 
                 </LinearLayout>
 
@@ -549,20 +510,16 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_new_password"
+                    <EditText
+                        android:id="@+id/etNew_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:lines="1"
+                        android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/tv_item_password"
                         android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/lines" />
 
                 </LinearLayout>
 
@@ -580,20 +537,17 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_confirm_password"
+                    <EditText
+                        android:id="@+id/etConfirm_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:lines="1"
+                        android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/tv_item_password"
                         android:textSize="14sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/lines" />
 
                 </LinearLayout>
 
