@@ -62,7 +62,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4">
 
-        <!-- Email Label -->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_fullname_reg"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_form"
+                android:hint="@string/tv_fullname"
+                android:inputType="text"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -80,7 +96,6 @@
                 android:textSize="12sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Password Label -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -117,23 +132,7 @@
                 android:textSize="12sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_address_reg"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/bg_form"
-                android:hint="@string/tv_address"
-                android:inputType="text"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:textSize="12sp" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

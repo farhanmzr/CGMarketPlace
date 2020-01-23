@@ -20,14 +20,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/img_profile"
+            <FrameLayout
+                android:id="@+id/frame_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/img_default_profile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/img_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_default_profile"/>
+
+                <ImageView
+                    android:id="@+id/change_img_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/img_change_profile"
+                    android:layout_gravity="center"/>
+
+            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayout3"
@@ -38,7 +54,7 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_profile">
+                app:layout_constraintTop_toBottomOf="@+id/frame_layout">
 
                 <LinearLayout
                     android:id="@+id/my_profile"
@@ -86,7 +102,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="1.0">
 
-                            <ImageView
+                            <ImageButton
                                 android:id="@+id/ic_edit_profile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -118,12 +134,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:lines="1"
+                        android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/farhan_mazario"
+                        android:hint="@string/farhan_mazario"
                         android:textSize="14sp" />
-
-
 
                 </LinearLayout>
 
@@ -147,9 +162,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:lines="1"
+                        android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/tv_item_username"
+                        android:hint="@string/tv_item_username"
                         android:textSize="14sp" />
 
 
@@ -179,7 +195,7 @@
                         android:lines="1"
                         android:inputType="textEmailAddress"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/tv_item_email"
+                        android:hint="@string/tv_item_email"
                         android:textSize="14sp" />
 
 
@@ -204,9 +220,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:inputType="phone"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/tv_phone_number"
+                        android:hint="@string/tv_phone_number"
                         android:textSize="14sp" />
 
 
@@ -259,8 +276,8 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="1.0">
 
-                            <ImageView
-                                android:id="@+id/ic_edit_address"
+                            <ImageButton
+                                android:id="@+id/ic_edit_addressProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/ic_edit_profile"
@@ -286,14 +303,15 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/etAddress"
+                        android:id="@+id/etAddressProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:lines="1"
+                        android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/tv_item_address"
+                        android:hint="@string/tv_item_address"
                         android:textSize="14sp" />
 
 
@@ -314,14 +332,15 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/etCity"
+                        android:id="@+id/etCityProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:lines="1"
+                        android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/tv_city"
+                        android:hint="@string/tv_city"
                         android:textSize="14sp" />
 
 
@@ -342,14 +361,15 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/etRegion"
+                        android:id="@+id/etRegionProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:lines="1"
+                        android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/tv_region"
+                        android:hint="@string/tv_region"
                         android:textSize="14sp" />
 
 
@@ -370,14 +390,15 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/etZip_code"
+                        android:id="@+id/etZip_codeProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:lines="1"
+                        android:inputType="textPostalAddress"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/zip_code"
+                        android:hint="@string/zip_code"
                         android:textSize="14sp" />
 
 
@@ -398,14 +419,15 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/etCountry"
+                        android:id="@+id/etCountryProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:lines="1"
+                        android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/tv_country"
+                        android:hint="@string/tv_country"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -423,6 +445,9 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="MissingConstraints">
 
                         <LinearLayout
@@ -437,11 +462,11 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:layout_marginStart="2dp"
                                 android:fontFamily="@font/montserrat_bold"
                                 android:gravity="center"
-                                android:layout_marginStart="2dp"
-                                android:textColor="@android:color/black"
                                 android:text="@string/tv_password"
+                                android:textColor="@android:color/black"
                                 android:textSize="16sp" />
                         </LinearLayout>
 
@@ -457,7 +482,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="1.0">
 
-                            <ImageView
+                            <ImageButton
                                 android:id="@+id/ic_edit_password"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -489,9 +514,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:lines="1"
+                        android:inputType="textPassword"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/tv_item_password"
+                        android:hint="@string/tv_item_password"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -516,9 +542,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:lines="1"
+                        android:inputType="textPassword"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/tv_item_password"
+                        android:hint="@string/tv_item_password"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -545,7 +572,8 @@
                         android:lines="1"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/tv_item_password"
+                        android:hint="@string/tv_item_password"
+                        android:inputType="textPassword"
                         android:textSize="14sp" />
 
 

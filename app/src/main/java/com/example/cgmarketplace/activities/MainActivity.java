@@ -1,10 +1,5 @@
 package com.example.cgmarketplace.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,17 +8,24 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.adapters.ProductAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 public class MainActivity extends AppCompatActivity implements ProductAdapter.OnProductSelectedListener {
 
@@ -81,7 +83,9 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
             @Override
             public void onClick(View v) {
                 Intent gotoprofile = new Intent(MainActivity.this, ProfileActivity.class);
+                gotoprofile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(gotoprofile);
+                finish();
             }
         });
 
@@ -225,6 +229,10 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
             hello_user = findViewById(R.id.hello_user);
             hello_user.setText(
                     String.format("%s%s", "Hello, ", user.getDisplayName()));
+
+            Glide.with(img_profile.getContext())
+                    .load(user.getPhotoUrl())
+                    .into(img_profile);
         } else {
             Intent i = new Intent(MainActivity.this, LandingPage1Activity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -247,19 +255,19 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
                         return true;
 
                     case R.id.cart:
-                        startActivity(new Intent(getApplicationContext(),CartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(new Intent(getApplicationContext(),CartActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                         finish();
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.wishlist:
-                        startActivity(new Intent(getApplicationContext(),WishlistActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(new Intent(getApplicationContext(),WishlistActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                         finish();
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.transaction:
-                        startActivity(new Intent(getApplicationContext(),TransactionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(new Intent(getApplicationContext(),TransactionActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                         finish();
                         overridePendingTransition(0,0);
                         return true;

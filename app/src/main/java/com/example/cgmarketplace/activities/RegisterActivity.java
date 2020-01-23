@@ -1,9 +1,5 @@
 package com.example.cgmarketplace.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,17 +13,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.cgmarketplace.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.core.Tag;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -38,9 +35,9 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
     Button btn_register;
     ImageView ic_back;
-    EditText input_username_reg, input_email_reg, input_password_reg, input_confirm_password, input_telephone, input_address;
+    EditText input_username_reg, input_email_reg, input_password_reg, input_confirm_password, input_telephone, input_fullname;
     TextView tv_login;
-    String username, email, password, confirm_password, userId, telephone, address;
+    String username, email, password, confirm_password, userId, telephone, fullname;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
@@ -58,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         input_password_reg = findViewById(R.id.input_password_reg);
         input_confirm_password = findViewById(R.id.input_confirm_password);
         input_telephone = findViewById(R.id.input_telephone_reg);
-        input_address = findViewById(R.id.input_address_reg);
+        input_fullname = findViewById(R.id.input_fullname_reg);
         tv_login = findViewById(R.id.tv_login);
 
         mAuth = FirebaseAuth.getInstance();
@@ -91,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
                 password = input_password_reg.getText().toString();
                 confirm_password = input_confirm_password.getText().toString();
                 telephone = input_telephone.getText().toString();
-                address = input_address.getText().toString();
+                fullname = input_fullname.getText().toString();
 
 
                 if (TextUtils.isEmpty(username)) {
@@ -109,7 +106,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (TextUtils.isEmpty(address)) {
+                if (TextUtils.isEmpty(fullname)) {
                     Toast.makeText(getApplicationContext(), "Address Cannot be Empty!!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -144,10 +141,8 @@ public class RegisterActivity extends AppCompatActivity {
                                     Map<String, Object> userData = new HashMap<>();
                                     userData.put("userName", username);
                                     userData.put("userEmail", email);
-                                    userData.put("userAddress", address);
+                                    userData.put("fullName", fullname);
                                     userData.put("userTelephone", telephone);
-                                    userData.put("userPass", password);
-                                    userData.put("userImg", "https://firebasestorage.googleapis.com/v0/b/cgmarketplace-a8727.appspot.com/o/UserImg%2Fimg_default_profile.png?alt=media&token=d893e8b1-f4ef-4718-834d-0b3ac76107ca");
                                     documentReference.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
