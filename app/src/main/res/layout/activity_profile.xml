@@ -137,7 +137,7 @@
                         android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:hint="@string/farhan_mazario"
+                        android:hint="@string/tv_fullname"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -165,7 +165,7 @@
                         android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:hint="@string/tv_item_username"
+                        android:hint="@string/tv_username"
                         android:textSize="14sp" />
 
 
@@ -195,7 +195,7 @@
                         android:lines="1"
                         android:inputType="textEmailAddress"
                         android:fontFamily="@font/montserrat"
-                        android:hint="@string/tv_item_email"
+                        android:hint="@string/tv_email"
                         android:textSize="14sp" />
 
 
@@ -223,7 +223,7 @@
                         android:inputType="phone"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
-                        android:hint="@string/tv_phone_number"
+                        android:hint="@string/phone_number"
                         android:textSize="14sp" />
 
 

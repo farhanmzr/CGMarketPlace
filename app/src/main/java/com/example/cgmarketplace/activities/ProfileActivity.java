@@ -147,6 +147,7 @@ public class ProfileActivity extends AppCompatActivity {
                     username = etUsername.getText().toString();
                     email = etEmail.getText().toString();
                     phone = etPhone_Number.getText().toString();
+
                     Map<String, Object> profile = new HashMap<>();
                     profile.put("fullName", fullname);
                     profile.put("userName", username);
@@ -158,6 +159,8 @@ public class ProfileActivity extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             Log.w(TAG, "Successfully");
                             UploadImg();
+
+                            ic_edit_profile.setBackgroundResource(R.drawable.ic_edit_profile );
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -168,7 +171,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
                 else {
 
-                    ic_edit_profile.setBackgroundResource(R.drawable.ic_love);
+                    ic_edit_profile.setBackgroundResource(R.drawable.img_save_changes);
                     change_img.setVisibility(View.VISIBLE);
 
                 }
@@ -289,7 +292,7 @@ public class ProfileActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.w(TAG, "Successfully");
-                            Toast.makeText(ProfileActivity.this, "Address Changed",
+                            Toast.makeText(ProfileActivity.this, "Address Update",
                                             Toast.LENGTH_SHORT)
                                     .show();
 
@@ -304,7 +307,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
                 else {
 
-                    ic_edit_address.setBackgroundResource(R.drawable.ic_love);
+                    ic_edit_address.setBackgroundResource(R.drawable.img_save_changes);
                 }
                 editAddress = !editAddress;
                 initDataAddress();

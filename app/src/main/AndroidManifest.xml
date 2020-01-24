@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/ic_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ShippingAddressActivity"></activity>
+        <activity android:name=".activities.OrderDetailActivity"></activity>
+        <activity android:name=".activities.ShippingAddressActivity" />
         <activity android:name=".activities.EditProfileActivity" />
         <activity android:name=".activities.CatalogActivity" />
         <activity android:name=".activities.ProfileActivity" />
