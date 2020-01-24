@@ -28,6 +28,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -56,11 +58,11 @@ public class ProfileActivity extends AppCompatActivity {
     private final int PICK_IMAGE_REQUEST = 22;
 
     private TextView tvTitle;
-    private EditText etFullName, etUsername, etEmail, etPhone_Number, etPassword, etAddress, etCity, etRegion, etZip_Code, etCountry;
+    private EditText etFullName, etUsername, etEmail, etPhone_Number, etPassword, etNewPass, etNewConfirmPass, etAddress, etCity, etRegion, etZip_Code, etCountry;
     private ImageView img_profile, change_img;
     private ImageButton ic_edit_profile, ic_edit_address, ic_edit_password;
     private Button btn_logout;
-    private String userId, fullname, username, email, phone, address, city, region, zipCode, country;
+    private String userId, fullname, username, email, phone, address, city, region, zipCode, country, recentPass, newPass, confirmPass;
     private boolean editProfile, editAddress, editPass;
 
 
@@ -70,6 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         editProfile = false;
         editAddress = false;
+        editPass = false;
 
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -94,6 +97,8 @@ public class ProfileActivity extends AppCompatActivity {
         ic_edit_password = findViewById(R.id.ic_edit_password);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
+        etNewPass = findViewById(R.id.etNew_password);
+        etNewConfirmPass = findViewById(R.id.etConfirm_password);
         etPhone_Number = findViewById(R.id.etPhone_number);
         etUsername = findViewById(R.id.etUsername);
         etFullName = findViewById(R.id.etFull_name);
@@ -107,8 +112,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         initDataProfile();
         initDataAddress();
+        initDataPass();
         editDataAddress();
         editDataProfile();
+        editDataPass();
 
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,18 +129,80 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        change_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                selectImage();
-            }
-        });
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Glide.with(img_profile.getContext())
                 .load(user.getPhotoUrl())
                 .into(img_profile);
+    }
+
+    private void initDataPass() {
+
+
+        etPassword.setEnabled(editPass);
+        etPassword.setFocusableInTouchMode(editPass);
+        etPassword.setFocusable(editPass);
+
+        etNewPass.setEnabled(editPass);
+        etNewPass.setFocusableInTouchMode(editPass);
+        etNewPass.setFocusable(editPass);
+
+        etNewConfirmPass.setEnabled(editPass);
+        etNewConfirmPass.setFocusableInTouchMode(editPass);
+        etNewConfirmPass.setFocusable(editPass);
+    }
+
+    private void editDataPass() {
+
+        ic_edit_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (editPass) {
+                    recentPass = etPassword.getText().toString();
+                    newPass = etNewPass.getText().toString();
+                    confirmPass = etNewConfirmPass.getText().toString();
+
+                    if (newPass.equals(confirmPass)) {
+
+                        final FirebaseUser user = mAuth.getCurrentUser();
+                        AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), recentPass);
+                        user.reauthenticate(credential)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            user.updatePassword(newPass).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Log.d(TAG, "Password updated");
+                                                        editPass = !editPass;
+                                                        initDataPass();
+
+                                                    } else {
+                                                        Log.d(TAG, "Error password not updated");
+                                                    }
+                                                }
+                                            });
+                                        } else {
+                                            Log.d(TAG, "Error auth failed");
+                                        }
+                                    }
+                                });
+                    } else {
+                        Toast.makeText(ProfileActivity.this, "Password do not match",
+                                Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                }
+                else {
+
+                    ic_edit_password.setBackgroundResource(R.drawable.img_save_changes);
+                    editPass = !editPass;
+                    initDataPass();
+
+                }
+            }
+        });
     }
 
     private void editDataProfile() {
@@ -160,7 +229,15 @@ public class ProfileActivity extends AppCompatActivity {
                             Log.w(TAG, "Successfully");
                             UploadImg();
 
-                            ic_edit_profile.setBackgroundResource(R.drawable.ic_edit_profile );
+                            ic_edit_profile.setBackgroundResource(R.drawable.ic_edit_profile);
+                            change_img.setVisibility(View.INVISIBLE);
+                            editProfile = !editProfile;
+                            initDataProfile();
+                            Toast.makeText(ProfileActivity.this,
+                                            "Profile Changed",
+                                            Toast.LENGTH_SHORT)
+                                    .show();
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -173,15 +250,13 @@ public class ProfileActivity extends AppCompatActivity {
 
                     ic_edit_profile.setBackgroundResource(R.drawable.img_save_changes);
                     change_img.setVisibility(View.VISIBLE);
-
+                    editProfile = !editProfile;
+                    initDataProfile();
                 }
-                editProfile = !editProfile;
-                initDataProfile();
 
             }
         });
     }
-
 
     private void initDataProfile() {
 
@@ -297,6 +372,8 @@ public class ProfileActivity extends AppCompatActivity {
                                     .show();
 
                             ic_edit_address.setBackgroundResource(R.drawable.ic_edit_profile);
+                            editAddress = !editAddress;
+                            initDataAddress();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -308,9 +385,9 @@ public class ProfileActivity extends AppCompatActivity {
                 else {
 
                     ic_edit_address.setBackgroundResource(R.drawable.img_save_changes);
+                    editAddress = !editAddress;
+                    initDataAddress();
                 }
-                editAddress = !editAddress;
-                initDataAddress();
 
             }
         });
@@ -409,6 +486,14 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void UploadImg() {
 
+        change_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectImage();
+            }
+        });
+
         if (filePath != null) {
 
             // Code for showing progressDialog while uploading
@@ -437,11 +522,6 @@ public class ProfileActivity extends AppCompatActivity {
                                     // Image uploaded successfully
                                     // Dismiss dialog
                                     progressDialog.dismiss();
-                                    Toast
-                                            .makeText(ProfileActivity.this,
-                                                    "Profile Changed",
-                                                    Toast.LENGTH_SHORT)
-                                            .show();
 
                                     ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
@@ -457,11 +537,6 @@ public class ProfileActivity extends AppCompatActivity {
                                                             Log.d(TAG, "User Profile Updated");
                                                         }
                                                     });
-
-
-                                            ic_edit_profile.setBackgroundResource(R.drawable.ic_edit_profile);
-                                            change_img.setVisibility(View.INVISIBLE);
-                                            initDataProfile();
                                         }
                                     });
                                 }
