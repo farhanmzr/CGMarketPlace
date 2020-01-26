@@ -36,6 +36,7 @@ public class ShippingAddressActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private TextView tvTitle;
+    private Button btn_next;
     private EditText etFull_name, etAddress, etCity, etRegion, etZip_Code, etCountry, etPhone_Number;
     Button btnNext, btnSaveAddress;
 
@@ -68,6 +69,7 @@ public class ShippingAddressActivity extends AppCompatActivity {
         etZip_Code = findViewById(R.id.etZip_Code);
         etCountry = findViewById(R.id.etCountry);
         etPhone_Number = findViewById(R.id.etPhone_Number);
+        btn_next = findViewById(R.id.btn_next);
 
         initData();
         saveAddress();
@@ -114,6 +116,15 @@ public class ShippingAddressActivity extends AppCompatActivity {
                                             .show();
                                     btnNext.setClickable(true);
                                     btnNext.setBackgroundColor(R.drawable.bg_btn_blue);
+                                    btn_next.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(ShippingAddressActivity.this, OrderDetailActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    });
 
                                 }
                             }).addOnFailureListener(new OnFailureListener() {

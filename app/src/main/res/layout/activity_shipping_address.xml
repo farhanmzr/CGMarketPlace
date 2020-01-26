@@ -11,278 +11,17 @@
         android:layout_height="wrap_content"
         android:background="@color/bg_app">
 
-    <LinearLayout
-        android:id="@+id/linear1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        style="@style/LinearTheme"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/personal_information"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/etFull_name"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_form"
-            android:fontFamily="@font/montserrat"
-            android:hint="Full name"
-            android:inputType="text"
-            android:lines="1"
-            android:paddingLeft="16dp"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear2"
-        style="@style/LinearTheme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/address_line"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/etAddress"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_form"
-            android:fontFamily="@font/montserrat"
-            android:hint="Address"
-            android:inputType="text"
-            android:lines="1"
-            android:paddingLeft="16dp"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        style="@style/LinearTheme"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear2">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/tv_city"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/etCity"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_form"
-            android:fontFamily="@font/montserrat"
-            android:hint="City"
-            android:inputType="text"
-            android:lines="1"
-            android:paddingLeft="16dp"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        style="@style/LinearTheme"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear3">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/tv_region"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/etRegion"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_form"
-            android:fontFamily="@font/montserrat"
-            android:hint="Region"
-            android:inputType="text"
-            android:lines="1"
-            android:paddingLeft="16dp"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        style="@style/LinearTheme"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear4">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/zip_code"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/etZip_Code"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_form"
-            android:fontFamily="@font/montserrat"
-            android:hint="ZIP Code"
-            android:inputType="number"
-            android:lines="1"
-            android:paddingLeft="16dp"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        style="@style/LinearTheme"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear5">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/tv_country"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/etCountry"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_form"
-            android:fontFamily="@font/montserrat"
-            android:hint="Country"
-            android:inputType="text"
-            android:lines="1"
-            android:paddingLeft="16dp"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        style="@style/LinearTheme"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear6">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/tv_phone"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/etPhone_Number"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_form"
-            android:fontFamily="@font/montserrat"
-            android:hint="@string/tv_phone"
-            android:inputType="number"
-            android:lines="1"
-            android:paddingLeft="16dp"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:text="@string/save_address"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:fontFamily="@font/montserrat_bold"
-        android:background="@drawable/bg_btn_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear7" />
-
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="24dp"
             android:background="@drawable/img_payment1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_save" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/linearstep"
@@ -364,12 +103,204 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/linear1"
+            style="@style/LinearTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearstep">
+
+            <EditText
+                android:id="@+id/etFull_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_form"
+                android:fontFamily="@font/montserrat"
+                android:hint="Full name"
+                android:inputType="text"
+                android:lines="1"
+                android:paddingLeft="16dp"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        style="@style/LinearTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear1">
+
+
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_form"
+            android:fontFamily="@font/montserrat"
+            android:hint="Address"
+            android:inputType="text"
+            android:lines="1"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        style="@style/LinearTheme"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear2">
+
+        <EditText
+            android:id="@+id/etCity"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_form"
+            android:fontFamily="@font/montserrat"
+            android:hint="City"
+            android:inputType="text"
+            android:lines="1"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@style/LinearTheme"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear3">
+
+
+        <EditText
+            android:id="@+id/etRegion"
+            android:layout_width="225dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_form"
+            android:fontFamily="@font/montserrat"
+            android:hint="Region"
+            android:inputType="text"
+            android:lines="1"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/etZip_Code"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_form"
+            android:fontFamily="@font/montserrat"
+            android:hint="ZIP Code"
+            android:inputType="number"
+            android:lines="1"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        style="@style/LinearTheme"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear4">
+
+        <EditText
+            android:id="@+id/etCountry"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_form"
+            android:fontFamily="@font/montserrat"
+            android:hint="Country"
+            android:inputType="text"
+            android:lines="1"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        style="@style/LinearTheme"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear6">
+
+
+        <EditText
+            android:id="@+id/etPhone_Number"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_form"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/tv_phone"
+            android:inputType="number"
+            android:lines="1"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:text="@string/save_address"
+        android:textColor="@color/view"
+        android:textSize="14sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:background="@drawable/bg_btn_skip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear7" />
+
+
+
         <Button
             android:id="@+id/btn_next"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_btn_blue"
@@ -381,7 +312,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearstep" />
+            app:layout_constraintTop_toBottomOf="@id/btn_save" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

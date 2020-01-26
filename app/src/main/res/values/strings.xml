@@ -99,4 +99,7 @@
     <string name="tv_new_password">New Password</string>
     <string name="tv_confirm_new_password">Confirm New Password</string>
     <string name="et_chg_pass">Change Password</string>
+    <string name="tv_name">Name</string>
+    <string name="order_detail">Order Detail</string>
+    <string name="cancel">Cancel</string>
 </resources>
