@@ -6,6 +6,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firestore.v1.StructuredQuery;
 
 public class OrderDetailActivity extends AppCompatActivity {
 
@@ -33,8 +37,13 @@ public class OrderDetailActivity extends AppCompatActivity {
     private DocumentReference mAddressRef, mUserRef;
     private FirebaseAuth mAuth;
 
+    private Dialog alertDialog;
+    private ImageView imgQuestion;
+    private TextView tvQuestion, tv_title, tvSub_title;
+    private Button btn_cancel, btn_confirm;
+
     private TextView tvTitle, tv_nama, tv_qty, tv_price, tv_width, tv_height, tv_dense, tv_material, tv_finishing, tv_full_name, tv_address, tv_city, tv_region, tv_zip_code, tv_country, tv_phone_number;
-    private Button btn_confirm;
+    private Button btn_dialog;
     private ImageView img_barang;
     private String userId;
 
@@ -71,69 +80,104 @@ public class OrderDetailActivity extends AppCompatActivity {
         tv_zip_code = findViewById(R.id.tv_zip_code);
         tv_country = findViewById(R.id.tv_country);
         tv_phone_number = findViewById(R.id.tv_phone_number);
-        btn_confirm = findViewById(R.id.btn_confirm);
 
-        alertDialog();
-        initData();
+        initViews();
+//        initData();
 
+
+    }
+
+    private void initViews() {
+
+        initCustomDialog();
+        initViewComponents();
+    }
+
+    private void initCustomDialog() {
+        alertDialog = new Dialog(OrderDetailActivity.this);
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.setContentView(R.layout.dialog_payment);
+
+        imgQuestion = alertDialog.findViewById(R.id.imgQuestion);
+        tvQuestion = alertDialog.findViewById(R.id.tvQuestion);
+        tvTitle = alertDialog.findViewById(R.id.tvTitle);
+        tvSub_title = alertDialog.findViewById(R.id.tvSub_title);
+        btn_cancel = alertDialog.findViewById(R.id.btn_cancel);
+        btn_confirm = alertDialog.findViewById(R.id.btn_confirm);
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alertDialog();
+                Intent intent = new Intent(OrderDetailActivity.this, OrderInvoiceActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    }
+
+    private void initViewComponents() {
+        btn_dialog = findViewById(R.id.btn_dialog);
+        btn_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.show();
             }
         });
     }
 
 
-    private void alertDialog() {
-
-
-    }
-
-    private void initData() {
-
-        mUserRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "Document exists!");
-                        tv_full_name.setText(document.getString("fullName"));
-                        tv_phone_number.setText(document.getString("userTelephone"));
-
-                        mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-                                        Log.d(TAG, "Document exists!");
-                                        tv_address.setText(document.getString("address"));
-                                        tv_city.setText(document.getString("city"));
-                                        tv_region.setText(document.getString("region"));
-                                        tv_zip_code.setText(document.getString("zipcode"));
-                                        tv_country.setText(document.getString("country"));
-
-                                    } else {
-                                        Log.d(TAG, "Document does not exist!");
-
-                                    }
-                                } else {
-                                    Log.d(TAG, "Failed with: ", task.getException());
-                                }
-                            }
-                        });
-
-                    } else {
-                        Log.d(TAG, "Document does not exist!");
-
-                    }
-                } else {
-                    Log.d(TAG, "Failed with: ", task.getException());
-                }
-            }
-        });
-    }
+//    kok ra gelem ngundang data ya wkwk
+//    private void initData() {
+//
+//        mUserRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document.exists()) {
+//                        Log.d(TAG, "Document exists!");
+//                        tv_full_name.setText(document.getString("fullName"));
+//                        tv_phone_number.setText(document.getString("userTelephone"));
+//
+//                        mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                                if (task.isSuccessful()) {
+//                                    DocumentSnapshot document = task.getResult();
+//                                    if (document.exists()) {
+//                                        Log.d(TAG, "Document exists!");
+//                                        tv_address.setText(document.getString("address"));
+//                                        tv_city.setText(document.getString("city"));
+//                                        tv_region.setText(document.getString("region"));
+//                                        tv_zip_code.setText(document.getString("zipcode"));
+//                                        tv_country.setText(document.getString("country"));
+//
+//                                    } else {
+//                                        Log.d(TAG, "Document does not exist!");
+//
+//                                    }
+//                                } else {
+//                                    Log.d(TAG, "Failed with: ", task.getException());
+//                                }
+//                            }
+//                        });
+//
+//                    } else {
+//                        Log.d(TAG, "Document does not exist!");
+//
+//                    }
+//                } else {
+//                    Log.d(TAG, "Failed with: ", task.getException());
+//                }
+//            }
+//        });
+//    }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -142,7 +186,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
-            startActivity(new Intent(getApplicationContext(),MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(getApplicationContext(),ShippingAddressActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
             overridePendingTransition(0,0);
             return true;

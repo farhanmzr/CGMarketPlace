@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imgQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="8dp"
         android:layout_gravity="center"
         android:background="@drawable/img_question"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tvQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -29,51 +28,52 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintTop_toBottomOf="@+id/imgQuestion" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat"
         android:text="Please check again your order information"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/tvQuestion" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/tvSub_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat"
         android:text="Click confirm if your order is right"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginTop="32dp"
-        android:gravity="center"
+        android:layout_gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12">
+        app:layout_constraintTop_toBottomOf="@+id/tvSub_title">
 
         <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="50dp">
+            android:layout_width="125dp"
+            android:layout_height="40dp">
 
             <Button
                 android:id="@+id/btn_cancel"
@@ -88,9 +88,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp">
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp">
 
             <Button
                 android:id="@+id/btn_confirm"

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvSortby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        android:text="SORT BY"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        android:fontFamily="@font/montserrat_bold"/>
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/black" />
+
+    <RadioGroup
+        android:id="@+id/radioSortby"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        style="@style/LinearTheme"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_AtoZ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  A to Z"
+            android:fontFamily="@font/montserrat"
+            android:textSize="14sp"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton
+            android:id="@+id/radio_ZtoA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Z to A"
+            android:fontFamily="@font/montserrat"
+            android:textSize="14sp"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton
+            android:id="@+id/radio_LowtoHigh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Low Price to High"
+            android:fontFamily="@font/montserrat"
+            android:textSize="14sp"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton
+            android:id="@+id/radio_HightoLow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  High Price to Low"
+            android:fontFamily="@font/montserrat"
+            android:textSize="14sp"
+            android:onClick="onRadioButtonClicked"/>
+
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="125dp"
+            android:layout_height="40dp">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_skip"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/cancel"
+                android:textColor="@color/view"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp">
+
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_blue"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/tv_confirm"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

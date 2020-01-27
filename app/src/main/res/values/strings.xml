@@ -102,4 +102,5 @@
     <string name="tv_name">Name</string>
     <string name="order_detail">Order Detail</string>
     <string name="cancel">Cancel</string>
+    <string name="order_invoice">Order Invoice</string>
 </resources>

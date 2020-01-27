@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,7 +14,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.cgmarketplace.R;
@@ -32,8 +37,11 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
 
     private LinearLayout sort_by;
 
-    AlertDialog alertDialog;
-    AlertDialog.Builder builder;
+    private Dialog alertDialog;
+    private RadioButton radio_AtoZ, radio_ZtoA, radio_LowtoHigh, radio_HightoLow;
+    private View view;
+    private TextView tvSortby;
+    private Button btn_cancel, btn_confirm;
 
     private RecyclerView catalog_recyclerview;
 
@@ -64,44 +72,55 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
 
         initFirestore();
         initRecyclerView();
-        alertDialog();
+        initViews();
 
+
+    }
+
+    private void initViews() {
+
+        initCustomDialog();
+        initViewComponents();
+    }
+
+    private void initCustomDialog() {
+        alertDialog = new Dialog(CatalogActivity.this);
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.setContentView(R.layout.dialog_sortby);
+
+        tvSortby = alertDialog.findViewById(R.id.tvSortby);
+        view = alertDialog.findViewById(R.id.view);
+        radio_AtoZ = alertDialog.findViewById(R.id.radio_AtoZ);
+        radio_ZtoA = alertDialog.findViewById(R.id.radio_ZtoA);
+        radio_LowtoHigh = alertDialog.findViewById(R.id.radio_LowtoHigh);
+        radio_HightoLow = alertDialog.findViewById(R.id.radio_HightoLow);
+        btn_cancel = alertDialog.findViewById(R.id.btn_cancel);
+        btn_confirm = alertDialog.findViewById(R.id.btn_confirm);
+
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        btn_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+    }
+
+    private void initViewComponents() {
+        sort_by = findViewById(R.id.sort_by);
         sort_by.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alertDialog();
                 alertDialog.show();
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.GRAY);
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLUE);
             }
         });
-    }
-
-    private void alertDialog() {
-        String[] items = {"A to Z", "Z to A", "Low Price to High", "High Price to Low"};
-        builder = new AlertDialog.Builder(CatalogActivity.this);
-        builder.setTitle(R.string.sort_by);
-
-        builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-
-            }
-        });
-
-        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User clicked OK button
-            }
-        });
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User cancelled the dialog
-            }
-        });
-
-        alertDialog = builder.create();
     }
 
     private void initFirestore() {
