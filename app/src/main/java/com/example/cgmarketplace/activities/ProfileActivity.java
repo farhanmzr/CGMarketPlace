@@ -48,6 +48,7 @@ import java.util.Map;
 public class ProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "ProfileActivity";
+    private FirebaseUser user;
     private FirebaseFirestore mFirestore;
     private DocumentReference mUserRef, mAddressRef;
     private FirebaseAuth mAuth;
@@ -82,6 +83,7 @@ public class ProfileActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
         userId = mAuth.getCurrentUser().getUid();
+        user = mAuth.getCurrentUser();
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         mUserRef = mFirestore.collection("Users").document(userId);
@@ -163,7 +165,6 @@ public class ProfileActivity extends AppCompatActivity {
 
                     if (newPass.equals(confirmPass)) {
 
-                        final FirebaseUser user = mAuth.getCurrentUser();
                         AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), recentPass);
                         user.reauthenticate(credential)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -214,13 +215,19 @@ public class ProfileActivity extends AppCompatActivity {
 
                     fullname = etFullName.getText().toString();
                     username = etUsername.getText().toString();
-                    email = etEmail.getText().toString();
                     phone = etPhone_Number.getText().toString();
+
+                    UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
+                    user.updateProfile(profileUpdate)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Log.d(TAG, "User Profile Updated");
+                                }
+                            });
 
                     Map<String, Object> profile = new HashMap<>();
                     profile.put("fullName", fullname);
-                    profile.put("userName", username);
-                    profile.put("userEmail", email);
                     profile.put("userTelephone", phone);
 
                     mUserRef.set(profile).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -268,9 +275,9 @@ public class ProfileActivity extends AppCompatActivity {
         etFullName.setFocusableInTouchMode(editProfile);
         etFullName.setFocusable(editProfile);
 
-        etEmail.setEnabled(editProfile);
-        etEmail.setFocusableInTouchMode(editProfile);
-        etEmail.setFocusable(editProfile);
+        etEmail.setEnabled(false);
+        etEmail.setFocusableInTouchMode(false);
+        etEmail.setFocusable(false);
 
         etPhone_Number.setEnabled(editProfile);
         etPhone_Number.setFocusableInTouchMode(editProfile);
@@ -284,8 +291,8 @@ public class ProfileActivity extends AppCompatActivity {
                     if (document.exists()) {
                         Log.d(TAG, "Document exists!");
                         etFullName.setText(document.getString("fullName"));
-                        etUsername.setText(document.getString("userName"));
-                        etEmail.setText(document.getString("userEmail"));
+                        etUsername.setText(user.getDisplayName());
+                        etEmail.setText(user.getEmail());
                         etPhone_Number.setText(document.getString("userTelephone"));
 
                     } else {

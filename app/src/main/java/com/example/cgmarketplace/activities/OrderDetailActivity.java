@@ -1,19 +1,9 @@
 package com.example.cgmarketplace.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -21,30 +11,41 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.cgmarketplace.R;
+import com.example.cgmarketplace.adapters.OrderDetailAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firestore.v1.StructuredQuery;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 
-public class OrderDetailActivity extends AppCompatActivity {
+public class OrderDetailActivity extends AppCompatActivity implements OrderDetailAdapter.OnProductSelectedListener{
 
     private static final String TAG = "ShippingAddressActivity";
     private FirebaseFirestore mFirestore;
     private DocumentReference mAddressRef, mUserRef;
     private FirebaseAuth mAuth;
+    private Query mQuery;
 
     private Dialog alertDialog;
     private ImageView imgQuestion;
     private TextView tvQuestion, tv_title, tvSub_title;
     private Button btn_cancel, btn_confirm;
+    private RecyclerView rv_order_detail;
+    private OrderDetailAdapter mAdapter;
 
-    private TextView tvTitle, tv_nama, tv_qty, tv_price, tv_width, tv_height, tv_dense, tv_material, tv_finishing, tv_full_name, tv_address, tv_city, tv_region, tv_zip_code, tv_country, tv_phone_number;
+    private TextView tvTitle, tv_full_name, tv_address, tv_city, tv_region, tv_zip_code, tv_country, tv_phone_number, tv_total_price;
     private Button btn_dialog;
-    private ImageView img_barang;
     private String userId;
 
     @Override
@@ -61,29 +62,24 @@ public class OrderDetailActivity extends AppCompatActivity {
         userId = mAuth.getCurrentUser().getUid();
         mAddressRef = mFirestore.collection("Users").document(userId).collection("Address").document("shipAddress");
         mUserRef = mFirestore.collection("Users").document(userId);
+        mQuery = mFirestore.collection("Users").document(userId).collection("Cart");
 
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.order_detail);
 
-        img_barang = findViewById(R.id.img_barang);
-        tv_nama = findViewById(R.id.tv_nama);
-        tv_qty = findViewById(R.id.tv_qty);
-        tv_price = findViewById(R.id.tv_price);
-        tv_width = findViewById(R.id.tv_width);
-        tv_height = findViewById(R.id.tv_height);
-        tv_dense = findViewById(R.id.tv_dense);
-        tv_material = findViewById(R.id.tv_material);
-        tv_finishing = findViewById(R.id.tv_finishing);
         tv_full_name = findViewById(R.id.tv_full_name);
         tv_address = findViewById(R.id.tv_address);
         tv_region = findViewById(R.id.tv_region);
         tv_zip_code = findViewById(R.id.tv_zip_code);
+        tv_city = findViewById(R.id.tv_city);
         tv_country = findViewById(R.id.tv_country);
         tv_phone_number = findViewById(R.id.tv_phone_number);
+        rv_order_detail = findViewById(R.id.rv_order_detail);
+        tv_total_price = findViewById(R.id.tv_total_price);
 
         initViews();
-//      initData();
-
+        initData();
+        initRecyclerView();
 
     }
 
@@ -132,52 +128,101 @@ public class OrderDetailActivity extends AppCompatActivity {
         });
     }
 
+    private void initRecyclerView() {
 
-//    kok ra gelem ngundang data ya wkwk
-//    private void initData() {
-//
-//        mUserRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot document = task.getResult();
-//                    if (document.exists()) {
-//                        Log.d(TAG, "Document exists!");
-//                        tv_full_name.setText(document.getString("fullName"));
-//                        tv_phone_number.setText(document.getString("userTelephone"));
-//
-//                        mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                                if (task.isSuccessful()) {
-//                                    DocumentSnapshot document = task.getResult();
-//                                    if (document.exists()) {
-//                                        Log.d(TAG, "Document exists!");
-//                                        tv_address.setText(document.getString("address"));
-//                                        tv_city.setText(document.getString("city"));
-//                                        tv_region.setText(document.getString("region"));
-//                                        tv_zip_code.setText(document.getString("zipcode"));
-//                                        tv_country.setText(document.getString("country"));
-//
-//                                    } else {
-//                                        Log.d(TAG, "Document does not exist!");
-//
-//                                    }
-//                                } else {
-//                                    Log.d(TAG, "Failed with: ", task.getException());
-//                                }
-//                            }
-//                        });
-//
-//                    } else {
-//                        Log.d(TAG, "Document does not exist!");
-//
-//                    }
-//                } else {
-//                    Log.d(TAG, "Failed with: ", task.getException());
-//                }
-//            }
-//        });
-//    }
+        if (mQuery == null) {
+            Log.w(TAG, "No query, not initializing RecyclerView");
+        }
+
+        mAdapter = new OrderDetailAdapter(mQuery, this) {
+
+            @Override
+            protected void onDataChanged() {
+                // Show/hide content if the query returns empty.
+                if (getItemCount() == 0) {
+                    rv_order_detail.setVisibility(View.GONE);
+                    setContentView(R.layout.empty_cart);
+
+                    Log.w(TAG, "ItemCount = 0");
+                } else {
+                    rv_order_detail.setVisibility(View.VISIBLE);
+                    Log.w(TAG, "Show Produk");
+                }
+            }
+
+            @Override
+            protected void onError(FirebaseFirestoreException e) {
+                // Show a snackbar on errors
+                Snackbar.make(findViewById(android.R.id.content),
+                        "Error: check logs for info.", Snackbar.LENGTH_LONG).show();
+            }
+        };
+
+        rv_order_detail.setLayoutManager(new LinearLayoutManager(OrderDetailActivity.this));
+        rv_order_detail.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Start listening for Firestore updates
+        if (mAdapter != null) {
+            mAdapter.startListening();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAdapter != null) {
+            mAdapter.stopListening();
+        }
+    }
+
+    private void initData() {
+
+        mUserRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "Document exists!");
+                        tv_full_name.setText(document.getString("fullName"));
+                        tv_phone_number.setText(document.getString("userTelephone"));
+
+                        mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot document = task.getResult();
+                                    if (document.exists()) {
+                                        Log.d(TAG, "Document exists!");
+                                        tv_address.setText(document.getString("address"));
+                                        tv_city.setText(document.getString("city"));
+                                        tv_region.setText(document.getString("region"));
+                                        tv_zip_code.setText(document.getString("zipcode"));
+                                        tv_country.setText(document.getString("country"));
+
+                                    } else {
+                                        Log.d(TAG, "Document does not exist!");
+
+                                    }
+                                } else {
+                                    Log.d(TAG, "Failed with: ", task.getException());
+                                }
+                            }
+                        });
+
+                    } else {
+                        Log.d(TAG, "Document does not exist!");
+
+                    }
+                } else {
+                    Log.d(TAG, "Failed with: ", task.getException());
+                }
+            }
+        });
+    }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -193,5 +238,15 @@ public class OrderDetailActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onProductSelected(DocumentSnapshot cartModel) {
+
+        // Go to the details page for the selected restaurant
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(DetailActivity.KEY_PRODUCT_ID, cartModel.getId());
+
+        startActivity(intent);
     }
 }

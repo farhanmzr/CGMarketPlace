@@ -114,18 +114,8 @@ public class ShippingAddressActivity extends AppCompatActivity {
                                     Toast.makeText(ShippingAddressActivity.this, "Address Update",
                                             Toast.LENGTH_SHORT)
                                             .show();
-                                    btnNext.setClickable(true);
-                                    btnNext.setBackgroundColor(R.drawable.bg_btn_blue);
-                                    btn_next.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Intent intent = new Intent(ShippingAddressActivity.this, OrderDetailActivity.class);
-                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                            startActivity(intent);
-                                            finish();
-                                        }
-                                    });
 
+                                    btnNextEnable();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -141,8 +131,6 @@ public class ShippingAddressActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-
-
                     Toast.makeText(ShippingAddressActivity.this, "All Field must be fill",
                             Toast.LENGTH_SHORT)
                             .show();
@@ -175,10 +163,11 @@ public class ShippingAddressActivity extends AppCompatActivity {
                                         etZip_Code.setText(document.getString("zipcode"));
                                         etCountry.setText(document.getString("country"));
 
+                                        btnNextEnable();
+
                                     } else {
                                         Log.d(TAG, "Document does not exist!");
-                                        btnNext.setClickable(false);
-                                        btnNext.setBackgroundColor(Color.parseColor("#808080"));
+                                        btnNextDisable();
                                     }
                                 } else {
                                     Log.d(TAG, "Failed with: ", task.getException());
@@ -188,14 +177,31 @@ public class ShippingAddressActivity extends AppCompatActivity {
 
                     } else {
                         Log.d(TAG, "Document does not exist!");
-                        btnNext.setClickable(false);
-                        btnNext.setBackgroundColor(Color.parseColor("#808080"));
+                        btnNextDisable();
                     }
                 } else {
                     Log.d(TAG, "Failed with: ", task.getException());
                 }
             }
         });
+    }
+
+    private void btnNextEnable() {
+
+        btnNext.setClickable(true);
+        btnNext.setBackgroundColor(R.drawable.bg_btn_blue);
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShippingAddressActivity.this, OrderDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void btnNextDisable() {
+        btnNext.setClickable(false);
+        btnNext.setBackgroundColor(Color.parseColor("#808080"));
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
