@@ -55,6 +55,7 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
         private Button btn_minus, btn_plus;
         private TextView tv_jumlah_cart;
         private ImageView delItem;
+        private Integer valueJumlahCart = 1;
 
 
         public ViewHolder(View itemView) {
@@ -64,8 +65,12 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
             tvPrice = itemView.findViewById(R.id.tv_price);
             btn_minus = itemView.findViewById(R.id.btn_minus);
             btn_plus = itemView.findViewById(R.id.btn_plus);
-            tv_jumlah_cart = itemView.findViewById(R.id.tv_jumlah_cart);
             delItem = itemView.findViewById(R.id.del_item);
+            tv_jumlah_cart = itemView.findViewById(R.id.tv_jumlah_cart);
+
+            tv_jumlah_cart.setText(valueJumlahCart.toString());
+
+
         }
 
         public void bind(final DocumentSnapshot snapshot,
@@ -82,10 +87,38 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
 
             tvNama.setText(cartModel.getName());
             tvPrice.setText(priceFormat);
-            tv_jumlah_cart.setText(String.valueOf(cartModel.getQty()));
 
+            //
+            btn_minus.animate().alpha(0).setDuration(0).start();
+            btn_minus.setEnabled(false);
 
             // Click listener
+            btn_plus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    valueJumlahCart+=1;
+                    tv_jumlah_cart.setText(valueJumlahCart.toString());
+                    if (valueJumlahCart > 1) {
+                        btn_minus.animate().alpha(1).setDuration(100).start();
+                        btn_minus.setEnabled(true);
+                    }
+
+                }
+            });
+
+            btn_minus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    valueJumlahCart-=1;
+                    tv_jumlah_cart.setText(valueJumlahCart.toString());
+                    if (valueJumlahCart < 2) {
+                        btn_minus.animate().alpha(0).setDuration(100).start();
+                        btn_minus.setEnabled(false);
+                    }
+                }
+            });
+
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

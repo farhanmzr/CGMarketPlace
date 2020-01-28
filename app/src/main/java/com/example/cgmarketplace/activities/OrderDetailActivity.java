@@ -32,7 +32,7 @@ import com.google.firestore.v1.StructuredQuery;
 
 public class OrderDetailActivity extends AppCompatActivity {
 
-    private static final String TAG = "ProfileActivity";
+    private static final String TAG = "ShippingAddressActivity";
     private FirebaseFirestore mFirestore;
     private DocumentReference mAddressRef, mUserRef;
     private FirebaseAuth mAuth;
@@ -82,7 +82,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         tv_phone_number = findViewById(R.id.tv_phone_number);
 
         initViews();
-//        initData();
+//      initData();
 
 
     }

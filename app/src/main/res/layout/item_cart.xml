@@ -6,6 +6,8 @@
     android:id="@+id/cart_card_view"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+    android:layout_marginTop="16dp"
+    style="@style/LinearTheme"
     android:layout_marginBottom="16dp">
 
     <LinearLayout

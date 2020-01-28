@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_app"
     tools:context=".activities.ShippingAddressActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,17 +12,27 @@
         android:layout_height="wrap_content"
         android:background="@color/bg_app">
 
-        <ImageView
-            android:id="@+id/imageView5"
+        <LinearLayout
+            android:id="@+id/linearstep"
+            style="@style/LinearTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/img_payment1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linear1"
@@ -32,7 +43,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5">
+            app:layout_constraintTop_toBottomOf="@+id/linearstep">
 
             <EditText
                 android:id="@+id/etFull_name"
@@ -41,6 +52,7 @@
                 android:background="@drawable/bg_form"
                 android:fontFamily="@font/montserrat"
                 android:hint="Full name"
+                android:maxLength="30"
                 android:inputType="text"
                 android:lines="1"
                 android:paddingLeft="16dp"
@@ -68,6 +80,7 @@
             android:background="@drawable/bg_form"
             android:fontFamily="@font/montserrat"
             android:hint="Address"
+            android:maxLength="50"
             android:inputType="text"
             android:lines="1"
             android:paddingLeft="16dp"
@@ -95,6 +108,7 @@
             android:fontFamily="@font/montserrat"
             android:hint="City"
             android:inputType="text"
+            android:maxLength="50"
             android:lines="1"
             android:paddingLeft="16dp"
             android:textColor="@android:color/black"
@@ -123,6 +137,7 @@
             android:hint="Region"
             android:inputType="text"
             android:lines="1"
+            android:maxLength="30"
             android:paddingLeft="16dp"
             android:textColor="@android:color/black"
             android:textSize="12sp" />
@@ -135,6 +150,7 @@
             android:background="@drawable/bg_form"
             android:fontFamily="@font/montserrat"
             android:hint="ZIP Code"
+            android:maxLength="5"
             android:inputType="number"
             android:lines="1"
             android:paddingLeft="16dp"
@@ -164,6 +180,7 @@
             android:hint="Country"
             android:inputType="text"
             android:lines="1"
+            android:maxLength="30"
             android:paddingLeft="16dp"
             android:textColor="@android:color/black"
             android:textSize="12sp" />
@@ -191,6 +208,7 @@
             android:hint="@string/tv_phone"
             android:inputType="number"
             android:lines="1"
+            android:maxLength="20"
             android:paddingLeft="16dp"
             android:textColor="@android:color/black"
             android:textSize="12sp" />
