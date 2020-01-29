@@ -3,6 +3,7 @@ package com.example.cgmarketplace.activities;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -163,7 +164,8 @@ public class RegisterActivity extends AppCompatActivity {
     private void sendVerificationEmail()
     {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
+        Uri uri = Uri.parse("https://firebasestorage.googleapis.com/v0/b/cgmarketplace-a8727.appspot.com/o/UserImg%2Fimg_default_profile.png?alt=media&token=d893e8b1-f4ef-4718-834d-0b3ac76107ca");
+        UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder().setDisplayName(username).setPhotoUri(uri).build();
 
         user.updateProfile(profileUpdate)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

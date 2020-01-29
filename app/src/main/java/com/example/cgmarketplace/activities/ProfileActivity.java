@@ -110,6 +110,10 @@ public class ProfileActivity extends AppCompatActivity {
         etZip_Code = findViewById(R.id.etZip_codeProfile);
         etCountry = findViewById(R.id.etCountryProfile);
 
+        Glide.with(img_profile.getContext())
+                .load(user.getPhotoUrl())
+                .into(img_profile);
+
         change_img.setVisibility(View.INVISIBLE);
 
         initDataProfile();
@@ -131,10 +135,14 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Glide.with(img_profile.getContext())
-                .load(user.getPhotoUrl())
-                .into(img_profile);
+        change_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectImage();
+            }
+        });
+
     }
 
     private void initDataPass() {
@@ -492,14 +500,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void UploadImg() {
-
-        change_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                selectImage();
-            }
-        });
 
         if (filePath != null) {
 
