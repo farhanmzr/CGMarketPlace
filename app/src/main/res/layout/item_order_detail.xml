@@ -8,9 +8,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         style="@style/LinearTheme"
+        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
@@ -36,8 +36,7 @@
                     <ImageView
                         android:id="@+id/img_barang"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/img_sofa" />
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
@@ -75,7 +74,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/montserrat"
                                 android:gravity="end"
-                                android:text="Feraud Sofa"
+                                android:text=""
                                 android:textSize="12sp" />
 
                         </TableRow>
@@ -99,7 +98,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/montserrat"
                                 android:gravity="end"
-                                android:text="X1"
+                                android:text=""
                                 android:textSize="12sp" />
 
                         </TableRow>
@@ -122,7 +121,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/montserrat"
                                 android:gravity="end"
-                                android:text="$ 12,862"
+                                android:text=""
                                 android:textSize="12sp" />
 
                         </TableRow>
@@ -181,7 +180,7 @@
                             android:layout_marginStart="3dp"
                             android:fontFamily="@font/montserrat"
                             android:gravity="end"
-                            android:text="238 cm"
+                            android:text=""
                             android:textSize="12sp" />
 
                         <TextView
@@ -200,7 +199,7 @@
                             android:layout_marginStart="3dp"
                             android:fontFamily="@font/montserrat"
                             android:gravity="end"
-                            android:text="80 cm"
+                            android:text=""
                             android:textSize="12sp" />
 
                         <TextView
@@ -219,7 +218,7 @@
                             android:layout_marginStart="3dp"
                             android:fontFamily="@font/montserrat"
                             android:gravity="end"
-                            android:text="75 cm"
+                            android:text=""
                             android:textSize="12sp" />
 
                     </TableRow>
@@ -249,7 +248,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
                             android:gravity="end"
-                            android:text="Tabac"
+                            android:text=""
                             android:textSize="12sp" />
 
                     </TableRow>
@@ -279,7 +278,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
                             android:gravity="end"
-                            android:text="Ascari - Pearl"
+                            android:text=""
                             android:textSize="12sp" />
 
                     </TableRow>
