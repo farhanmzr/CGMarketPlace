@@ -1,6 +1,9 @@
 package com.example.cgmarketplace.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,18 +15,26 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.adapters.CartAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.Objects;
 
 public class CartActivity extends AppCompatActivity implements CartAdapter.OnProductSelectedListener {
 
@@ -41,6 +52,8 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
     private Query mQuery;
 
     private CartAdapter mAdapter;
+    int totalPriceCart = 0;
+    String totalPriceFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +89,24 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
         bottomNav();
         initFirestore();
         initRecyclerView();
+        LocalBroadcastManager.getInstance(CartActivity.this).registerReceiver(mMessageReceiver, new IntentFilter("total-price"));
 
     }
+
+    public final BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Get extra data included in the Intent
+
+            int qty = Integer.parseInt(Objects.requireNonNull(intent.getStringExtra("totalPrice")));
+            totalPriceCart += qty;
+
+            totalPriceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(totalPriceCart);
+            tv_total_price.setText(totalPriceFormat);
+            Log.w(TAG, String.valueOf(totalPriceCart)); // debug total price
+        }
+    };
+
 
     private void initFirestore() {
 
@@ -206,10 +235,27 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
     }
 
     @Override
-    public void onDeleteSelected(DocumentSnapshot cartModel) {
+    public void onDeleteSelected(final DocumentSnapshot cartModel) {
 
         String deletedProduct = cartModel.getId();
-        mFirestore.collection("Users").document(userId).collection("Cart").document(deletedProduct).delete();
+        final DocumentReference priceProduct = mFirestore.collection("Users").document(userId).collection("Cart").document(deletedProduct);
+        priceProduct.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot doc = task.getResult();
+                    if (doc != null) {
+                        int changeDeletedPrice = Objects.requireNonNull(doc.getLong("price")).intValue();
+                        totalPriceCart -= changeDeletedPrice;
+                        Log.w(TAG, String.valueOf(totalPriceCart));
+                        totalPriceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(totalPriceCart);
+                        tv_total_price.setText(totalPriceFormat);
+                        priceProduct.delete();
+                    }
+                }
+            }
+        });
+//        priceProduct.delete();
         Toast.makeText(CartActivity.this, "Product with ID" + deletedProduct + "Deleted From Cart",
                 Toast.LENGTH_LONG).show();
     }

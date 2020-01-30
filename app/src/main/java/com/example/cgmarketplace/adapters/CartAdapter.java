@@ -1,5 +1,8 @@
 package com.example.cgmarketplace.adapters;
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -55,7 +59,10 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
         private Button btn_minus, btn_plus;
         private TextView tv_jumlah_cart;
         private ImageView delItem;
-        private Integer valueJumlahCart = 1;
+        private int totalPrice;
+        private int totalPerItem;
+        private int qtyItem = 1;
+        private Context context;
 
 
         public ViewHolder(View itemView) {
@@ -68,7 +75,7 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
             delItem = itemView.findViewById(R.id.del_item);
             tv_jumlah_cart = itemView.findViewById(R.id.tv_jumlah_cart);
 
-            tv_jumlah_cart.setText(valueJumlahCart.toString());
+            tv_jumlah_cart.setText(String.valueOf(qtyItem));
 
 
         }
@@ -78,7 +85,13 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
 
             CartModel cartModel = snapshot.toObject(CartModel.class);
 
+            qtyItem = cartModel.getQty();
             String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(cartModel.getPrice());
+
+            totalPerItem = (cartModel.getPrice() * qtyItem);
+            totalPrice += totalPerItem;
+
+            Log.w("Total Price", String.valueOf(totalPrice)); // debug total price
 
             // Load image
             Glide.with(img_cart.getContext())
@@ -96,9 +109,9 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
             btn_plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    valueJumlahCart+=1;
-                    tv_jumlah_cart.setText(valueJumlahCart.toString());
-                    if (valueJumlahCart > 1) {
+                    qtyItem+=1;
+                    tv_jumlah_cart.setText(String.valueOf(qtyItem));
+                    if (qtyItem > 1) {
                         btn_minus.animate().alpha(1).setDuration(100).start();
                         btn_minus.setEnabled(true);
                     }
@@ -109,9 +122,9 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
             btn_minus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    valueJumlahCart-=1;
-                    tv_jumlah_cart.setText(valueJumlahCart.toString());
-                    if (valueJumlahCart < 2) {
+                    qtyItem-=1;
+                    tv_jumlah_cart.setText(String.valueOf(qtyItem));
+                    if (qtyItem < 2) {
                         btn_minus.animate().alpha(0).setDuration(100).start();
                         btn_minus.setEnabled(false);
                     }
@@ -136,6 +149,10 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
                     }
                 }
             });
+
+            Intent intent = new Intent("total-price");
+            intent.putExtra("totalPrice", String.valueOf(totalPrice));
+            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
         }
 
     }
