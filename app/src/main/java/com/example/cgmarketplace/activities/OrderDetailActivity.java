@@ -23,11 +23,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
 
 public class OrderDetailActivity extends AppCompatActivity implements OrderDetailAdapter.OnProductSelectedListener{
 
@@ -47,6 +53,8 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
     private TextView tvTitle, tv_full_name, tv_address, tv_city, tv_region, tv_zip_code, tv_country, tv_phone_number, tv_total_price;
     private Button btn_dialog;
     private String userId;
+    private int totalPriceCart = 0;
+    private Double qtyItem, priceItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +88,7 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
         initViews();
         initData();
         initRecyclerView();
-
+        initTotalPrice();
     }
 
     private void initViews() {
@@ -246,7 +254,37 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
         // Go to the details page for the selected restaurant
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(DetailActivity.KEY_PRODUCT_ID, cartModel.getId());
+        intent.putExtra("no-Button", true);
 
         startActivity(intent);
+    }
+
+    private void initTotalPrice() {
+
+        CollectionReference docPrice = mFirestore.collection("Users").document(userId).collection("Cart");
+        docPrice.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    List<DocumentSnapshot> listPrice = task.getResult().getDocuments();
+                    listPrice.size();
+                    for (int i = 0; i < listPrice.size(); i++) {
+
+                        qtyItem = listPrice.get(i).getDouble("qty");
+                        priceItem = listPrice.get(i).getDouble("price");
+                        totalPriceCart += qtyItem * priceItem;
+                        Log.w("qty item", String.valueOf(qtyItem)); //debug qty
+                        Log.w("price item", String.valueOf(priceItem)); //debug total
+                        Log.w("total", String.valueOf(totalPriceCart)); //debug price total
+
+                    }
+
+                    String totalPriceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(totalPriceCart);
+                    tv_total_price.setText(totalPriceFormat);
+                    totalPriceCart = 0;
+                }
+            }
+        });
     }
 }

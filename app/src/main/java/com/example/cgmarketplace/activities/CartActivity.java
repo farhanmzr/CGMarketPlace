@@ -48,7 +48,6 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
     private TextView tvTitle, tv_jumlah_cart, tv_total_price;
     private RecyclerView rv_cart;
     private String userId;
-    private Integer valuetotalprice = 0;
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
     private Query mQuery;
@@ -79,6 +78,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
         btn_goto_payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(CartActivity.this, ShippingAddressActivity.class);
                 startActivity(i);
             }
@@ -212,6 +212,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
         // Go to the details page for the selected restaurant
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(DetailActivity.KEY_PRODUCT_ID, cartModel.getId());
+        intent.putExtra("no-Button", true);
 
         startActivity(intent);
     }
@@ -233,7 +234,6 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
     }
 
     private void initTotalPrice() {
-        Log.w("broadcasttotal", String.valueOf(totalPriceCart)); //debug price total
 
         CollectionReference docPrice = mFirestore.collection("Users").document(userId).collection("Cart");
         docPrice.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

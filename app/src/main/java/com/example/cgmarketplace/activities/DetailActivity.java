@@ -147,6 +147,9 @@ public class DetailActivity extends AppCompatActivity
 
     private void onProductLoaded(final ProductModel product) {
         String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(product.getPrice());
+        if (getIntent().hasExtra("no-Button")) {
+            btnAddToCart.setVisibility(View.INVISIBLE);
+        }
 
         tv_nama.setText(product.getName());
         tv_price.setText(priceFormat);
