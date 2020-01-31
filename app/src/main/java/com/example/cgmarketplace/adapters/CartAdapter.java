@@ -1,7 +1,5 @@
 package com.example.cgmarketplace.adapters;
 
-import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,26 +9,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.model.CartModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.SetOptions;
 
 import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
-
-    public interface OnProductSelectedListener {
-
-        void onProductSelected(DocumentSnapshot cartModel);
-        void onDeleteSelected(DocumentSnapshot cartModel);
-
-    }
 
     private OnProductSelectedListener mListener;
 
@@ -51,6 +49,14 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
         holder.bind(getSnapshot(position), mListener);
     }
 
+    public interface OnProductSelectedListener {
+
+        void onProductSelected(DocumentSnapshot cartModel);
+
+        void onDeleteSelected(DocumentSnapshot cartModel);
+
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView img_cart;
@@ -59,11 +65,8 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
         private Button btn_minus, btn_plus;
         private TextView tv_jumlah_cart;
         private ImageView delItem;
-        private int totalPrice;
         private int totalPerItem;
         private int qtyItem = 1;
-        private Context context;
-
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -76,22 +79,17 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
             tv_jumlah_cart = itemView.findViewById(R.id.tv_jumlah_cart);
 
             tv_jumlah_cart.setText(String.valueOf(qtyItem));
-
-
         }
 
         public void bind(final DocumentSnapshot snapshot,
                          final OnProductSelectedListener listener) {
 
-            CartModel cartModel = snapshot.toObject(CartModel.class);
+            final CartModel cartModel = snapshot.toObject(CartModel.class);
 
             qtyItem = cartModel.getQty();
-            String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(cartModel.getPrice());
+            totalPerItem = cartModel.getPrice();
 
-            totalPerItem = (cartModel.getPrice() * qtyItem);
-            totalPrice += totalPerItem;
-
-            Log.w("Total Price", String.valueOf(totalPrice)); // debug total price
+            String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(totalPerItem * qtyItem);
 
             // Load image
             Glide.with(img_cart.getContext())
@@ -100,21 +98,34 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
 
             tvNama.setText(cartModel.getName());
             tvPrice.setText(priceFormat);
-
-            //
-            btn_minus.animate().alpha(0).setDuration(0).start();
-            btn_minus.setEnabled(false);
+            tv_jumlah_cart.setText(String.valueOf(qtyItem));
 
             // Click listener
             btn_plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    qtyItem+=1;
+                    qtyItem += 1;
+
+                    Map<String, Object> addQty = new HashMap<>();
+                    addQty.put("qty", qtyItem);
+
+                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DocumentReference doc = FirebaseFirestore.getInstance().collection("Users").document(userId).collection("Cart").document(snapshot.getId());
+                    doc.set(addQty, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.w("Add Qty", "Success");
+
+                        }
+                    })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w("Add Qty", "Error writing document", e);
+                                }
+                            });
+                    Log.w("Total qty", String.valueOf(qtyItem));
                     tv_jumlah_cart.setText(String.valueOf(qtyItem));
-                    if (qtyItem > 1) {
-                        btn_minus.animate().alpha(1).setDuration(100).start();
-                        btn_minus.setEnabled(true);
-                    }
 
                 }
             });
@@ -122,15 +133,40 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
             btn_minus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    qtyItem-=1;
+                    qtyItem -= 1;
+
+                    Map<String, Object> addQty = new HashMap<>();
+                    addQty.put("qty", qtyItem);
+
+                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DocumentReference doc = FirebaseFirestore.getInstance().collection("Users").document(userId).collection("Cart").document(snapshot.getId());
+                    doc.set(addQty, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.w("Min Qty", "Success");
+
+                        }
+                    })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w("Min Qty", "Error writing document", e);
+                                }
+                            });
+
                     tv_jumlah_cart.setText(String.valueOf(qtyItem));
-                    if (qtyItem < 2) {
-                        btn_minus.animate().alpha(0).setDuration(100).start();
-                        btn_minus.setEnabled(false);
-                    }
                 }
             });
 
+            if (qtyItem == 1) {
+
+                btn_minus.animate().alpha(0).setDuration(0).start();
+                btn_minus.setEnabled(false);
+            } else {
+                btn_minus.animate().alpha(1).setDuration(100).start();
+                btn_minus.setEnabled(true);
+
+            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -150,9 +186,6 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
                 }
             });
 
-            Intent intent = new Intent("total-price");
-            intent.putExtra("totalPrice", String.valueOf(totalPrice));
-            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
         }
 
     }

@@ -1,9 +1,6 @@
 package com.example.cgmarketplace.activities;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,7 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,34 +22,37 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 public class CartActivity extends AppCompatActivity implements CartAdapter.OnProductSelectedListener {
 
     private static final String TAG = "CartActivity";
     private static final int LIMIT = 50;
-
+    int totalPriceCart = 0;
+    Double qtyItem;
+    Double priceItem;
+    String totalPriceFormat;
     private Button btn_minus, btn_plus, btn_goto_payment;
-    private TextView  tvTitle, tv_jumlah_cart, tv_total_price;
+    private TextView tvTitle, tv_jumlah_cart, tv_total_price;
     private RecyclerView rv_cart;
     private String userId;
     private Integer valuetotalprice = 0;
-
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
     private Query mQuery;
-
     private CartAdapter mAdapter;
-    int totalPriceCart = 0;
-    String totalPriceFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +79,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
         btn_goto_payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(CartActivity.this,ShippingAddressActivity.class);
+                Intent i = new Intent(CartActivity.this, ShippingAddressActivity.class);
                 startActivity(i);
             }
         });
@@ -89,27 +88,10 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
         bottomNav();
         initFirestore();
         initRecyclerView();
-        LocalBroadcastManager.getInstance(CartActivity.this).registerReceiver(mMessageReceiver, new IntentFilter("total-price"));
 
     }
 
-    public final BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // Get extra data included in the Intent
-
-            int qty = Integer.parseInt(Objects.requireNonNull(intent.getStringExtra("totalPrice")));
-            totalPriceCart += qty;
-
-            totalPriceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(totalPriceCart);
-            tv_total_price.setText(totalPriceFormat);
-            Log.w(TAG, String.valueOf(totalPriceCart)); // debug total price
-        }
-    };
-
-
     private void initFirestore() {
-
 
         tvTitle.setText(R.string.cart_title);
 
@@ -129,24 +111,24 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                         finish();
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.cart:
                         return true;
 
                     case R.id.wishlist:
-                        startActivity(new Intent(getApplicationContext(),WishlistActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(new Intent(getApplicationContext(), WishlistActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                         finish();
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.transaction:
-                        startActivity(new Intent(getApplicationContext(),TransactionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(new Intent(getApplicationContext(), TransactionActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                         finish();
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
                 }
 
@@ -163,9 +145,9 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
-            startActivity(new Intent(getApplicationContext(),MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
             finish();
-            overridePendingTransition(0,0);
+            overridePendingTransition(0, 0);
             return true;
         }
 
@@ -191,7 +173,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
                     Log.w(TAG, "ItemCount = 0");
                 } else {
                     rv_cart.setVisibility(View.VISIBLE);
-
+                    initTotalPrice();
                     Log.w(TAG, "Show Produk");
                 }
             }
@@ -239,25 +221,45 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnPro
 
         String deletedProduct = cartModel.getId();
         final DocumentReference priceProduct = mFirestore.collection("Users").document(userId).collection("Cart").document(deletedProduct);
-        priceProduct.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        priceProduct.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+            public void onComplete(@NonNull Task<Void> task) {
+
+                initTotalPrice();
+            }
+        });
+        Toast.makeText(CartActivity.this, "Product with ID" + deletedProduct + "Deleted From Cart",
+                Toast.LENGTH_LONG).show();
+    }
+
+    private void initTotalPrice() {
+        Log.w("broadcasttotal", String.valueOf(totalPriceCart)); //debug price total
+
+        CollectionReference docPrice = mFirestore.collection("Users").document(userId).collection("Cart");
+        docPrice.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    DocumentSnapshot doc = task.getResult();
-                    if (doc != null) {
-                        int changeDeletedPrice = Objects.requireNonNull(doc.getLong("price")).intValue();
-                        totalPriceCart -= changeDeletedPrice;
-                        Log.w(TAG, String.valueOf(totalPriceCart));
-                        totalPriceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(totalPriceCart);
-                        tv_total_price.setText(totalPriceFormat);
-                        priceProduct.delete();
+
+                    List<DocumentSnapshot> listPrice = task.getResult().getDocuments();
+                    listPrice.size();
+                    for (int i = 0; i < listPrice.size(); i++) {
+
+                        qtyItem = listPrice.get(i).getDouble("qty");
+                        priceItem = listPrice.get(i).getDouble("price");
+                        totalPriceCart += qtyItem * priceItem;
+                        Log.w("qty item", String.valueOf(qtyItem)); //debug qty
+                        Log.w("price item", String.valueOf(priceItem)); //debug total
+                        Log.w("total", String.valueOf(totalPriceCart)); //debug price total
+
                     }
+
+                    totalPriceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(totalPriceCart);
+                    tv_total_price.setText(totalPriceFormat);
+                    totalPriceCart = 0;
                 }
             }
         });
-//        priceProduct.delete();
-        Toast.makeText(CartActivity.this, "Product with ID" + deletedProduct + "Deleted From Cart",
-                Toast.LENGTH_LONG).show();
     }
 }
 
