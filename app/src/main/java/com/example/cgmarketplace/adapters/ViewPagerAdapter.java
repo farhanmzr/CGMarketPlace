@@ -14,6 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.activities.DetailActivity;
+import com.example.cgmarketplace.fragment.NotConfirmedFragment;
 
 public class ViewPagerAdapter extends PagerAdapter {
 
@@ -61,5 +62,4 @@ public class ViewPagerAdapter extends PagerAdapter {
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         ((ViewPager)container).removeView((RelativeLayout)object);
     }
-
 }

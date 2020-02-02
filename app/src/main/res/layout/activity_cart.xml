@@ -54,7 +54,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="@string/item_totalprice"
+                android:text=""
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"

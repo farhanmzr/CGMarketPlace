@@ -189,8 +189,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_order_finish"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_table">
+                    android:layout_height="50dp"
+                    tools:listitem="@layout/item_order_invoice">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
@@ -244,7 +244,7 @@
                         android:fontFamily="@font/montserrat_bold"
                         android:textSize="12sp"
                         android:textColor="@android:color/black"
-                        android:text="$ 12,862" />
+                        android:text="" />
                 </TableRow>
 
 
@@ -315,7 +315,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
                             android:gravity="end"
-                            android:text="Farhan Mazario"
+                            android:text=""
                             android:textSize="12sp" />
 
                     </TableRow>
@@ -339,7 +339,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
                             android:gravity="end"
-                            android:text="Jalan Depok Sari Raya no.64"
+                            android:text=""
                             android:textColor="@color/text_gray"
                             android:textSize="12sp" />
 
@@ -364,7 +364,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
                             android:gravity="end"
-                            android:text="Semarang"
+                            android:text=""
                             android:textSize="12sp" />
 
                     </TableRow>
@@ -388,7 +388,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
                             android:gravity="end"
-                            android:text="Jawa Tengah"
+                            android:text=""
                             android:textSize="12sp" />
 
                     </TableRow>
@@ -412,7 +412,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
                             android:gravity="end"
-                            android:text="50196"
+                            android:text=""
                             android:textSize="12sp" />
 
                     </TableRow>
@@ -436,7 +436,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
                             android:gravity="end"
-                            android:text="Indonesia"
+                            android:text=""
                             android:textSize="12sp" />
 
                     </TableRow>
@@ -460,7 +460,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
                             android:gravity="end"
-                            android:text="@string/tv_phone_number"
+                            android:text=""
                             android:textColor="@color/text_gray"
                             android:textSize="12sp" />
 

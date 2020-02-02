@@ -3,6 +3,7 @@ package com.example.cgmarketplace.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +11,20 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.cgmarketplace.R;
+import com.example.cgmarketplace.adapters.PageAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
 public class TransactionActivity extends AppCompatActivity {
 
-    TextView tvTitle;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private TabItem tabNot_confirmed, tabConfirmed, tabDeliver;
+    private PageAdapter pageAdapter;
+
+
+    private TextView tvTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +38,41 @@ public class TransactionActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.transaction_title);
 
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager);
+        tabNot_confirmed = findViewById(R.id.tabNot_confirmed);
+        tabConfirmed = findViewById(R.id.tabConfirmed);
+        tabDeliver = findViewById(R.id.tabDeliver);
+
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pageAdapter);
+
+
+        tabLayout();
         bottomNav();
 
     }
+
+    private void tabLayout() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+    }
+
 
     private void bottomNav() {
 
