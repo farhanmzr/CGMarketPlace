@@ -377,6 +377,14 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hahaha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/discover_recyclerview"/>
+
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation"
@@ -391,5 +399,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_bias="1.0"
                 app:menu="@menu/menu_navigation" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

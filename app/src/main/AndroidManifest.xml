@@ -12,7 +12,9 @@
         android:roundIcon="@drawable/ic_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.OrderInvoiceActivity"></activity>
+        <activity android:name=".activities.ConfirmPaymentActivity"></activity>
+        <activity android:name=".activities.PaymentInvoiceActivity" />
+        <activity android:name=".activities.OrderInvoiceActivity" />
         <activity android:name=".activities.OrderDetailActivity" />
         <activity android:name=".activities.ShippingAddressActivity" />
         <activity android:name=".activities.EditProfileActivity" />

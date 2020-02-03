@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.adapters.ProductAdapter;
@@ -38,6 +39,7 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
     private LinearLayout sort_by;
 
     private Dialog alertDialog;
+    private RadioGroup rg;
     private RadioButton radio_AtoZ, radio_ZtoA, radio_LowtoHigh, radio_HightoLow;
     private View view;
     private TextView tvSortby;
@@ -90,12 +92,15 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
 
         tvSortby = alertDialog.findViewById(R.id.tvSortby);
         view = alertDialog.findViewById(R.id.view);
+        rg = alertDialog.findViewById(R.id.radioSortby);
         radio_AtoZ = alertDialog.findViewById(R.id.radio_AtoZ);
         radio_ZtoA = alertDialog.findViewById(R.id.radio_ZtoA);
         radio_LowtoHigh = alertDialog.findViewById(R.id.radio_LowtoHigh);
         radio_HightoLow = alertDialog.findViewById(R.id.radio_HightoLow);
         btn_cancel = alertDialog.findViewById(R.id.btn_cancel);
         btn_confirm = alertDialog.findViewById(R.id.btn_confirm);
+
+
 
 
         btn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +124,8 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
             @Override
             public void onClick(View v) {
                 alertDialog.show();
+
+
             }
         });
     }

@@ -189,7 +189,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_order_finish"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     tools:listitem="@layout/item_order_invoice">
 
                 </androidx.recyclerview.widget.RecyclerView>

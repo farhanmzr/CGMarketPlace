@@ -103,4 +103,6 @@
     <string name="order_detail">Order Detail</string>
     <string name="cancel">Cancel</string>
     <string name="order_invoice">Order Invoice</string>
+    <string name="payment_invoice">Payment Invoice</string>
+    <string name="confirm_payment">Confirm Payment</string>
 </resources>
