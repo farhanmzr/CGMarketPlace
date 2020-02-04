@@ -65,7 +65,7 @@
             android:layout_marginBottom="16dp">
 
             <TableLayout
-                android:layout_width="200dp"
+                android:layout_width="224dp"
                 android:layout_height="wrap_content"
                 android:stretchColumns="1">
 
@@ -86,6 +86,8 @@
                     android:gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"
                     android:fontFamily="@font/montserrat"
                     android:text="0001"
                     android:textSize="12sp" />
@@ -94,13 +96,13 @@
             </TableLayout>
 
             <View
-                android:layout_width="200dp"
+                android:layout_width="220dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/view" />
 
             <TableLayout
-                android:layout_width="200dp"
+                android:layout_width="224dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:stretchColumns="1">
@@ -123,6 +125,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
                         android:text="20 January 2020"
                         android:textSize="12sp" />
 

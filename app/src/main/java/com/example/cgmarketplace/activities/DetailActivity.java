@@ -36,6 +36,7 @@ import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class DetailActivity extends AppCompatActivity
@@ -141,7 +142,7 @@ public class DetailActivity extends AppCompatActivity
             return;
         }
 
-        onProductLoaded(snapshot.toObject(ProductModel.class));
+        onProductLoaded(Objects.requireNonNull(Objects.requireNonNull(snapshot).toObject(ProductModel.class)));
     }
 
 

@@ -514,7 +514,7 @@ public class ProfileActivity extends AppCompatActivity {
                     = storageReference
                     .child(
                             "imagesUser/"
-                                    + etUsername + "." + GetFileExtension(filePath));
+                                    + userId + "." + GetFileExtension(filePath));
 
             // adding listeners on upload
             // or failure of image

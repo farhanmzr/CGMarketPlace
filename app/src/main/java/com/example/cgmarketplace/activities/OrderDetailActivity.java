@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -20,8 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.adapters.OrderDetailAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -30,10 +34,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.text.NumberFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class OrderDetailActivity extends AppCompatActivity implements OrderDetailAdapter.OnProductSelectedListener{
 
@@ -52,9 +60,9 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
 
     private TextView tvTitle, tv_full_name, tv_address, tv_city, tv_region, tv_zip_code, tv_country, tv_phone_number, tv_total_price;
     private Button btn_dialog;
-    private String userId;
+    private String userId, orderId;
     private int totalPriceCart = 0;
-    private Double qtyItem, priceItem;
+    private Double qtyItem, priceItem, userTotalOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,10 +125,81 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OrderDetailActivity.this, OrderInvoiceActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+                uploadInvoice();
+            }
+        });
+
+    }
+
+    private void uploadInvoice() {
+        userTotalOrder += 1;
+        final String orderId = String.format("%04d" , Math.round(userTotalOrder));
+        final DocumentReference userOrder = mFirestore.collection("Users").document(userId).collection("Orders").document(orderId);
+        mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    final DocumentSnapshot document = task.getResult();
+                    if (document != null) {
+                        userOrder.set(document.getData())
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                                        Map<String, Object> order = new HashMap<>();
+                                        order.put("status", "Not Confirmed");
+                                        order.put("totalOrder", tv_total_price.getText());
+                                        order.put("date", new Timestamp(new Date()));
+                                        userOrder.set(order, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                final CollectionReference docPrice = mFirestore.collection("Users").document(userId).collection("Cart");
+                                                docPrice.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                        if (task.isSuccessful()) {
+
+                                                            List<DocumentSnapshot> listPrice = task.getResult().getDocuments();
+                                                            listPrice.size();
+                                                            for (int i = 0; i < listPrice.size(); i++) {
+                                                                String productId = listPrice.get(i).getId();
+                                                                DocumentReference userOrder = mFirestore.collection("Users").document(userId).collection("Orders").document(orderId).collection("purchasedProduct").document(productId);
+                                                                userOrder.set(listPrice.get(i).getData());
+                                                                mFirestore.collection("Users").document(userId).collection("Cart").document(productId).delete();
+                                                            }
+
+
+                                                            Intent intent = new Intent(OrderDetailActivity.this, OrderInvoiceActivity.class);
+                                                            intent.putExtra(OrderInvoiceActivity.KEY_ORDER_ID, orderId);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                            startActivity(intent);
+                                                            finish();
+                                                            mUserRef.update("totalOrder", userTotalOrder);
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(OrderDetailActivity.this, "Failed Add To Order",
+                                                        Toast.LENGTH_LONG).show();
+                                            }
+                                        });
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error writing document", e);
+                                    }
+                                });
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
             }
         });
 
@@ -182,6 +261,7 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
     @Override
     public void onStop() {
         super.onStop();
+        alertDialog.dismiss();
         if (mAdapter != null) {
             mAdapter.stopListening();
         }
@@ -197,7 +277,7 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
                         Log.d(TAG, "Document exists!");
                         tv_full_name.setText(document.getString("fullName"));
                         tv_phone_number.setText(document.getString("userTelephone"));
-
+                        userTotalOrder = document.getDouble("totalOrder");
                         mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

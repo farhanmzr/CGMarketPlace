@@ -140,8 +140,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     userId = mAuth.getCurrentUser().getUid();
                                     DocumentReference documentReference = db.collection("Users").document(userId);
                                     Map<String, Object> userData = new HashMap<>();
-                                    userData.put("userName", username);
-                                    userData.put("userEmail", email);
+                                    userData.put("totalOrder", 0);
                                     userData.put("fullName", fullname);
                                     userData.put("userTelephone", telephone);
                                     documentReference.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {

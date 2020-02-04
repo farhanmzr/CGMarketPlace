@@ -1,11 +1,5 @@
 package com.example.cgmarketplace.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,8 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.cgmarketplace.R;
-import com.example.cgmarketplace.adapters.OrderDetailAdapter;
 import com.example.cgmarketplace.adapters.OrderInvoiceAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,10 +33,11 @@ import java.util.List;
 import java.util.Locale;
 
 public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvoiceAdapter.OnProductSelectedListener {
+    public static final String KEY_ORDER_ID = "key_order_id";
 
     private static final String TAG = "ShippingAddressActivity";
     private FirebaseFirestore mFirestore;
-    private DocumentReference mAddressRef, mUserRef;
+    private DocumentReference mOrderRef, mUserRef;
     private FirebaseAuth mAuth;
     private Query mQuery;
 
@@ -46,7 +46,7 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
     private Button btn_confirm;
     private RecyclerView rv_order_finish;
     private OrderInvoiceAdapter mAdapter;
-    private String userId;
+    private String userId, orderId;
     private int totalPriceCart = 0;
     private Double qtyItem, priceItem;
 
@@ -59,12 +59,14 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
         getSupportActionBar().setCustomView(R.layout.action_bar_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        orderId = getIntent().getExtras().getString(KEY_ORDER_ID);
+
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
         userId = mAuth.getCurrentUser().getUid();
-        mAddressRef = mFirestore.collection("Users").document(userId).collection("Address").document("shipAddress");
+        mOrderRef = mFirestore.collection("Users").document(userId).collection("Orders").document(orderId);
         mUserRef = mFirestore.collection("Users").document(userId);
-        mQuery = mFirestore.collection("Users").document(userId).collection("Cart");
+        mQuery = mFirestore.collection("Users").document(userId).collection("Orders").document(orderId).collection("purchasedProduct");
 
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.order_invoice);
@@ -110,18 +112,21 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
                         tv_full_name.setText(document.getString("fullName"));
                         tv_phone_number.setText(document.getString("userTelephone"));
 
-                        mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        mOrderRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot document = task.getResult();
                                     if (document.exists()) {
                                         Log.d(TAG, "Document exists!");
+                                        tv_id_order.setText(orderId);
+                                        tv_date.setText(String.valueOf(document.getDate("date")));
                                         tv_address.setText(document.getString("address"));
                                         tv_city.setText(document.getString("city"));
                                         tv_region.setText(document.getString("region"));
                                         tv_zip_code.setText(document.getString("zipcode"));
                                         tv_country.setText(document.getString("country"));
+                                        tv_total_price.setText(document.getString("totalOrder"));
 
                                     } else {
                                         Log.d(TAG, "Document does not exist!");
