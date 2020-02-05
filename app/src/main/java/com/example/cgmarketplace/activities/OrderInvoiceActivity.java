@@ -81,10 +81,9 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OrderInvoiceActivity.this, TransactionActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(),TransactionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK ));
                 finish();
+                overridePendingTransition(0,0);
             }
         });
 

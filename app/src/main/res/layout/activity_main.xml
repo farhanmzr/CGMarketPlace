@@ -87,6 +87,7 @@
         android:background="@drawable/bg_search"
         android:iconifiedByDefault="false"
         android:layoutDirection="rtl"
+        android:focusable="false"
         android:queryHint="Search Furniture..."
         app:layout_constraintBottom_toBottomOf="@+id/view3"
         app:layout_constraintEnd_toEndOf="parent"

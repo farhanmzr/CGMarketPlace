@@ -154,11 +154,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         etNewPass.setEnabled(editPass);
         etNewPass.setFocusableInTouchMode(editPass);
-        etNewPass.setFocusable(editPass);
 
         etNewConfirmPass.setEnabled(editPass);
         etNewConfirmPass.setFocusableInTouchMode(editPass);
-        etNewConfirmPass.setFocusable(editPass);
     }
 
     private void editDataPass() {
@@ -281,7 +279,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         etFullName.setEnabled(editProfile);
         etFullName.setFocusableInTouchMode(editProfile);
-        etFullName.setFocusable(editProfile);
 
         etEmail.setEnabled(false);
         etEmail.setFocusableInTouchMode(false);
@@ -289,7 +286,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         etPhone_Number.setEnabled(editProfile);
         etPhone_Number.setFocusableInTouchMode(editProfile);
-        etPhone_Number.setFocusable(editProfile);
 
         mUserRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -321,19 +317,15 @@ public class ProfileActivity extends AppCompatActivity {
 
         etCity.setEnabled(editAddress);
         etCity.setFocusableInTouchMode(editAddress);
-        etCity.setFocusable(editAddress);
 
         etRegion.setEnabled(editAddress);
         etRegion.setFocusableInTouchMode(editAddress);
-        etRegion.setFocusable(editAddress);
 
         etZip_Code.setEnabled(editAddress);
         etZip_Code.setFocusableInTouchMode(editAddress);
-        etZip_Code.setFocusable(editAddress);
 
         etCountry.setEnabled(editAddress);
         etCountry.setFocusableInTouchMode(editAddress);
-        etCountry.setFocusable(editAddress);
 
         mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override

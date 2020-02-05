@@ -1,5 +1,6 @@
 package com.example.cgmarketplace.activities;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -182,6 +183,10 @@ public class DetailActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
+                final ProgressDialog pd = new ProgressDialog(DetailActivity.this);
+                pd.setMessage("Adding To Cart");
+                pd.show();
+
                 DocumentReference documentReference = mFirestore.collection("Users").document(userId).collection("Cart").document(productId);
                 Map<String, Object> userCart = new HashMap<>();
                 userCart.put("name", product.getName());
@@ -196,6 +201,7 @@ public class DetailActivity extends AppCompatActivity
                 documentReference.set(userCart).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        pd.dismiss();
                         Toast.makeText(DetailActivity.this, "Successfully Add To Cart",
                                 Toast.LENGTH_LONG).show();
                         finish();
@@ -203,11 +209,13 @@ public class DetailActivity extends AppCompatActivity
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        pd.dismiss();
                         Toast.makeText(DetailActivity.this, "Failed Add To Cart",
                                 Toast.LENGTH_LONG).show();
 
                     }
                 });
+
             }
     });
 
