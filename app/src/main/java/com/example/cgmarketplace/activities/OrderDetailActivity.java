@@ -60,7 +60,7 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
 
     private TextView tvTitle, tv_full_name, tv_address, tv_city, tv_region, tv_zip_code, tv_country, tv_phone_number, tv_total_price;
     private Button btn_dialog;
-    private String userId, orderId;
+    private String userId, orderId, userName, userPhone;
     private int totalPriceCart = 0;
     private Double qtyItem, priceItem, userTotalOrder;
 
@@ -147,6 +147,9 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
                                     public void onSuccess(Void aVoid) {
                                         Log.d(TAG, "DocumentSnapshot successfully written!");
                                         Map<String, Object> order = new HashMap<>();
+                                        order.put("status", "Not Confirmed");
+                                        order.put("name", userName);
+                                        order.put("phone", userPhone);
                                         order.put("status", "Not Confirmed");
                                         order.put("totalOrder", tv_total_price.getText());
                                         order.put("date", new Timestamp(new Date()));
@@ -275,8 +278,10 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "Document exists!");
-                        tv_full_name.setText(document.getString("fullName"));
-                        tv_phone_number.setText(document.getString("userTelephone"));
+                        userName = document.getString("fullName");
+                        userPhone = document.getString("userTelephone");
+                        tv_full_name.setText(userName);
+                        tv_phone_number.setText(userPhone);
                         userTotalOrder = document.getDouble("totalOrder");
                         Log.d(TAG, String.valueOf(userTotalOrder));
                         mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

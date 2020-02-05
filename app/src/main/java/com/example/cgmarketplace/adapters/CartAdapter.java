@@ -125,6 +125,7 @@ public class CartAdapter extends FirestoreAdapter<CartAdapter.ViewHolder> {
                                 }
                             });
                     Log.w("Total qty", String.valueOf(qtyItem));
+                    Log.w("id", snapshot.getId());
                     tv_jumlah_cart.setText(String.valueOf(qtyItem));
 
                 }

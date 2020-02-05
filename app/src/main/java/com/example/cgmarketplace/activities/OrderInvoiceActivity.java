@@ -20,17 +20,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.NumberFormat;
-import java.util.List;
-import java.util.Locale;
+import java.text.DateFormat;
 
 public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvoiceAdapter.OnProductSelectedListener {
     public static final String KEY_ORDER_ID = "key_order_id";
@@ -98,7 +94,6 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
 
         initData();
         initRecyclerView();
-        initTotalPrice();
     }
 
     private void initData() {
@@ -120,7 +115,10 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
                                     if (document.exists()) {
                                         Log.d(TAG, "Document exists!");
                                         tv_id_order.setText(orderId);
-                                        tv_date.setText(String.valueOf(document.getDate("date")));
+
+                                        DateFormat dateFormat = DateFormat.getDateTimeInstance();
+                                        String date = dateFormat.format(document.getDate("date"));
+                                        tv_date.setText(date);
                                         tv_address.setText(document.getString("address"));
                                         tv_city.setText(document.getString("city"));
                                         tv_region.setText(document.getString("region"));
@@ -225,35 +223,6 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
         intent.putExtra("no-Button", true);
 
         startActivity(intent);
-    }
-
-    private void initTotalPrice() {
-
-        CollectionReference docPrice = mFirestore.collection("Users").document(userId).collection("Cart");
-        docPrice.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-
-                    List<DocumentSnapshot> listPrice = task.getResult().getDocuments();
-                    listPrice.size();
-                    for (int i = 0; i < listPrice.size(); i++) {
-
-                        qtyItem = listPrice.get(i).getDouble("qty");
-                        priceItem = listPrice.get(i).getDouble("price");
-                        totalPriceCart += qtyItem * priceItem;
-                        Log.w("qty item", String.valueOf(qtyItem)); //debug qty
-                        Log.w("price item", String.valueOf(priceItem)); //debug total
-                        Log.w("total", String.valueOf(totalPriceCart)); //debug price total
-
-                    }
-
-                    String totalPriceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(totalPriceCart);
-                    tv_total_price.setText(totalPriceFormat);
-                    totalPriceCart = 0;
-                }
-            }
-        });
     }
 }
 
