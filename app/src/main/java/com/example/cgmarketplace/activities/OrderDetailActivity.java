@@ -1,6 +1,7 @@
 package com.example.cgmarketplace.activities;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -125,13 +126,19 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                alertDialog.dismiss();
                 uploadInvoice();
+
             }
         });
 
     }
 
     private void uploadInvoice() {
+        final ProgressDialog pd = new ProgressDialog(OrderDetailActivity.this);
+        pd.setMessage("Process Your Transaction");
+        pd.show();
+
         userTotalOrder += 1;
         final String orderId = String.format("%04d" , Math.round(userTotalOrder));
         final DocumentReference userOrder = mFirestore.collection("Users").document(userId).collection("Orders").document(orderId);
@@ -146,6 +153,7 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Log.d(TAG, "DocumentSnapshot successfully written!");
+
                                         Map<String, Object> order = new HashMap<>();
                                         order.put("status", "Not Confirmed");
                                         order.put("name", userName);
@@ -171,6 +179,7 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
                                                                 mFirestore.collection("Users").document(userId).collection("Cart").document(productId).delete();
                                                             }
 
+                                                            pd.dismiss();
 
                                                             Intent intent = new Intent(OrderDetailActivity.this, OrderInvoiceActivity.class);
                                                             intent.putExtra(OrderInvoiceActivity.KEY_ORDER_ID, orderId);

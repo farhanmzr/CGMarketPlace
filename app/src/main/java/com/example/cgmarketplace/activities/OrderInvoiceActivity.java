@@ -3,7 +3,6 @@ package com.example.cgmarketplace.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,8 +42,6 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
     private RecyclerView rv_order_finish;
     private OrderInvoiceAdapter mAdapter;
     private String userId, orderId;
-    private int totalPriceCart = 0;
-    private Double qtyItem, priceItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +50,6 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar_layout);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         orderId = getIntent().getExtras().getString(KEY_ORDER_ID);
 
@@ -159,7 +155,6 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
                 // Show/hide content if the query returns empty.
                 if (getItemCount() == 0) {
                     rv_order_finish.setVisibility(View.GONE);
-                    setContentView(R.layout.empty_cart);
 
                     Log.w(TAG, "ItemCount = 0");
                 } else {
@@ -197,23 +192,13 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
         }
     }
 
-
-
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == android.R.id.home) {
-            startActivity(new Intent(getApplicationContext(),OrderDetailActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            finish();
-            overridePendingTransition(0,0);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent intent = new Intent(OrderInvoiceActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 
     @Override
