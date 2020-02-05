@@ -4,63 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ConfirmPaymentActivity">
+    tools:context=".activities.SuccessUploadPaymentActivity">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imgSuccess_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/img_upload_payment"
+        android:layout_gravity="center"
+        android:background="@drawable/img_success_upload"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.265"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/upload_payment_proof"
+        android:text="Upload Successfull"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@id/imgSuccess_upload" />
 
     <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
+        android:id="@+id/tvSub_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/montserrat"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
         android:gravity="center"
-        android:text="@string/to_complete_the_payment_process_please_upload_n_your_proof_of_payment"
-        android:textSize="14sp"
+        android:layout_marginTop="16dp"
+        android:paddingStart="42dp"
+        android:paddingEnd="42dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Thank you for uploading your proof of payment, then our crew will review your proof of payment"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <Button
-        android:id="@+id/btnUpload"
+        android:id="@+id/btn_goto_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="48dp"
-        android:layout_marginTop="32sp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/bg_btn_blue"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/upload_evidence"
+        android:text="GO TO HOME"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@id/tvSub_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

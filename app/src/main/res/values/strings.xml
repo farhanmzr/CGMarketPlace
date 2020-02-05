@@ -108,4 +108,5 @@
     <string name="upload_evidence">Upload Evidence</string>
     <string name="upload_payment_proof">Upload Payment Proof</string>
     <string name="to_complete_the_payment_process_please_upload_n_your_proof_of_payment">To complete the payment process, please upload   your proof of payment</string>
+    <string name="success_payment">Payment Successful</string>
 </resources>
