@@ -24,6 +24,7 @@ public class PageAdapter  extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return new NotConfirmedFragment();
+
             case 1:
                 return new ConfirmedFragment();
             case 2:

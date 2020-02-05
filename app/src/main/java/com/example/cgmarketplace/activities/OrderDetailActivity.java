@@ -278,6 +278,7 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
                         tv_full_name.setText(document.getString("fullName"));
                         tv_phone_number.setText(document.getString("userTelephone"));
                         userTotalOrder = document.getDouble("totalOrder");
+                        Log.d(TAG, String.valueOf(userTotalOrder));
                         mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

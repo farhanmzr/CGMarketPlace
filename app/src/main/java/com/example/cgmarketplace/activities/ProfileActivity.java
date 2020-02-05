@@ -238,7 +238,7 @@ public class ProfileActivity extends AppCompatActivity {
                     profile.put("fullName", fullname);
                     profile.put("userTelephone", phone);
 
-                    mUserRef.set(profile).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    mUserRef.update(profile).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.w(TAG, "Successfully");
@@ -378,7 +378,7 @@ public class ProfileActivity extends AppCompatActivity {
                     addShippingAddress.put("zipcode", zipCode);
                     addShippingAddress.put("country", country);
 
-                    mAddressRef.set(addShippingAddress).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    mAddressRef.update(addShippingAddress).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.w(TAG, "Successfully");

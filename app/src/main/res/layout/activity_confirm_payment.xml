@@ -16,7 +16,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.265" />
+        app:layout_constraintVertical_bias="0.265"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView8"
@@ -24,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Upload Payment Proof"
+        android:text="@string/upload_payment_proof"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +39,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:text="To complete the payment process, please upload \n your proof of payment"
+        android:text="@string/to_complete_the_payment_process_please_upload_n_your_proof_of_payment"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +54,7 @@
         android:layout_marginTop="32sp"
         android:background="@drawable/bg_btn_blue"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Upload Evidence"
+        android:text="@string/upload_evidence"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
