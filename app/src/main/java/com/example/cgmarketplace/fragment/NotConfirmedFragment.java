@@ -1,6 +1,7 @@
 package com.example.cgmarketplace.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -88,7 +89,6 @@ public class NotConfirmedFragment extends Fragment implements TransactionAdapter
                 // Show/hide content if the query returns empty.
                 if (getItemCount() == 0) {
                     rvNot_confirmed.setVisibility(View.GONE);
-
                     Log.w(TAG, "ItemCount = 0");
                 } else {
                     rvNot_confirmed.setVisibility(View.VISIBLE);

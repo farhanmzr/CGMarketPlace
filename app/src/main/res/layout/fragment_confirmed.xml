@@ -7,12 +7,12 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvNot_confirmed"
+        android:id="@+id/rvConfirmed"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_not_confirmed" />
+        tools:listitem="@layout/item_confirmed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,7 +29,7 @@ public class ConfirmedFragment extends Fragment implements TransactionAdapter.On
     private Query mQuery;
     private TransactionAdapter mAdapter;
 
-    private RecyclerView rvNot_confirmed;
+    private RecyclerView rvConfirmed;
     private String userId;
 
     public ConfirmedFragment() {
@@ -51,7 +51,7 @@ public class ConfirmedFragment extends Fragment implements TransactionAdapter.On
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_confirmed, container, false);
-        rvNot_confirmed = v.findViewById(R.id.rvNot_confirmed);
+        rvConfirmed = v.findViewById(R.id.rvConfirmed);
         initRv();
 
         return v;
@@ -69,11 +69,11 @@ public class ConfirmedFragment extends Fragment implements TransactionAdapter.On
             protected void onDataChanged() {
                 // Show/hide content if the query returns empty.
                 if (getItemCount() == 0) {
-                    rvNot_confirmed.setVisibility(View.GONE);
+                    rvConfirmed.setVisibility(View.GONE);
 
                     Log.w(TAG, "ItemCount = 0");
                 } else {
-                    rvNot_confirmed.setVisibility(View.VISIBLE);
+                    rvConfirmed.setVisibility(View.VISIBLE);
                     Log.w(TAG, "Show Produk");
                 }
             }
@@ -85,8 +85,8 @@ public class ConfirmedFragment extends Fragment implements TransactionAdapter.On
             }
         };
 
-        rvNot_confirmed.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvNot_confirmed.setAdapter(mAdapter);
+        rvConfirmed.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvConfirmed.setAdapter(mAdapter);
     }
 
 

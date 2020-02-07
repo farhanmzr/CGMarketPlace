@@ -20,6 +20,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
+import java.util.zip.Inflater;
+
 public class DeliverFragment extends Fragment implements TransactionAdapter.OnProductSelectedListener {
 
     private static final String TAG = "Not Confirm Fragment";
@@ -29,7 +31,7 @@ public class DeliverFragment extends Fragment implements TransactionAdapter.OnPr
     private Query mQuery;
     private TransactionAdapter mAdapter;
 
-    private RecyclerView rvNot_confirmed;
+    private RecyclerView rvDeliver;
     private String userId;
 
     public DeliverFragment() {
@@ -51,7 +53,7 @@ public class DeliverFragment extends Fragment implements TransactionAdapter.OnPr
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_deliver, container, false);
-        rvNot_confirmed = v.findViewById(R.id.rvNot_confirmed);
+        rvDeliver = v.findViewById(R.id.rvDeliver);
         initRv();
 
         return v;
@@ -69,11 +71,11 @@ public class DeliverFragment extends Fragment implements TransactionAdapter.OnPr
             protected void onDataChanged() {
                 // Show/hide content if the query returns empty.
                 if (getItemCount() == 0) {
-                    rvNot_confirmed.setVisibility(View.GONE);
+                    rvDeliver.setVisibility(View.GONE);
 
                     Log.w(TAG, "ItemCount = 0");
                 } else {
-                    rvNot_confirmed.setVisibility(View.VISIBLE);
+                    rvDeliver.setVisibility(View.VISIBLE);
                     Log.w(TAG, "Show Produk");
                 }
             }
@@ -85,8 +87,8 @@ public class DeliverFragment extends Fragment implements TransactionAdapter.OnPr
             }
         };
 
-        rvNot_confirmed.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvNot_confirmed.setAdapter(mAdapter);
+        rvDeliver.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvDeliver.setAdapter(mAdapter);
     }
 
 
