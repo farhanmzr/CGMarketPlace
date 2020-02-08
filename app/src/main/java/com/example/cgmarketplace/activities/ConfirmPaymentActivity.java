@@ -34,6 +34,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -48,8 +49,9 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
     private final int PICK_IMAGE_REQUEST = 22;
     private FirebaseUser user;
     private FirebaseFirestore mFirestore;
-    private DocumentReference mUserRef;
+    private DocumentReference mUserRef, mPaymentRef;
     private FirebaseAuth mAuth;
+    private Query mQuery;
     FirebaseStorage storage;
     StorageReference storageReference;
 
@@ -57,7 +59,7 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
     private TextView tvTitle, tvSub_title;
     private Button btn_cancel, btn_confirm;
     private ImageView imgUpload, changeImg_upload;
-    private String userId;
+    private String userId, orderId;
 
     private Button btnUpload;
 
@@ -77,6 +79,8 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         mUserRef = mFirestore.collection("Users").document(userId);
+        mPaymentRef = mFirestore.collection("Users").document(userId).collection("Payment").document(orderId);
+        mQuery = mFirestore.collection("Users").document(userId).collection("Orders").document(orderId).collection("paymentOrder");
 
 
         tvTitle = findViewById(R.id.tvTitle);
@@ -154,7 +158,6 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
                 return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
 
             }
-
 
 
             public void UploadImg() {
