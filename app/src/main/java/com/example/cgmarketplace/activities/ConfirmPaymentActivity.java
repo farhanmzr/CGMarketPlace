@@ -1,6 +1,5 @@
 package com.example.cgmarketplace.activities;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -9,7 +8,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -26,15 +24,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
@@ -42,8 +37,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,7 +56,6 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
     private StorageReference mStorageRef;
 
     private Dialog alertDialog;
-    private EditText etOrderId;
     private TextView tvTitle, tvSub_title;
     private Button btn_cancel, btn_confirm;
     private ImageView imgUpload, changeImg_upload;
@@ -85,7 +79,7 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         mStorageRef = storage.getReference();
         mUserRef = mFirestore.collection("Users").document(userId);
-        mPaymentRef = mFirestore.collection("Users").document(userId).collection("Payments").document();
+
 
 
 
@@ -114,8 +108,7 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
         tvSub_title = alertDialog.findViewById(R.id.tvSub_title);
         btn_cancel = alertDialog.findViewById(R.id.btn_cancel);
         btn_confirm = alertDialog.findViewById(R.id.btn_confirm);
-
-        etOrderId = findViewById(R.id.etOrderId);
+        final EditText etOrderId = alertDialog.findViewById(R.id.etOrderId);
 
 
 
@@ -128,9 +121,10 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gotosuccess = new Intent(ConfirmPaymentActivity.this,SuccessUploadPaymentActivity.class);
+                orderId = etOrderId.getText().toString();
                 alertDialog.dismiss();
                 UploadImg();
+                Intent gotosuccess = new Intent(ConfirmPaymentActivity.this,SuccessUploadPaymentActivity.class);
                 startActivity(gotosuccess);
                 finish();
             }
@@ -171,7 +165,6 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
                         resultCode,
                         data);
 
-                Uri ImageData = data.getData();
 
 
                 // checking request code and result code
@@ -215,8 +208,6 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
 
             public void UploadImg() {
 
-
-
                 if (filePath != null) {
 
                     final ProgressDialog progressDialog
@@ -246,9 +237,29 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
                                             ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                 @Override
                                                 public void onSuccess(final Uri uri) {
+                                                    progressDialog.dismiss();
+                                                    mPaymentRef = mFirestore.collection("Users").document(userId).collection("Payments").document(orderId);
+                                                    Map<String, Object> userPayment = new HashMap<>();
+                                                    userPayment.put("orderId", orderId );
+                                                    userPayment.put("img", String.valueOf(uri) );
+                                                    userPayment.put("date", new Timestamp(new Date()));
+                                                    mPaymentRef.set(userPayment).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
 
-                                                    orderId = etOrderId.getText().toString();
+                                                            Toast.makeText(ConfirmPaymentActivity.this, "Successfully Upload",
+                                                                    Toast.LENGTH_LONG).show();
+                                                            finish();
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            progressDialog.dismiss();
+                                                            Toast.makeText(ConfirmPaymentActivity.this, "Failed Upload",
+                                                                    Toast.LENGTH_LONG).show();
 
+                                                        }
+                                                    });
 
                                                 }
                                             });
