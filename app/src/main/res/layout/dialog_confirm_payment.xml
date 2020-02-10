@@ -24,7 +24,7 @@
             android:layout_height="200dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_default_profile"/>
+            android:src="@drawable/img_default_payment"/>
 
         <ImageView
             android:id="@+id/changeImg_upload"
@@ -52,7 +52,7 @@
 
 
         <EditText
-            android:id="@+id/etAddress"
+            android:id="@+id/etOrderId"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/bg_form"
