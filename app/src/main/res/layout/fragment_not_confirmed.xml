@@ -16,20 +16,6 @@
         tools:listitem="@layout/item_not_confirmed" />
 
 
-    <Button
-        android:id="@+id/btnConfirmPayment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/bg_btn_blue"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Confirm Payment"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvNot_confirmed" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

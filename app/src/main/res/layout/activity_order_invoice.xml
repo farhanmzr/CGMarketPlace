@@ -65,7 +65,7 @@
             android:layout_marginBottom="16dp">
 
             <TableLayout
-                android:layout_width="224dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:stretchColumns="1">
 
@@ -96,13 +96,13 @@
             </TableLayout>
 
             <View
-                android:layout_width="220dp"
+                android:layout_width="235dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/view" />
 
             <TableLayout
-                android:layout_width="224dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:stretchColumns="1">
@@ -477,21 +477,43 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/btn_confirm"
+            android:id="@+id/btn_confirm_later"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_btn_blue"
             android:fontFamily="@font/montserrat_bold"
-            android:text="@string/tv_confirm"
+            android:text="@string/tv_confirm_later"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardView2" />
+
+
+                <Button
+                    android:id="@+id/btn_confirm_now"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_btn_blue"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/tv_confirm_now"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cardView2" />
+
+
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

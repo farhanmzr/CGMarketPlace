@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.SuccessUploadPaymentActivity"></activity>
         <activity android:name=".activities.ConfirmPaymentActivity" />
-        <activity android:name=".activities.PaymentInvoiceActivity" />
         <activity android:name=".activities.OrderInvoiceActivity" />
         <activity android:name=".activities.OrderDetailActivity" />
         <activity android:name=".activities.ShippingAddressActivity" />

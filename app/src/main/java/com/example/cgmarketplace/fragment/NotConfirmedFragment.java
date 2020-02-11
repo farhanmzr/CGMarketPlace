@@ -2,6 +2,7 @@ package com.example.cgmarketplace.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimatedImageDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,7 +42,6 @@ public class NotConfirmedFragment extends Fragment implements TransactionAdapter
     private TransactionAdapter mAdapter;
 
     private RecyclerView rvNot_confirmed;
-    private Button btnConfirmPayment;
     private String userId;
 
     public NotConfirmedFragment() {
@@ -60,21 +63,9 @@ public class NotConfirmedFragment extends Fragment implements TransactionAdapter
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_not_confirmed, container, false);
-        btnConfirmPayment = v.findViewById(R.id.btnConfirmPayment);
+
         rvNot_confirmed = v.findViewById(R.id.rvNot_confirmed);
         initRv();
-        btnConfirmPayment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moveActivity();
-            }
-
-            private void moveActivity() {
-                Intent i = new Intent(getActivity(), ConfirmPaymentActivity.class);
-                startActivity(i);
-                ((Activity) getActivity()).overridePendingTransition(0, 0);
-            }
-        });
 
         return v;
     }
@@ -92,6 +83,9 @@ public class NotConfirmedFragment extends Fragment implements TransactionAdapter
                 // Show/hide content if the query returns empty.
                 if (getItemCount() == 0) {
                     rvNot_confirmed.setVisibility(View.GONE);
+
+
+
                     Log.w(TAG, "ItemCount = 0");
                 } else {
                     rvNot_confirmed.setVisibility(View.VISIBLE);

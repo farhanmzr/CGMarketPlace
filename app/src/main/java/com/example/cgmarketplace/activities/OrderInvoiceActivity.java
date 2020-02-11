@@ -38,7 +38,7 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
 
     private TextView tvTitle, tv_id_order, tv_date, tv_total_price, tv_full_name, tv_address, tv_city, tv_region, tv_zip_code, tv_country, tv_phone_number;
 
-    private Button btn_confirm;
+    private Button btn_confirm_now, btn_confirm_later;
     private RecyclerView rv_order_finish;
     private OrderInvoiceAdapter mAdapter;
     private String userId, orderId;
@@ -76,12 +76,23 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
         tv_zip_code = findViewById(R.id.tv_zip_code);
         tv_country = findViewById(R.id.tv_country);
         tv_phone_number = findViewById(R.id.tv_phone_number);
-        btn_confirm = findViewById(R.id.btn_confirm);
+        btn_confirm_now = findViewById(R.id.btn_confirm_now);
+        btn_confirm_later = findViewById(R.id.btn_confirm_later);
 
-        btn_confirm.setOnClickListener(new View.OnClickListener() {
+
+        btn_confirm_later.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),TransactionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK ));
+                finish();
+                overridePendingTransition(0,0);
+            }
+        });
+
+        btn_confirm_now.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),ConfirmPaymentActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK ));
                 finish();
                 overridePendingTransition(0,0);
             }
