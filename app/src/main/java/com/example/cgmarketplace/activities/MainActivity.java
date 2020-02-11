@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +33,7 @@ import java.util.ArrayList;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
-public class MainActivity extends AppCompatActivity implements ProductAdapter.OnProductSelectedListener, SearchView.OnQueryTextListener {
+public class MainActivity extends AppCompatActivity implements ProductAdapter.OnProductSelectedListener{
 
     private static final String TAG = "MainActivity";
     private static final int LIMIT = 50;
@@ -110,42 +109,42 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
 //                "HIVER","FIOCCO","GRAPHITE"};
 
         // Locate the ListView in listview_main.xml
-        list = (ListView) findViewById(R.id.listview);
-
-        for (int i = 0; i < productNameList.length; i++) {
-            SearchModel productName = new SearchModel(productNameList[i]);
-            // Binds all strings into an array
-            arraylist.add(productName);
-        }
-
-        // Pass results to ListViewAdapter Class
-        adapter = new SearchViewAdapter(this, arraylist);
-
-        // Binds the Adapter to the ListView
-        list.setAdapter(adapter);
-        list.setTextFilterEnabled(true);
-
-        // Locate the EditText in listview_main.xml
-        editsearch = (SearchView) findViewById(R.id.searchView);
-        editsearch.setOnQueryTextListener(this);
+//        list = (ListView) findViewById(R.id.listview);
+//
+//        for (int i = 0; i < productNameList.length; i++) {
+//            SearchModel productName = new SearchModel(productNameList[i]);
+//            // Binds all strings into an array
+//            arraylist.add(productName);
+//        }
+//
+//        // Pass results to ListViewAdapter Class
+//        adapter = new SearchViewAdapter(this, arraylist);
+//
+//        // Binds the Adapter to the ListView
+//        list.setAdapter(adapter);
+//        list.setTextFilterEnabled(true);
+//
+//        // Locate the EditText in listview_main.xml
+//        editsearch = (SearchView) findViewById(R.id.searchView);
+//        editsearch.setOnQueryTextListener(this);
 
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-
-            Toast.makeText(MainActivity.this, "No Match found",Toast.LENGTH_LONG).show();
-
-
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        String text = newText;
-        adapter.filter(text);
-        return false;
-    }
+//    @Override
+//    public boolean onQueryTextSubmit(String query) {
+//
+//            Toast.makeText(MainActivity.this, "No Match found",Toast.LENGTH_LONG).show();
+//
+//
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean onQueryTextChange(String newText) {
+//        String text = newText;
+//        adapter.filter(text);
+//        return false;
+//    }
 
 
     private void categoryBedroom() {
