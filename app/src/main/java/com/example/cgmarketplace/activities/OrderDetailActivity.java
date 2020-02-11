@@ -48,7 +48,7 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
 
     private static final String TAG = "ShippingAddressActivity";
     private FirebaseFirestore mFirestore;
-    private DocumentReference mAddressRef, mUserRef;
+    private DocumentReference mUserRef;
     private FirebaseAuth mAuth;
     private Query mQuery;
 
@@ -77,7 +77,6 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
         userId = mAuth.getCurrentUser().getUid();
-        mAddressRef = mFirestore.collection("Users").document(userId).collection("Address").document("shipAddress");
         mUserRef = mFirestore.collection("Users").document(userId);
         mQuery = mFirestore.collection("Users").document(userId).collection("Cart");
 
@@ -142,7 +141,7 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
         userTotalOrder += 1;
         final String orderId = String.format("%04d" , Math.round(userTotalOrder));
         final DocumentReference userOrder = mFirestore.collection("Orders").document(userId + orderId);
-        mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        mUserRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -301,7 +300,7 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
                         tv_phone_number.setText(userPhone);
                         userTotalOrder = document.getDouble("totalOrder");
                         Log.d(TAG, String.valueOf(userTotalOrder));
-                        mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        mUserRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 if (task.isSuccessful()) {
