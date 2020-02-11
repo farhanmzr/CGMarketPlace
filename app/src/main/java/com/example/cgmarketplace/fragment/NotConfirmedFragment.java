@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +18,10 @@ import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.activities.ConfirmPaymentActivity;
 import com.example.cgmarketplace.activities.OrderInvoiceActivity;
 import com.example.cgmarketplace.adapters.TransactionAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -109,12 +113,20 @@ public class NotConfirmedFragment extends Fragment implements TransactionAdapter
 
     @Override
     public void onProductSelected(DocumentSnapshot orderModel) {
+        final DocumentReference orderIdRef = orderModel.getReference();
+        orderIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    Intent intent = new Intent(getActivity(), OrderInvoiceActivity.class);
+                    intent.putExtra(OrderInvoiceActivity.KEY_ORDER_ID, document.getString("orderId"));
+                    intent.putExtra("no-Button", true);
 
-        Intent intent = new Intent(getActivity(), OrderInvoiceActivity.class);
-        intent.putExtra(OrderInvoiceActivity.KEY_ORDER_ID, orderModel.getId());
-        intent.putExtra("no-Button", true);
-
-        startActivity(intent);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override

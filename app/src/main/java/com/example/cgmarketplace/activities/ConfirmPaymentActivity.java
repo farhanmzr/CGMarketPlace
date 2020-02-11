@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -81,9 +80,6 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
         mStorageRef = storage.getReference();
         mUserRef = mFirestore.collection("Users").document(userId);
 
-
-
-
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.confirm_payment);
 
@@ -124,10 +120,8 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 orderId = etOrderId.getText().toString();
                 alertDialog.dismiss();
+
                 UploadImg();
-                Intent gotosuccess = new Intent(ConfirmPaymentActivity.this,SuccessUploadPaymentActivity.class);
-                startActivity(gotosuccess);
-                finish();
             }
         });
 
@@ -210,13 +204,10 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
             public void UploadImg() {
 
                 if (filePath != null) {
-
                     final ProgressDialog progressDialog
-                            = new ProgressDialog(this);
+                            = new ProgressDialog(ConfirmPaymentActivity.this);
                     progressDialog.setTitle("Uploading...");
                     progressDialog.show();
-
-
 
                     // Defining the child of storageReference
                     final StorageReference ref
@@ -250,6 +241,9 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
 
                                                             Toast.makeText(ConfirmPaymentActivity.this, "Successfully Upload",
                                                                     Toast.LENGTH_LONG).show();
+
+                                                            Intent gotosuccess = new Intent(ConfirmPaymentActivity.this,SuccessUploadPaymentActivity.class);
+                                                            startActivity(gotosuccess);
                                                             finish();
                                                         }
                                                     }).addOnFailureListener(new OnFailureListener() {

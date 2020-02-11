@@ -1,10 +1,7 @@
 package com.example.cgmarketplace.activities;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.SearchRecentSuggestions;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -107,10 +104,10 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
         });
 
         // Generate sample data
-
-        productNameList = new String[]{"Adelie", "Carree", "Bois De Vincennes",
-                "EUREKA", "EIGHT", "OVALE", "SABLIER", "PIROUETTE",
-                "HIVER","FIOCCO","GRAPHITE"};
+//
+//        productNameList = new String[]{"Adelie", "Carree", "Bois De Vincennes",
+//                "EUREKA", "EIGHT", "OVALE", "SABLIER", "PIROUETTE",
+//                "HIVER","FIOCCO","GRAPHITE"};
 
         // Locate the ListView in listview_main.xml
         list = (ListView) findViewById(R.id.listview);
