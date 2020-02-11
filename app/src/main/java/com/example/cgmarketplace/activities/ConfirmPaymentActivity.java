@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -238,7 +239,7 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess(final Uri uri) {
                                                     progressDialog.dismiss();
-                                                    mPaymentRef = mFirestore.collection("Users").document(userId).collection("Payments").document(orderId);
+                                                    mPaymentRef = mFirestore.collection("Payments").document(userId + orderId);
                                                     Map<String, Object> userPayment = new HashMap<>();
                                                     userPayment.put("orderId", orderId );
                                                     userPayment.put("img", String.valueOf(uri) );
@@ -326,5 +327,7 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }

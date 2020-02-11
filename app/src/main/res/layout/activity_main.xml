@@ -76,23 +76,38 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_alignParentEnd="true"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         style="@style/LinearTheme"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/bg_search"
-        android:iconifiedByDefault="false"
-        android:layoutDirection="rtl"
-        android:focusable="false"
-        android:queryHint="Search Furniture..."
-        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:focusable="false"
+            android:background="@drawable/bg_search"
+            android:iconifiedByDefault="false"
+            android:layoutDirection="rtl"
+            android:queryHint="Search Furniture...">
+
+        </SearchView>
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/searchView" />
+
+    </RelativeLayout>
+
+
 
 
             <TextView

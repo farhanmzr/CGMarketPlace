@@ -36,11 +36,8 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
     private static final String TAG = "CatalogActivity";
     public static final String KEY_PRODUCT_CATEGORY = "key_product_category";
 
-    private LinearLayout sort_by;
 
-    private Dialog alertDialog;
-    private RadioGroup rg;
-    private RadioButton radio_AtoZ, radio_ZtoA, radio_LowtoHigh, radio_HightoLow;
+
     private View view;
     private TextView tvSortby;
     private Button btn_cancel, btn_confirm;
@@ -69,65 +66,14 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(productCategory);
 
-        sort_by = findViewById(R.id.sort_by);
+
         catalog_recyclerview = findViewById(R.id.category_recyclerview);
 
         initFirestore();
         initRecyclerView();
-        initViews();
-
-
-    }
-
-    private void initViews() {
-
-        initCustomDialog();
-        initViewComponents();
-    }
-
-    private void initCustomDialog() {
-        alertDialog = new Dialog(CatalogActivity.this);
-        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        alertDialog.setContentView(R.layout.dialog_sortby);
-
-        tvSortby = alertDialog.findViewById(R.id.tvSortby);
-        view = alertDialog.findViewById(R.id.view);
-        rg = alertDialog.findViewById(R.id.radioSortby);
-        radio_AtoZ = alertDialog.findViewById(R.id.radio_AtoZ);
-        radio_ZtoA = alertDialog.findViewById(R.id.radio_ZtoA);
-        radio_LowtoHigh = alertDialog.findViewById(R.id.radio_LowtoHigh);
-        radio_HightoLow = alertDialog.findViewById(R.id.radio_HightoLow);
-        btn_cancel = alertDialog.findViewById(R.id.btn_cancel);
-        btn_confirm = alertDialog.findViewById(R.id.btn_confirm);
 
 
 
-
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
-            }
-        });
-        btn_confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
-            }
-        });
-
-    }
-
-    private void initViewComponents() {
-        sort_by = findViewById(R.id.sort_by);
-        sort_by.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.show();
-
-
-            }
-        });
     }
 
     private void initFirestore() {

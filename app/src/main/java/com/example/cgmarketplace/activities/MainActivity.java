@@ -1,12 +1,18 @@
 package com.example.cgmarketplace.activities;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.SearchRecentSuggestions;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.adapters.ProductAdapter;
+import com.example.cgmarketplace.adapters.SearchViewAdapter;
+import com.example.cgmarketplace.model.SearchModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,12 +33,21 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
+import java.util.ArrayList;
+
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
-public class MainActivity extends AppCompatActivity implements ProductAdapter.OnProductSelectedListener {
+public class MainActivity extends AppCompatActivity implements ProductAdapter.OnProductSelectedListener, SearchView.OnQueryTextListener {
 
     private static final String TAG = "MainActivity";
     private static final int LIMIT = 50;
+
+    // Declare Variables Search
+    ListView list;
+    SearchViewAdapter adapter;
+    SearchView editsearch;
+    String[] productNameList;
+    ArrayList<SearchModel> arraylist = new ArrayList<SearchModel>();
 
     BottomNavigationView bottomNavigationView;
     private ImageView img_profile, img_seats, img_bedroom, img_allcat, img_mirror, img_table, img_cabinet;
@@ -89,7 +106,50 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
             }
         });
 
+        // Generate sample data
+
+        productNameList = new String[]{"Adelie", "Carree", "Bois De Vincennes",
+                "EUREKA", "EIGHT", "OVALE", "SABLIER", "PIROUETTE",
+                "HIVER","FIOCCO","GRAPHITE"};
+
+        // Locate the ListView in listview_main.xml
+        list = (ListView) findViewById(R.id.listview);
+
+        for (int i = 0; i < productNameList.length; i++) {
+            SearchModel productName = new SearchModel(productNameList[i]);
+            // Binds all strings into an array
+            arraylist.add(productName);
+        }
+
+        // Pass results to ListViewAdapter Class
+        adapter = new SearchViewAdapter(this, arraylist);
+
+        // Binds the Adapter to the ListView
+        list.setAdapter(adapter);
+        list.setTextFilterEnabled(true);
+
+        // Locate the EditText in listview_main.xml
+        editsearch = (SearchView) findViewById(R.id.searchView);
+        editsearch.setOnQueryTextListener(this);
+
     }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+
+            Toast.makeText(MainActivity.this, "No Match found",Toast.LENGTH_LONG).show();
+
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        String text = newText;
+        adapter.filter(text);
+        return false;
+    }
+
 
     private void categoryBedroom() {
 
@@ -286,4 +346,6 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
 
         startActivity(intent);
     }
+
+
 }
