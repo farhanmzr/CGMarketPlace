@@ -36,6 +36,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -50,7 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
     private static final String TAG = "ProfileActivity";
     private FirebaseUser user;
     private FirebaseFirestore mFirestore;
-    private DocumentReference mUserRef, mAddressRef;
+    private DocumentReference mUserRef;
     private FirebaseAuth mAuth;
     FirebaseStorage storage;
     StorageReference storageReference;
@@ -87,7 +88,6 @@ public class ProfileActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         mUserRef = mFirestore.collection("Users").document(userId);
-        mAddressRef = mFirestore.collection("Users").document(userId).collection("Address").document("shipAddress");
 
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.profile_title);
@@ -236,7 +236,7 @@ public class ProfileActivity extends AppCompatActivity {
                     profile.put("fullName", fullname);
                     profile.put("userTelephone", phone);
 
-                    mUserRef.update(profile).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    mUserRef.set(profile, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.w(TAG, "Successfully");
@@ -327,12 +327,12 @@ public class ProfileActivity extends AppCompatActivity {
         etCountry.setEnabled(editAddress);
         etCountry.setFocusableInTouchMode(editAddress);
 
-        mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        mUserRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
+                    if (document.exists() && document.getString("address") != null && document.getString("city") != null && document.getString("region") != null && document.getString("zipcode") != null && document.getString("country") != null) {
                         Log.d(TAG, "Document exists!");
                         etAddress.setText(document.getString("address"));
                         etCity.setText(document.getString("city"));
@@ -370,7 +370,7 @@ public class ProfileActivity extends AppCompatActivity {
                     addShippingAddress.put("zipcode", zipCode);
                     addShippingAddress.put("country", country);
 
-                    mAddressRef.update(addShippingAddress).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    mUserRef.set(addShippingAddress, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.w(TAG, "Successfully");

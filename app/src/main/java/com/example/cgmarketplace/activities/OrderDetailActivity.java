@@ -141,7 +141,7 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
 
         userTotalOrder += 1;
         final String orderId = String.format("%04d" , Math.round(userTotalOrder));
-        final DocumentReference userOrder = mFirestore.collection("Users").document(userId).collection("Orders").document(orderId);
+        final DocumentReference userOrder = mFirestore.collection("Orders").document(userId + orderId);
         mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -158,7 +158,9 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
                                         order.put("status", "Not Confirmed");
                                         order.put("name", userName);
                                         order.put("phone", userPhone);
-                                        order.put("status", "Not Confirmed");
+                                        order.put("userId", userId);
+                                        order.put("flex", true);
+                                        order.put("orderId", orderId);
                                         order.put("totalOrder", tv_total_price.getText());
                                         order.put("date", new Timestamp(new Date()));
                                         userOrder.set(order, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -174,8 +176,14 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
                                                             listPrice.size();
                                                             for (int i = 0; i < listPrice.size(); i++) {
                                                                 String productId = listPrice.get(i).getId();
-                                                                DocumentReference userOrder = mFirestore.collection("Users").document(userId).collection("Orders").document(orderId).collection("purchasedProduct").document(productId);
+                                                                DocumentReference userOrder = mFirestore.collection("purchasedProduct").document(userId + productId);
                                                                 userOrder.set(listPrice.get(i).getData());
+
+                                                                Map<String, Object> product = new HashMap<>();
+                                                                product.put("userId", userId);
+                                                                product.put("orderId", orderId);
+                                                                userOrder.set(product, SetOptions.merge());
+
                                                                 mFirestore.collection("Users").document(userId).collection("Cart").document(productId).delete();
                                                             }
 

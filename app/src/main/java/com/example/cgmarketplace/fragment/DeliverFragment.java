@@ -20,8 +20,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
-import java.util.zip.Inflater;
-
 public class DeliverFragment extends Fragment implements TransactionAdapter.OnProductSelectedListener {
 
     private static final String TAG = "Not Confirm Fragment";
@@ -44,8 +42,8 @@ public class DeliverFragment extends Fragment implements TransactionAdapter.OnPr
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
-        mQuery = mFirestore.collection("Users").document(userId).collection("Orders");
-        mQuery = mQuery.whereEqualTo("status", "Not Confirmed");
+        mQuery = mFirestore.collection("Orders");
+        mQuery = mQuery.whereEqualTo("userId", userId).whereEqualTo("status", "Not Confirmed");
     }
 
     @Override

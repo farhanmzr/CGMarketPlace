@@ -1,24 +1,21 @@
 package com.example.cgmarketplace.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.cgmarketplace.R;
-import com.example.cgmarketplace.adapters.CartAdapter;
 import com.example.cgmarketplace.adapters.WishlistAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -28,7 +25,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
-import static com.example.cgmarketplace.R.*;
+import static com.example.cgmarketplace.R.id;
+import static com.example.cgmarketplace.R.string;
 
 public class WishlistActivity extends AppCompatActivity implements WishlistAdapter.OnProductSelectedListener {
     private final String TAG = "Wishlist Activity";
@@ -107,7 +105,7 @@ public class WishlistActivity extends AppCompatActivity implements WishlistAdapt
 
     private void initFirestore() {
 
-        mQuery = mFirestore.collection("Users").document(userId).collection("Wishlist");
+        mQuery = mFirestore.collection("Wishlist").whereEqualTo("userId", userId);
     }
 
     private void bottomNav() {
@@ -196,7 +194,7 @@ public class WishlistActivity extends AppCompatActivity implements WishlistAdapt
     public void onDeleteSelected(DocumentSnapshot productModel) {
 
         String deletedProduct = productModel.getId();
-        mFirestore.collection("Users").document(userId).collection("Wishlist").document(deletedProduct).delete();
+        mFirestore.collection("Wishlist").document(deletedProduct).delete();
 
         Toast.makeText(WishlistActivity.this, "Product with ID" + deletedProduct + "Deleted From Wishlist",
                 Toast.LENGTH_LONG).show();

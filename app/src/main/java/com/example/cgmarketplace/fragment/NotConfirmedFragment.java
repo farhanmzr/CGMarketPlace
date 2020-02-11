@@ -1,7 +1,6 @@
 package com.example.cgmarketplace.fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,8 +47,8 @@ public class NotConfirmedFragment extends Fragment implements TransactionAdapter
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
-        mQuery = mFirestore.collection("Users").document(userId).collection("Orders");
-        mQuery = mQuery.whereEqualTo("status", "Not Confirmed");
+        mQuery = mFirestore.collection("Orders");
+        mQuery = mQuery.whereEqualTo("userId", userId).whereEqualTo("status", "Not Confirmed");
     }
 
     @Override

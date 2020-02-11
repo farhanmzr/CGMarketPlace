@@ -56,9 +56,9 @@ public class OrderInvoiceActivity extends AppCompatActivity implements OrderInvo
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
         userId = mAuth.getCurrentUser().getUid();
-        mOrderRef = mFirestore.collection("Users").document(userId).collection("Orders").document(orderId);
+        mOrderRef = mFirestore.collection("Orders").document(userId + orderId);
         mUserRef = mFirestore.collection("Users").document(userId);
-        mQuery = mFirestore.collection("Users").document(userId).collection("Orders").document(orderId).collection("purchasedProduct");
+        mQuery = mFirestore.collection("purchasedProduct").whereEqualTo("userId", userId).whereEqualTo("orderId", orderId);
 
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.order_invoice);

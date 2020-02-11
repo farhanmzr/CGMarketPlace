@@ -2,12 +2,12 @@ package com.example.cgmarketplace.model;
 
 public class ProductModel {
 
-    private String desc, details1, details2, details3, details4, finish, image1, image2, image3, material, name, width, height, dense, category;
+    private String desc, details1, details2, details3, details4, finish, image1, image2, image3, material, name, width, height, dense, category, codeProduct;
     private int price, stock;
 
     public  ProductModel(){}
 
-    public ProductModel(String desc, String details1, String details2, String details3, String details4, String finish, String image1, String image2, String image3, String material, String name, String width, String height, String dense, String category, int price, int stock) {
+    public ProductModel(String desc, String details1, String details2, String details3, String details4, String finish, String image1, String image2, String image3, String material, String name, String width, String height, String dense, String category, String codeProduct, int price, int stock) {
         this.desc = desc;
         this.details1 = details1;
         this.details2 = details2;
@@ -25,6 +25,11 @@ public class ProductModel {
         this.category = category;
         this.price = price;
         this.stock = stock;
+        this.codeProduct = codeProduct;
+    }
+
+    public String getCodeProduct() {
+        return codeProduct;
     }
 
     public String getCategory() {

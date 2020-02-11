@@ -232,6 +232,7 @@ public class DetailActivity extends AppCompatActivity
                     userWishlist.put("name", product.getName());
                     userWishlist.put("image1", product.getImage1());
                     userWishlist.put("price", product.getPrice());
+                    userWishlist.put("userId", userId);
                     mWishlistRef.set(userWishlist).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -255,7 +256,7 @@ public class DetailActivity extends AppCompatActivity
 
     private void wishListState() {
 
-        mWishlistRef = mFirestore.collection("Users").document(userId).collection("Wishlist").document(productId);
+        mWishlistRef = mFirestore.collection("Wishlist").document(userId + productId);
         mWishlistRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

@@ -70,7 +70,7 @@ public class TransactionAdapter extends FirestoreAdapter<TransactionAdapter.View
 
             tvName.setText(orderModel.getName());
             tvPrice.setText(orderModel.getTotalOrder());
-            tvOrderId.setText(snapshot.getId());
+            tvOrderId.setText(orderModel.getOrderId());
             tvAddress.setText(orderModel.getAddress());
             tvCity.setText(orderModel.getCity());
             tvCountry.setText(orderModel.getCountry());

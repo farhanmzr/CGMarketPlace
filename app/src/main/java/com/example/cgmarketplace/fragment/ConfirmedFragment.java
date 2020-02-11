@@ -42,8 +42,8 @@ public class ConfirmedFragment extends Fragment implements TransactionAdapter.On
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
-        mQuery = mFirestore.collection("Users").document(userId).collection("Orders");
-        mQuery = mQuery.whereEqualTo("status", "Not Confirmed");
+        mQuery = mFirestore.collection("Orders");
+        mQuery = mQuery.whereEqualTo("userId", userId).whereEqualTo("status", "Not Confirmed");
     }
 
     @Override

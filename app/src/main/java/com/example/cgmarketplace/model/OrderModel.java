@@ -6,14 +6,14 @@ import java.util.Date;
 
 public class OrderModel {
 
-    private String address, city, country, region, status, totalOrder, zipcode, name, phone;
+    private String address, city, country, region, status, totalOrder, zipcode, name, phone, orderId;
 
     @ServerTimestamp
     private Date date;
 
     public  OrderModel(){}
 
-    public OrderModel(String address, String city, String country, String region, String status, String totalOrder, String zipcode, String name, String phone, Date date) {
+    public OrderModel(String address, String city, String country, String region, String status, String totalOrder, String zipcode, String name, String phone, String orderId, Date date) {
         this.address = address;
         this.city = city;
         this.country = country;
@@ -24,7 +24,16 @@ public class OrderModel {
         this.date = date;
         this.name = name;
         this.phone = phone;
+        this.orderId = orderId;
 
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public String getName() {

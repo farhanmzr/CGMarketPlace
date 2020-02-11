@@ -99,7 +99,7 @@ public class ShippingAddressActivity extends AppCompatActivity {
                     addShippingAddress.put("zipcode", zipCode);
                     addShippingAddress.put("country", country);
 
-                    mAddressRef.set(addShippingAddress).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    mUserRef.set(addShippingAddress, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.w(TAG, "Successfully");
@@ -151,12 +151,12 @@ public class ShippingAddressActivity extends AppCompatActivity {
                         etFull_name.setText(document.getString("fullName"));
                         etPhone_Number.setText(document.getString("userTelephone"));
 
-                        mAddressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        mUserRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
+                                    if (document.exists() && document.getString("address") != null && document.getString("city") != null && document.getString("region") != null && document.getString("zipcode") != null && document.getString("country") != null) {
                                         Log.d(TAG, "Document exists!");
                                         etAddress.setText(document.getString("address"));
                                         etCity.setText(document.getString("city"));
