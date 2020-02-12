@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +33,8 @@ public class ConfirmedFragment extends Fragment implements TransactionAdapter.On
 
     private RecyclerView rvConfirmed;
     private String userId;
+    private TextView textEmptySearch, textEmptySearch2;
+    private ImageView imgEmptySearch;
 
     public ConfirmedFragment() {
         // Required empty public constructor
@@ -43,7 +47,7 @@ public class ConfirmedFragment extends Fragment implements TransactionAdapter.On
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
         mQuery = mFirestore.collection("Orders");
-        mQuery = mQuery.whereEqualTo("userId", userId).whereEqualTo("status", "Not Confirmed");
+        mQuery = mQuery.whereEqualTo("userId", userId).whereEqualTo("status", "Confirmed");
     }
 
     @Override
@@ -52,6 +56,9 @@ public class ConfirmedFragment extends Fragment implements TransactionAdapter.On
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_confirmed, container, false);
         rvConfirmed = v.findViewById(R.id.rvConfirmed);
+        textEmptySearch = v.findViewById(R.id.tv_confirm_empty);
+        textEmptySearch2 = v.findViewById(R.id.tv_confirm_empty2);
+        imgEmptySearch = v.findViewById(R.id.img_confirm);
         initRv();
 
         return v;
@@ -70,10 +77,16 @@ public class ConfirmedFragment extends Fragment implements TransactionAdapter.On
                 // Show/hide content if the query returns empty.
                 if (getItemCount() == 0) {
                     rvConfirmed.setVisibility(View.GONE);
+                    textEmptySearch.setVisibility(View.VISIBLE);
+                    textEmptySearch2.setVisibility(View.VISIBLE);
+                    imgEmptySearch.setVisibility(View.VISIBLE);
 
                     Log.w(TAG, "ItemCount = 0");
                 } else {
                     rvConfirmed.setVisibility(View.VISIBLE);
+                    textEmptySearch.setVisibility(View.GONE);
+                    textEmptySearch2.setVisibility(View.GONE);
+                    imgEmptySearch.setVisibility(View.GONE);
                     Log.w(TAG, "Show Produk");
                 }
             }

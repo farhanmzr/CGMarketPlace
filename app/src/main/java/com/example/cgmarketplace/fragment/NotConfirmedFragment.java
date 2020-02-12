@@ -1,25 +1,20 @@
 package com.example.cgmarketplace.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.AnimatedImageDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgmarketplace.R;
-import com.example.cgmarketplace.activities.ConfirmPaymentActivity;
 import com.example.cgmarketplace.activities.OrderInvoiceActivity;
 import com.example.cgmarketplace.adapters.TransactionAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +38,8 @@ public class NotConfirmedFragment extends Fragment implements TransactionAdapter
 
     private RecyclerView rvNot_confirmed;
     private String userId;
+    private TextView textEmptySearch, textEmptySearch2;
+    private ImageView imgEmptySearch;
 
     public NotConfirmedFragment() {
         // Required empty public constructor
@@ -65,6 +62,9 @@ public class NotConfirmedFragment extends Fragment implements TransactionAdapter
         View v = inflater.inflate(R.layout.fragment_not_confirmed, container, false);
 
         rvNot_confirmed = v.findViewById(R.id.rvNot_confirmed);
+        textEmptySearch = v.findViewById(R.id.tv_not_confirm_empty);
+        textEmptySearch2 = v.findViewById(R.id.tv_not_confirm_empty2);
+        imgEmptySearch = v.findViewById(R.id.img_not_confirm);
         initRv();
 
         return v;
@@ -83,12 +83,16 @@ public class NotConfirmedFragment extends Fragment implements TransactionAdapter
                 // Show/hide content if the query returns empty.
                 if (getItemCount() == 0) {
                     rvNot_confirmed.setVisibility(View.GONE);
-
-
+                    textEmptySearch.setVisibility(View.VISIBLE);
+                    textEmptySearch2.setVisibility(View.VISIBLE);
+                    imgEmptySearch.setVisibility(View.VISIBLE);
 
                     Log.w(TAG, "ItemCount = 0");
                 } else {
                     rvNot_confirmed.setVisibility(View.VISIBLE);
+                    textEmptySearch.setVisibility(View.GONE);
+                    textEmptySearch2.setVisibility(View.GONE);
+                    imgEmptySearch.setVisibility(View.GONE);
                     Log.w(TAG, "Show Produk");
                 }
             }
