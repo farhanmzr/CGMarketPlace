@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <FrameLayout
-        android:id="@+id/frame_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imgUpload"
-            android:layout_width="150dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_default_payment"/>
-
-        <ImageView
-            android:id="@+id/changeImg_upload"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:id="@+id/frame_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:background="@drawable/img_change_profile"
-            android:layout_gravity="center"/>
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/imgUpload"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_default_payment" />
+
+            <ImageView
+                android:id="@+id/changeImg_upload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/img_change_profile"
+                android:scaleType="centerCrop" />
+
+        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/linear19"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,9 +58,9 @@
             android:background="@drawable/bg_form"
             android:fontFamily="@font/montserrat"
             android:hint="Input Your ID Order"
-            android:maxLength="5"
             android:inputType="number"
             android:lines="1"
+            android:maxLength="5"
             android:paddingLeft="16dp"
             android:textColor="@android:color/black"
             android:textSize="12sp" />
@@ -69,11 +69,11 @@
 
     <LinearLayout
         android:id="@+id/linear2"
-        android:layout_marginStart="56dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="56dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,11 +84,11 @@
             android:id="@+id/tvSub_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please, input your ID Order to complete payment"
-            android:textSize="12sp"
-            android:textColor="@android:color/black"
             android:fontFamily="@font/montserrat"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="Please, input your ID Order to complete payment"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -96,11 +96,11 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="32dp"
         android:layout_gravity="center"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -141,7 +141,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </LinearLayout>

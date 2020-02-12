@@ -11,7 +11,8 @@ public class OrderModel {
     @ServerTimestamp
     private Date date;
 
-    public  OrderModel(){}
+    public OrderModel() {
+    }
 
     public OrderModel(String address, String city, String country, String region, String status, String totalOrder, String zipcode, String name, String phone, String orderId, Date date) {
         this.address = address;

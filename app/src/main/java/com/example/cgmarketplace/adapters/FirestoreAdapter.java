@@ -119,7 +119,8 @@ abstract class FirestoreAdapter<VH extends RecyclerView.ViewHolder>
 
     protected void onError(FirebaseFirestoreException e) {
         Log.w(TAG, "onError", e);
-    };
+    }
 
-    protected void onDataChanged() {}
+    protected void onDataChanged() {
+    }
 }

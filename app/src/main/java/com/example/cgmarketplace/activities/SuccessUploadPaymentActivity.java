@@ -1,14 +1,13 @@
 package com.example.cgmarketplace.activities;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cgmarketplace.R;
 
@@ -33,7 +32,8 @@ public class SuccessUploadPaymentActivity extends AppCompatActivity {
         btn_goto_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gotohome = new Intent(SuccessUploadPaymentActivity.this,MainActivity.class);
+                Intent gotohome = new Intent(SuccessUploadPaymentActivity.this, MainActivity.class);
+                gotohome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(gotohome);
                 finish();
             }

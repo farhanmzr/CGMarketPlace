@@ -32,15 +32,13 @@ import java.util.Objects;
 
 public class ShippingAddressActivity extends AppCompatActivity {
     private static final String TAG = "ProfileActivity";
+    Button btnNext, btnSaveAddress;
     private FirebaseFirestore mFirestore;
     private DocumentReference mAddressRef, mUserRef;
     private FirebaseAuth mAuth;
-
     private TextView tvTitle;
     private Button btn_next;
     private EditText etFull_name, etAddress, etCity, etRegion, etZip_Code, etCountry, etPhone_Number;
-    Button btnNext, btnSaveAddress;
-
     private String userId, address, city, region, zipCode, phone, fullname, country;
 
     @Override
@@ -212,9 +210,9 @@ public class ShippingAddressActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
-            startActivity(new Intent(getApplicationContext(),CartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(getApplicationContext(), CartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
-            overridePendingTransition(0,0);
+            overridePendingTransition(0, 0);
             return true;
         }
 

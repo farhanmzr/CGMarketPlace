@@ -44,7 +44,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class OrderDetailActivity extends AppCompatActivity implements OrderDetailAdapter.OnProductSelectedListener{
+public class OrderDetailActivity extends AppCompatActivity implements OrderDetailAdapter.OnProductSelectedListener {
 
     private static final String TAG = "ShippingAddressActivity";
     private FirebaseFirestore mFirestore;
@@ -139,7 +139,7 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
         pd.show();
 
         userTotalOrder += 1;
-        final String orderId = String.format("%04d" , Math.round(userTotalOrder));
+        final String orderId = String.format("%04d", Math.round(userTotalOrder));
         final DocumentReference userOrder = mFirestore.collection("Orders").document(userId + orderId);
         mUserRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -341,9 +341,9 @@ public class OrderDetailActivity extends AppCompatActivity implements OrderDetai
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
-            startActivity(new Intent(getApplicationContext(),ShippingAddressActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(getApplicationContext(), ShippingAddressActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
-            overridePendingTransition(0,0);
+            overridePendingTransition(0, 0);
             return true;
         }
 

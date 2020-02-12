@@ -28,14 +28,12 @@ import com.google.firebase.firestore.Query;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
-public class MainActivity extends AppCompatActivity implements ProductAdapter.OnProductSelectedListener{
+public class MainActivity extends AppCompatActivity implements ProductAdapter.OnProductSelectedListener {
 
     private static final String TAG = "MainActivity";
     private static final int LIMIT = 50;
-
-    private SearchView search;
-
     BottomNavigationView bottomNavigationView;
+    private SearchView search;
     private ImageView img_profile, img_seats, img_bedroom, img_allcat, img_mirror, img_table, img_cabinet, imgEmptySearch;
     private TextView hello_user, titleCategory, textEmptySearch, textEmptySearch2;
     private RecyclerView discover_recyclerview;
@@ -266,21 +264,21 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
                         return true;
 
                     case R.id.cart:
-                        startActivity(new Intent(getApplicationContext(),CartActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(new Intent(getApplicationContext(), CartActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                         finish();
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.wishlist:
-                        startActivity(new Intent(getApplicationContext(),WishlistActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(new Intent(getApplicationContext(), WishlistActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                         finish();
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.transaction:
-                        startActivity(new Intent(getApplicationContext(),TransactionActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(new Intent(getApplicationContext(), TransactionActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                         finish();
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
                 }
 

@@ -49,16 +49,14 @@ import java.util.Map;
 public class ProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "ProfileActivity";
+    private final int PICK_IMAGE_REQUEST = 22;
+    FirebaseStorage storage;
+    StorageReference storageReference;
     private FirebaseUser user;
     private FirebaseFirestore mFirestore;
     private DocumentReference mUserRef;
     private FirebaseAuth mAuth;
-    FirebaseStorage storage;
-    StorageReference storageReference;
-
     private Uri filePath;
-    private final int PICK_IMAGE_REQUEST = 22;
-
     private TextView tvTitle;
     private EditText etFullName, etUsername, etEmail, etPhone_Number, etPassword, etNewPass, etNewConfirmPass, etAddress, etCity, etRegion, etZip_Code, etCountry;
     private ImageView img_profile, change_img;
@@ -200,8 +198,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 Toast.LENGTH_SHORT)
                                 .show();
                     }
-                }
-                else {
+                } else {
 
                     ic_edit_password.setBackgroundResource(R.drawable.img_save_changes);
                     editPass = !editPass;
@@ -247,8 +244,8 @@ public class ProfileActivity extends AppCompatActivity {
                             editProfile = !editProfile;
                             initDataProfile();
                             Toast.makeText(ProfileActivity.this,
-                                            "Profile Changed",
-                                            Toast.LENGTH_SHORT)
+                                    "Profile Changed",
+                                    Toast.LENGTH_SHORT)
                                     .show();
 
                         }
@@ -258,8 +255,7 @@ public class ProfileActivity extends AppCompatActivity {
                             Log.w(TAG, "Error writing document", e);
                         }
                     });
-                }
-                else {
+                } else {
 
                     ic_edit_profile.setBackgroundResource(R.drawable.img_save_changes);
                     change_img.setVisibility(View.VISIBLE);
@@ -375,7 +371,7 @@ public class ProfileActivity extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             Log.w(TAG, "Successfully");
                             Toast.makeText(ProfileActivity.this, "Address Update",
-                                            Toast.LENGTH_SHORT)
+                                    Toast.LENGTH_SHORT)
                                     .show();
 
                             ic_edit_address.setBackgroundResource(R.drawable.ic_edit_profile);
@@ -388,8 +384,7 @@ public class ProfileActivity extends AppCompatActivity {
                             Log.w(TAG, "Error writing document", e);
                         }
                     });
-                }
-                else {
+                } else {
 
                     ic_edit_address.setBackgroundResource(R.drawable.img_save_changes);
                     editAddress = !editAddress;
@@ -416,8 +411,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode,
                                     int resultCode,
-                                    Intent data)
-    {
+                                    Intent data) {
 
         super.onActivityResult(requestCode,
                 resultCode,
@@ -444,9 +438,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 getContentResolver(),
                                 filePath);
                 img_profile.setImageBitmap(bitmap);
-            }
-
-            catch (IOException e) {
+            } catch (IOException e) {
                 // Log the exception
                 e.printStackTrace();
             }
@@ -461,9 +453,9 @@ public class ProfileActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
-            startActivity(new Intent(getApplicationContext(),MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
-            overridePendingTransition(0,0);
+            overridePendingTransition(0, 0);
             return true;
         }
 
@@ -516,8 +508,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onSuccess(
-                                        UploadTask.TaskSnapshot taskSnapshot)
-                                {
+                                        UploadTask.TaskSnapshot taskSnapshot) {
                                     // Image uploaded successfully
                                     // Dismiss dialog
                                     progressDialog.dismiss();
@@ -543,8 +534,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public void onFailure(@NonNull Exception e)
-                        {
+                        public void onFailure(@NonNull Exception e) {
 
                             // Error, Image not uploaded
                             progressDialog.dismiss();
@@ -562,15 +552,14 @@ public class ProfileActivity extends AppCompatActivity {
                                 // percentage on the dialog box
                                 @Override
                                 public void onProgress(
-                                        UploadTask.TaskSnapshot taskSnapshot)
-                                {
+                                        UploadTask.TaskSnapshot taskSnapshot) {
                                     double progress
                                             = (100.0
                                             * taskSnapshot.getBytesTransferred()
                                             / taskSnapshot.getTotalByteCount());
                                     progressDialog.setMessage(
                                             "Uploaded "
-                                                    + (int)progress + "%");
+                                                    + (int) progress + "%");
                                 }
                             });
         }

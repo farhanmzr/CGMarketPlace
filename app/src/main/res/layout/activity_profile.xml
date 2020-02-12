@@ -33,15 +33,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img_default_profile"/>
+                    android:src="@drawable/img_default_profile" />
 
                 <ImageView
                     android:id="@+id/change_img_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"
                     android:background="@drawable/img_change_profile"
-                    android:layout_gravity="center"/>
+                    android:scaleType="centerCrop" />
 
             </FrameLayout>
 
@@ -82,11 +82,11 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:fontFamily="@font/montserrat_bold"
                                 android:layout_marginStart="2dp"
+                                android:fontFamily="@font/montserrat_bold"
                                 android:gravity="center"
-                                android:textColor="@android:color/black"
                                 android:text="@string/profile_title"
+                                android:textColor="@android:color/black"
                                 android:textSize="16sp" />
                         </LinearLayout>
 
@@ -133,12 +133,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:lines="1"
-                        android:maxLength="50"
-                        android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:hint="@string/tv_fullname"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="50"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -162,12 +162,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:lines="1"
-                        android:maxLength="30"
-                        android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:hint="@string/tv_username"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="30"
                         android:textSize="14sp" />
 
 
@@ -181,8 +181,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         android:layout_marginStart="3dp"
+                        android:layout_marginTop="16dp"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/tv_email"
                         android:textColor="@android:color/black"
@@ -194,11 +194,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:backgroundTint="@color/lines"
-                        android:lines="1"
-                        android:maxLength="30"
-                        android:inputType="textEmailAddress"
                         android:fontFamily="@font/montserrat"
                         android:hint="@string/tv_email"
+                        android:inputType="textEmailAddress"
+                        android:lines="1"
+                        android:maxLength="30"
                         android:textSize="14sp" />
 
 
@@ -223,11 +223,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:inputType="phone"
-                        android:maxLength="30"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:hint="@string/phone_number"
+                        android:inputType="phone"
+                        android:maxLength="30"
                         android:textSize="14sp" />
 
 
@@ -260,11 +260,11 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:layout_marginStart="2dp"
                                 android:fontFamily="@font/montserrat_bold"
                                 android:gravity="center"
-                                android:layout_marginStart="2dp"
-                                android:textColor="@android:color/black"
                                 android:text="@string/shipping_address"
+                                android:textColor="@android:color/black"
                                 android:textSize="16sp" />
                         </LinearLayout>
 
@@ -311,12 +311,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:lines="1"
-                        android:maxLength="50"
-                        android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:hint="@string/tv_item_address"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="50"
                         android:textSize="14sp" />
 
 
@@ -341,12 +341,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:lines="1"
-                        android:maxLength="30"
-                        android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:hint="@string/tv_city"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="30"
                         android:textSize="14sp" />
 
 
@@ -371,12 +371,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:lines="1"
-                        android:maxLength="30"
-                        android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:hint="@string/tv_region"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="30"
                         android:textSize="14sp" />
 
 
@@ -401,12 +401,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:lines="1"
-                        android:maxLength="5"
-                        android:inputType="textPostalAddress"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:hint="@string/zip_code"
+                        android:inputType="textPostalAddress"
+                        android:lines="1"
+                        android:maxLength="5"
                         android:textSize="14sp" />
 
 
@@ -431,12 +431,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:lines="1"
-                        android:maxLength="30"
-                        android:inputType="text"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:hint="@string/tv_country"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="30"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -522,12 +522,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:maxLength="30"
-                        android:lines="1"
-                        android:inputType="textPassword"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:hint="@string/tv_password"
+                        android:inputType="textPassword"
+                        android:lines="1"
+                        android:maxLength="30"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -551,12 +551,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:lines="1"
-                        android:maxLength="30"
-                        android:inputType="textPassword"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:hint="@string/tv_new_password"
+                        android:inputType="textPassword"
+                        android:lines="1"
+                        android:maxLength="30"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -580,12 +580,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:lines="1"
-                        android:maxLength="30"
                         android:backgroundTint="@color/lines"
                         android:fontFamily="@font/montserrat"
                         android:hint="@string/tv_confirm_new_password"
                         android:inputType="textPassword"
+                        android:lines="1"
+                        android:maxLength="30"
                         android:textSize="14sp" />
 
 
@@ -597,10 +597,10 @@
                 android:id="@+id/btn_logout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginBottom="36dp"
                 android:layout_marginStart="48dp"
+                android:layout_marginTop="36dp"
                 android:layout_marginEnd="48dp"
+                android:layout_marginBottom="36dp"
                 android:background="@drawable/bg_btn_skip"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/log_out"

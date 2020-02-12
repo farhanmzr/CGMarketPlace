@@ -9,7 +9,7 @@ import com.example.cgmarketplace.fragment.ConfirmedFragment;
 import com.example.cgmarketplace.fragment.DeliverFragment;
 import com.example.cgmarketplace.fragment.NotConfirmedFragment;
 
-public class PageAdapter  extends FragmentPagerAdapter {
+public class PageAdapter extends FragmentPagerAdapter {
 
     private int numOfTabs;
 
@@ -29,8 +29,8 @@ public class PageAdapter  extends FragmentPagerAdapter {
                 return new ConfirmedFragment();
             case 2:
                 return new DeliverFragment();
-                default:
-            return null;
+            default:
+                return null;
         }
     }
 

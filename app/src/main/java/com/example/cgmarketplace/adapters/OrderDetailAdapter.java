@@ -20,12 +20,6 @@ import java.util.Locale;
 
 public class OrderDetailAdapter extends FirestoreAdapter<OrderDetailAdapter.ViewHolder> {
 
-    public interface OnProductSelectedListener {
-
-        void onProductSelected(DocumentSnapshot cartModel);
-
-    }
-
     private OnProductSelectedListener mListener;
 
     public OrderDetailAdapter(Query query, OrderDetailAdapter.OnProductSelectedListener listener) {
@@ -45,12 +39,17 @@ public class OrderDetailAdapter extends FirestoreAdapter<OrderDetailAdapter.View
         holder.bind(getSnapshot(position), mListener);
     }
 
+    public interface OnProductSelectedListener {
+
+        void onProductSelected(DocumentSnapshot cartModel);
+
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
+        int totalPrice = 0;
         private ImageView img_barang;
         private TextView tv_nama, tv_qty, tv_price, tv_width, tv_height, tv_dense, tv_material, tv_finishing, tv_total_price;
-        int totalPrice = 0;
-
 
 
         public ViewHolder(View itemView) {
@@ -73,7 +72,7 @@ public class OrderDetailAdapter extends FirestoreAdapter<OrderDetailAdapter.View
             CartModel cartModel = snapshot.toObject(CartModel.class);
 
             String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(cartModel.getPrice());
-            totalPrice +=cartModel.getPrice();
+            totalPrice += cartModel.getPrice();
 
 
             // Load image

@@ -8,9 +8,9 @@
     tools:context=".activities.OrderInvoiceActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/LinearTheme"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/LinearTheme">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/linearstep"
@@ -22,14 +22,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/img_order_invoice"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/img_order_invoice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </LinearLayout>
 
@@ -37,13 +37,13 @@
             android:id="@+id/tvPayment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Payment Detail"
-            android:textSize="14sp"
-            android:textColor="@android:color/black"
-            android:fontFamily="@font/montserrat_bold"
             android:layout_marginTop="24dp"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Payment Detail"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearstep" />
 
@@ -56,210 +56,207 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPayment">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            style="@style/LinearTheme"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp">
-
-            <TableLayout
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:stretchColumns="1">
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textColor="@android:color/black"
-                    android:text="Order ID :"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/tv_id_order"
-                    android:gravity="end"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
-                    android:paddingStart="8dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text=""
-                    android:textSize="12sp" />
-
-            </TableRow>
-            </TableLayout>
-
-            <View
-                android:layout_width="235dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/view" />
-
-            <TableLayout
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:stretchColumns="1">
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:textColor="@android:color/black"
-                        android:text="Order Date :"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:id="@+id/tv_date"
-                        android:gravity="end"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:text=""
-                        android:textSize="12sp" />
-
-                </TableRow>
-            </TableLayout>
-
-            <TableLayout
+            <LinearLayout
+                style="@style/LinearTheme"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:text="Product" />
+                <TableLayout
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1">
 
-                    <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:text="Qty" />
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:text="Unit Price" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Order ID :"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
 
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:text="Price" />
+                        <TextView
+                            android:id="@+id/tv_id_order"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:gravity="end"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:text=""
+                            android:textSize="12sp" />
 
-                </TableRow>
+                    </TableRow>
+                </TableLayout>
 
                 <View
-                    android:id="@+id/view"
-                    android:layout_width="match_parent"
+                    android:layout_width="235dp"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:background="@color/view" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_order_finish"
+                <TableLayout
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:stretchColumns="1">
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Order Date :"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:gravity="end"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:text=""
+                            android:textSize="12sp" />
+
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_order_invoice">
+                    android:layout_marginTop="16dp">
 
-                </androidx.recyclerview.widget.RecyclerView>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/view" />
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Product"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Qty"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
 
-                    <TextView
-                        android:layout_width="100dp"
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Unit Price"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Price"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/view" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_order_finish"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:text="" />
+                        tools:listitem="@layout/item_order_invoice">
 
-                    <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:text="" />
+                    </androidx.recyclerview.widget.RecyclerView>
 
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:text="Total Price  :" />
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/view" />
 
-                    <TextView
-                        android:id="@+id/tv_total_price"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:text="" />
-                </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text=""
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text=""
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Total Price  :"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_total_price"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text=""
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+                    </TableRow>
 
 
-
-            </TableLayout>
-
+                </TableLayout>
 
 
-
-
-        </LinearLayout>
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -267,13 +264,13 @@
             android:id="@+id/tvAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shipping Address"
-            android:textSize="14sp"
-            android:textColor="@android:color/black"
-            android:fontFamily="@font/montserrat_bold"
             android:layout_marginTop="24dp"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Shipping Address"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
@@ -494,26 +491,22 @@
             app:layout_constraintTop_toBottomOf="@id/cardView2" />
 
 
-                <Button
-                    android:id="@+id/btn_confirm_now"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginBottom="24dp"
-                    android:background="@drawable/bg_btn_blue"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/tv_confirm_now"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardView2" />
-
-
-
-
+        <Button
+            android:id="@+id/btn_confirm_now"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_btn_blue"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/tv_confirm_now"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardView2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

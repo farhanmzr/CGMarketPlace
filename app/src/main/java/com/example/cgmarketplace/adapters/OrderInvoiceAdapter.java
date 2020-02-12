@@ -3,13 +3,11 @@ package com.example.cgmarketplace.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.model.CartModel;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -19,12 +17,6 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class OrderInvoiceAdapter extends FirestoreAdapter<OrderInvoiceAdapter.ViewHolder> {
-
-    public interface OnProductSelectedListener {
-
-        void onProductSelected(DocumentSnapshot cartModel);
-
-    }
 
     private OrderInvoiceAdapter.OnProductSelectedListener mListener;
 
@@ -45,13 +37,18 @@ public class OrderInvoiceAdapter extends FirestoreAdapter<OrderInvoiceAdapter.Vi
         holder.bind(getSnapshot(position), mListener);
     }
 
+    public interface OnProductSelectedListener {
+
+        void onProductSelected(DocumentSnapshot cartModel);
+
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tv_nama, tv_qty, tv_price, tv_total_price;
         int totalPrice = 0;
+        private TextView tv_nama, tv_qty, tv_price, tv_total_price;
         private int totalPerItem;
         private int qtyItem;
-
 
 
         public ViewHolder(View itemView) {
@@ -73,7 +70,7 @@ public class OrderInvoiceAdapter extends FirestoreAdapter<OrderInvoiceAdapter.Vi
             String totalPriceUnit = NumberFormat.getCurrencyInstance(Locale.US).format(totalPerItem * qtyItem);
 
             String priceFormat = NumberFormat.getCurrencyInstance(Locale.US).format(cartModel.getPrice());
-            totalPrice +=cartModel.getPrice();
+            totalPrice += cartModel.getPrice();
 
             tv_nama.setText(cartModel.getName());
             tv_qty.setText(String.valueOf(cartModel.getQty()));

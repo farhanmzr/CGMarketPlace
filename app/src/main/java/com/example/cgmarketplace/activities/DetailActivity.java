@@ -45,24 +45,20 @@ public class DetailActivity extends AppCompatActivity
 
     public static final String KEY_PRODUCT_ID = "key_product_id";
     private static final String TAG = "Detail Activity";
-
+    boolean isWishlist;
     private FirebaseFirestore mFirestore;
     private DocumentReference mProdukRef;
     private DocumentReference mWishlistRef;
     private FirebaseAuth mAuth;
     private ListenerRegistration mProductRegistration;
     private String userId;
-
     private ViewPager viewPager;
     private PagerAdapter adapter;
     private String[] img;
     private ImageButton addWishlist;
-
     private TextView tv_nama, tv_price, tv_desc, tv_width, tv_height, tv_dense, tv_finishing, tv_material, tv_details_1, tv_details_2, tv_details_3, tv_details_4;
     private String image1, image2, image3, productId;
     private Button btnAddToCart;
-
-    boolean isWishlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,13 +166,13 @@ public class DetailActivity extends AppCompatActivity
         image3 = product.getImage3();
 
         wishListState();
-        img=new String[]{image1, image2, image3};
+        img = new String[]{image1, image2, image3};
         //view pager code
-        viewPager=(ViewPager) findViewById(R.id.pager);
-        adapter=new ViewPagerAdapter(DetailActivity.this, img);
+        viewPager = findViewById(R.id.pager);
+        adapter = new ViewPagerAdapter(DetailActivity.this, img);
         viewPager.setAdapter(adapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager, true);
 
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
@@ -217,7 +213,7 @@ public class DetailActivity extends AppCompatActivity
                 });
 
             }
-    });
+        });
 
         addWishlist.setOnClickListener(new View.OnClickListener() {
             @Override

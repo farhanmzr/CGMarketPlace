@@ -3,7 +3,6 @@ package com.example.cgmarketplace.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
-import com.example.cgmarketplace.model.CartModel;
 import com.example.cgmarketplace.model.ProductModel;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
@@ -22,13 +20,6 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class WishlistAdapter extends FirestoreAdapter<WishlistAdapter.ViewHolder> {
-
-    public interface OnProductSelectedListener {
-
-        void onProductSelected(DocumentSnapshot productModel);
-        void onDeleteSelected(DocumentSnapshot productModel);
-
-    }
 
     private WishlistAdapter.OnProductSelectedListener mListener;
 
@@ -47,6 +38,14 @@ public class WishlistAdapter extends FirestoreAdapter<WishlistAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull WishlistAdapter.ViewHolder holder, int position) {
         holder.bind(getSnapshot(position), mListener);
+    }
+
+    public interface OnProductSelectedListener {
+
+        void onProductSelected(DocumentSnapshot productModel);
+
+        void onDeleteSelected(DocumentSnapshot productModel);
+
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

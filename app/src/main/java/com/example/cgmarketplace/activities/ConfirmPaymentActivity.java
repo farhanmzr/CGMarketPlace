@@ -31,7 +31,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -43,23 +42,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConfirmPaymentActivity extends AppCompatActivity {
-
+    public static final String KEY_ORDER_ID = "key_order_id";
     private static final String TAG = "ConfirmPaymentActivity";
-    private Uri filePath;
     private final int PICK_IMAGE_REQUEST = 5;
+    FirebaseStorage storage;
+    private Uri filePath;
     private FirebaseUser user;
     private FirebaseFirestore mFirestore;
     private DocumentReference mUserRef, mPaymentRef;
     private FirebaseAuth mAuth;
-    private Query mQuery;
-    FirebaseStorage storage;
     private StorageReference mStorageRef;
 
     private Dialog alertDialog;
     private TextView tvTitle, tvSub_title;
     private Button btn_cancel, btn_confirm;
     private ImageView imgUpload, changeImg_upload;
-    private String userId, orderId, imagesPayment;
+    private String userId, orderId;
 
     private Button btnUpload;
 
@@ -79,6 +77,7 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         mStorageRef = storage.getReference();
         mUserRef = mFirestore.collection("Users").document(userId);
+        orderId = getIntent().getExtras().getString(KEY_ORDER_ID);
 
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.confirm_payment);
@@ -106,8 +105,7 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
         btn_cancel = alertDialog.findViewById(R.id.btn_cancel);
         btn_confirm = alertDialog.findViewById(R.id.btn_confirm);
         final EditText etOrderId = alertDialog.findViewById(R.id.etOrderId);
-
-
+        etOrderId.setText(orderId);
 
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,168 +130,167 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
         changeImg_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        selectImage();
-                    }
-
-                });
-
+                selectImage();
             }
 
-            private void selectImage() {
-                // Defining Implicit Intent to mobile gallery
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(
-                        Intent.createChooser(
-                                intent,
-                                "Select Image from here..."),
-                        PICK_IMAGE_REQUEST);
+        });
+
+    }
+
+    private void selectImage() {
+        // Defining Implicit Intent to mobile gallery
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(
+                Intent.createChooser(
+                        intent,
+                        "Select Image from here..."),
+                PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode,
+                                    Intent data) {
+
+        super.onActivityResult(requestCode,
+                resultCode,
+                data);
+
+
+        // checking request code and result code
+        // if request code is PICK_IMAGE_REQUEST and
+        // resultCode is RESULT_OK
+        // then set image in the image view
+        if (requestCode == PICK_IMAGE_REQUEST
+                && resultCode == RESULT_OK
+                && data != null
+                && data.getData() != null) {
+
+            // Get the Uri of data
+            filePath = data.getData();
+            try {
+
+                // Setting image on image view using Bitmap
+                Bitmap bitmap = MediaStore
+                        .Images
+                        .Media
+                        .getBitmap(
+                                getContentResolver(),
+                                filePath);
+                imgUpload.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                // Log the exception
+                e.printStackTrace();
             }
+        }
+    }
 
-            @Override
-            protected void onActivityResult(int requestCode,
-                                            int resultCode,
-                                            Intent data) {
+    public String GetFileExtension(Uri uri) {
 
-                super.onActivityResult(requestCode,
-                        resultCode,
-                        data);
+        ContentResolver contentResolver = getContentResolver();
 
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
 
+        // Returning the file Extension.
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
 
-                // checking request code and result code
-                // if request code is PICK_IMAGE_REQUEST and
-                // resultCode is RESULT_OK
-                // then set image in the image view
-                if (requestCode == PICK_IMAGE_REQUEST
-                        && resultCode == RESULT_OK
-                        && data != null
-                        && data.getData() != null) {
+    }
 
-                    // Get the Uri of data
-                    filePath = data.getData();
-                    try {
+    public void UploadImg() {
 
-                        // Setting image on image view using Bitmap
-                        Bitmap bitmap = MediaStore
-                                .Images
-                                .Media
-                                .getBitmap(
-                                        getContentResolver(),
-                                        filePath);
-                        imgUpload.setImageBitmap(bitmap);
-                    } catch (IOException e) {
-                        // Log the exception
-                        e.printStackTrace();
-                    }
-                }
-            }
+        if (filePath != null) {
+            final ProgressDialog progressDialog
+                    = new ProgressDialog(ConfirmPaymentActivity.this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
 
-            public String GetFileExtension(Uri uri) {
+            // Defining the child of storageReference
+            final StorageReference ref
+                    = mStorageRef
+                    .child(
+                            "imagesPayments/"
+                                    + orderId + "." + GetFileExtension(filePath));
 
-                ContentResolver contentResolver = getContentResolver();
+            // adding listeners on upload
+            // or failure of image
+            ref.putFile(filePath)
+                    .addOnSuccessListener(
+                            new OnSuccessListener<UploadTask.TaskSnapshot>() {
 
-                MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+                                @Override
+                                public void onSuccess(
+                                        UploadTask.TaskSnapshot taskSnapshot) {
 
-                // Returning the file Extension.
-                return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
-
-            }
-
-            public void UploadImg() {
-
-                if (filePath != null) {
-                    final ProgressDialog progressDialog
-                            = new ProgressDialog(ConfirmPaymentActivity.this);
-                    progressDialog.setTitle("Uploading...");
-                    progressDialog.show();
-
-                    // Defining the child of storageReference
-                    final StorageReference ref
-                            = mStorageRef
-                            .child(
-                                    "imagesPayments/"
-                                             + orderId + "." + GetFileExtension(filePath));
-
-                    // adding listeners on upload
-                    // or failure of image
-                    ref.putFile(filePath)
-                            .addOnSuccessListener(
-                                    new OnSuccessListener<UploadTask.TaskSnapshot>() {
-
+                                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
-                                        public void onSuccess(
-                                                UploadTask.TaskSnapshot taskSnapshot) {
-
-                                            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        public void onSuccess(final Uri uri) {
+                                            progressDialog.dismiss();
+                                            mPaymentRef = mFirestore.collection("Payments").document(userId + orderId);
+                                            Map<String, Object> userPayment = new HashMap<>();
+                                            userPayment.put("orderId", orderId);
+                                            userPayment.put("img", String.valueOf(uri));
+                                            userPayment.put("date", new Timestamp(new Date()));
+                                            mPaymentRef.set(userPayment).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
-                                                public void onSuccess(final Uri uri) {
+                                                public void onSuccess(Void aVoid) {
+
+                                                    Toast.makeText(ConfirmPaymentActivity.this, "Successfully Upload",
+                                                            Toast.LENGTH_LONG).show();
+
+                                                    Intent gotosuccess = new Intent(ConfirmPaymentActivity.this, SuccessUploadPaymentActivity.class);
+                                                    startActivity(gotosuccess);
+                                                    finish();
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
                                                     progressDialog.dismiss();
-                                                    mPaymentRef = mFirestore.collection("Payments").document(userId + orderId);
-                                                    Map<String, Object> userPayment = new HashMap<>();
-                                                    userPayment.put("orderId", orderId );
-                                                    userPayment.put("img", String.valueOf(uri) );
-                                                    userPayment.put("date", new Timestamp(new Date()));
-                                                    mPaymentRef.set(userPayment).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                        @Override
-                                                        public void onSuccess(Void aVoid) {
-
-                                                            Toast.makeText(ConfirmPaymentActivity.this, "Successfully Upload",
-                                                                    Toast.LENGTH_LONG).show();
-
-                                                            Intent gotosuccess = new Intent(ConfirmPaymentActivity.this,SuccessUploadPaymentActivity.class);
-                                                            startActivity(gotosuccess);
-                                                            finish();
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception e) {
-                                                            progressDialog.dismiss();
-                                                            Toast.makeText(ConfirmPaymentActivity.this, "Failed Upload",
-                                                                    Toast.LENGTH_LONG).show();
-
-                                                        }
-                                                    });
+                                                    Toast.makeText(ConfirmPaymentActivity.this, "Failed Upload",
+                                                            Toast.LENGTH_LONG).show();
 
                                                 }
                                             });
 
                                         }
-                                    })
+                                    });
 
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-
-                                    // Error, Image not uploaded
-                                    progressDialog.dismiss();
-                                    Toast
-                                            .makeText(ConfirmPaymentActivity.this,
-                                                    "Failed " + e.getMessage(),
-                                                    Toast.LENGTH_SHORT)
-                                            .show();
                                 }
                             })
-                            .addOnProgressListener(
-                                    new OnProgressListener<UploadTask.TaskSnapshot>() {
 
-                                        // Progress Listener for loading
-                                        // percentage on the dialog box
-                                        @Override
-                                        public void onProgress(
-                                                UploadTask.TaskSnapshot taskSnapshot) {
-                                            double progress
-                                                    = (100.0
-                                                    * taskSnapshot.getBytesTransferred()
-                                                    / taskSnapshot.getTotalByteCount());
-                                            progressDialog.setMessage(
-                                                    "Uploaded "
-                                                            + (int) progress + "%");
-                                        }
-                                    });
-                }
-            }
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            // Error, Image not uploaded
+                            progressDialog.dismiss();
+                            Toast
+                                    .makeText(ConfirmPaymentActivity.this,
+                                            "Failed " + e.getMessage(),
+                                            Toast.LENGTH_SHORT)
+                                    .show();
+                        }
+                    })
+                    .addOnProgressListener(
+                            new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                                // Progress Listener for loading
+                                // percentage on the dialog box
+                                @Override
+                                public void onProgress(
+                                        UploadTask.TaskSnapshot taskSnapshot) {
+                                    double progress
+                                            = (100.0
+                                            * taskSnapshot.getBytesTransferred()
+                                            / taskSnapshot.getTotalByteCount());
+                                    progressDialog.setMessage(
+                                            "Uploaded "
+                                                    + (int) progress + "%");
+                                }
+                            });
+        }
+    }
 
 
     private void initViewComponents() {
@@ -313,15 +310,14 @@ public class ConfirmPaymentActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
-            startActivity(new Intent(getApplicationContext(),TransactionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(getApplicationContext(), TransactionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
-            overridePendingTransition(0,0);
+            overridePendingTransition(0, 0);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }

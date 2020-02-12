@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         style="@style/LinearTheme"
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
@@ -29,9 +29,9 @@
                 <LinearLayout
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_gravity="center_vertical">
+                    android:layout_marginEnd="8dp">
 
                     <ImageView
                         android:id="@+id/img_barang"
@@ -49,7 +49,6 @@
                     android:orientation="vertical">
 
 
-
                     <TableLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -64,8 +63,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/montserrat_bold"
-                                android:textColor="@android:color/black"
                                 android:text="@string/tv_name"
+                                android:textColor="@android:color/black"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -88,8 +87,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/montserrat_bold"
-                                android:textColor="@android:color/black"
                                 android:text="Quantity"
+                                android:textColor="@android:color/black"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -111,8 +110,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/montserrat_bold"
-                                android:textColor="@android:color/black"
                                 android:text="Price"
+                                android:textColor="@android:color/black"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -133,9 +132,9 @@
             </LinearLayout>
 
             <LinearLayout
+                style="@style/LinearTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/LinearTheme"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:orientation="vertical">
@@ -143,16 +142,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Detail info"
-                    android:textSize="12sp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:textColor="@android:color/black"/>
+                    android:text="Detail info"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
 
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:stretchColumns="0"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:stretchColumns="0">
 
                     <TableRow
                         android:layout_width="wrap_content"
@@ -186,8 +185,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/montserrat"
                             android:layout_marginStart="8dp"
+                            android:fontFamily="@font/montserrat"
                             android:gravity="end"
                             android:text="H"
                             android:textSize="12sp" />
@@ -228,8 +227,8 @@
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:stretchColumns="0"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:stretchColumns="0">
 
                     <TableRow
                         android:layout_width="wrap_content"
@@ -258,8 +257,8 @@
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:stretchColumns="0"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:stretchColumns="0">
 
                     <TableRow
                         android:layout_width="wrap_content"
@@ -284,7 +283,6 @@
                     </TableRow>
 
                 </TableLayout>
-
 
 
             </LinearLayout>

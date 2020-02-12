@@ -11,9 +11,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/category_recyclerview"
         style="@style/LinearTheme"
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,8 +54,8 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat"
         android:text="It seems we can't find any results based on your search."
-        android:textSize="12sp"
         android:textColor="@android:color/black"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textEmptySearch2" />

@@ -20,12 +20,6 @@ import java.util.Locale;
 
 public class ProductAdapter extends FirestoreAdapter<ProductAdapter.ViewHolder> {
 
-    public interface OnProductSelectedListener {
-
-        void onProductSelected(DocumentSnapshot productModel);
-
-    }
-
     private OnProductSelectedListener mListener;
 
     public ProductAdapter(Query query, OnProductSelectedListener listener) {
@@ -43,6 +37,12 @@ public class ProductAdapter extends FirestoreAdapter<ProductAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(getSnapshot(position), mListener);
+    }
+
+    public interface OnProductSelectedListener {
+
+        void onProductSelected(DocumentSnapshot productModel);
+
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

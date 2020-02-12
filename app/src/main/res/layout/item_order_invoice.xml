@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="3dp"
-    android:layout_marginBottom="3dp">
+    android:layout_marginBottom="3dp"
+    android:orientation="vertical">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -13,41 +13,45 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/tvNama"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
                 android:fontFamily="@font/montserrat"
-                android:text="Feraud Sofa" />
+                android:text="Feraud Sofa"
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/tvQty"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:textSize="12sp"
                 android:fontFamily="@font/montserrat"
-                android:text="1" />
+                android:text="1"
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/tvUnit_price"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:textSize="12sp"
                 android:fontFamily="@font/montserrat"
-                android:text="$ 12,862" />
+                android:text="$ 12,862"
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/tvPrice"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:textSize="12sp"
                 android:fontFamily="@font/montserrat"
-                android:text="$ 12,862" />
+                android:text="$ 12,862"
+                android:textSize="12sp" />
         </TableRow>
 
     </TableLayout>

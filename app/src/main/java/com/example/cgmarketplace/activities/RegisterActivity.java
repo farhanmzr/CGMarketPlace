@@ -40,8 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
     TextView tv_login;
     String username, email, password, confirm_password, userId, telephone, fullname;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    private FirebaseAuth mAuth;
     FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,7 +157,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     });
                                 } else {
                                     // Jika daftar gagal, memberikan pesan
-                                    Toast.makeText(RegisterActivity.this, "Proses Pendaftaran gagal : " +  task.getException(),
+                                    Toast.makeText(RegisterActivity.this, "Proses Pendaftaran gagal : " + task.getException(),
                                             Toast.LENGTH_LONG).show();
                                 }
                             }
@@ -166,8 +166,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void sendVerificationEmail()
-    {
+    private void sendVerificationEmail() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Uri uri = Uri.parse("https://firebasestorage.googleapis.com/v0/b/cgmarketplace-a8727.appspot.com/o/UserImg%2Fimg_default_profile.png?alt=media&token=d893e8b1-f4ef-4718-834d-0b3ac76107ca");
         UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder().setDisplayName(username).setPhotoUri(uri).build();
@@ -188,7 +187,7 @@ public class RegisterActivity extends AppCompatActivity {
                             AlertDialog dialog = new AlertDialog.Builder(RegisterActivity.this).create();
                             dialog.setTitle("Registration Successful");
                             dialog.setMessage("Registration successful! Please verify your email to activate your account.");
-                            dialog.setButton(Dialog.BUTTON_POSITIVE,"Ok", new DialogInterface.OnClickListener() {
+                            dialog.setButton(Dialog.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     FirebaseAuth.getInstance().signOut();
@@ -201,13 +200,11 @@ public class RegisterActivity extends AppCompatActivity {
                             dialog.show();
                             // after email is sent just logout the user and finish this activity
 
-                        }
-                        else
-                        {
+                        } else {
                             // email not sent, so display message and restart the activity or do whatever you wish to do
 
                             //restart this activity
-                            Toast.makeText(RegisterActivity.this, "Please Verify Your Email! : " +  task.getException(),
+                            Toast.makeText(RegisterActivity.this, "Please Verify Your Email! : " + task.getException(),
                                     Toast.LENGTH_LONG).show();
                             overridePendingTransition(0, 0);
                             finish();

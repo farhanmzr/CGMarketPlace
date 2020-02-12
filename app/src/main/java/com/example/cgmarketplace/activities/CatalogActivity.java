@@ -24,12 +24,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
 public class CatalogActivity extends AppCompatActivity implements ProductAdapter.OnProductSelectedListener {
-    private static final String TAG = "CatalogActivity";
     public static final String KEY_PRODUCT_CATEGORY = "key_product_category";
     public static final String KEY_SEARCH_QUERY = "key_search_query";
-
-
-
+    private static final String TAG = "CatalogActivity";
     private View view;
     private TextView tvSortby;
     private Button btn_cancel, btn_confirm;
@@ -42,7 +39,7 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
     private Query mQuery;
 
     private ProductAdapter mAdapter;
-    private String productCategory, searchQuery ;
+    private String productCategory, searchQuery;
     private ImageView imgEmptySearch;
     private TextView tvTitle, textEmptySearch, textEmptySearch2;
 
@@ -68,7 +65,6 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
 
         initFirestore();
         initRecyclerView();
-
 
 
     }

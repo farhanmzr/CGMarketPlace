@@ -1,8 +1,5 @@
 package com.example.cgmarketplace.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cgmarketplace.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,11 +21,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
     Button btn_login;
     EditText input_email, input_password;
     String email, password;
     TextView tv_register;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,19 +54,15 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void checkIfEmailVerified()
-    {
+    private void checkIfEmailVerified() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (user.isEmailVerified())
-        {
+        if (user.isEmailVerified()) {
             // user is verified, so you can finish this activity or send user to activity which you want.
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
-        }
-        else
-        {
+        } else {
             // email is not verified, so just prompt the message to the user and restart this activity.
             // NOTE: don't forget to log out the user.
             mAuth.signOut();
@@ -103,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                                     checkIfEmailVerified();
                                 } else {
                                     // Jika Login gagal, memberikan pesan
-                                    Toast.makeText(LoginActivity.this, "Proses Login gagal : " +  task.getException(),
+                                    Toast.makeText(LoginActivity.this, "Proses Login gagal : " + task.getException(),
                                             Toast.LENGTH_LONG).show();
                                 }
                             }

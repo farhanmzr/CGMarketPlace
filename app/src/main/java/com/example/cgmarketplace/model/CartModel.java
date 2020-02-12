@@ -5,7 +5,8 @@ public class CartModel {
     private String image, name, width, height, dense, material, finish;
     private int price, qty, total;
 
-    public CartModel() {}
+    public CartModel() {
+    }
 
     public CartModel(String image, String name, String width, String height, String dense, String material, String finish, int price, int qty) {
         this.image = image;
