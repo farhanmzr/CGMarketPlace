@@ -1,32 +1,23 @@
 package com.example.cgmarketplace.activities;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.adapters.ProductAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -35,6 +26,7 @@ import com.google.firebase.firestore.Query;
 public class CatalogActivity extends AppCompatActivity implements ProductAdapter.OnProductSelectedListener {
     private static final String TAG = "CatalogActivity";
     public static final String KEY_PRODUCT_CATEGORY = "key_product_category";
+    public static final String KEY_SEARCH_QUERY = "key_search_query";
 
 
 
@@ -50,8 +42,9 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
     private Query mQuery;
 
     private ProductAdapter mAdapter;
-    private String productCategory;
-    private TextView tvTitle;
+    private String productCategory, searchQuery ;
+    private ImageView imgEmptySearch;
+    private TextView tvTitle, textEmptySearch, textEmptySearch2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +55,13 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
         getSupportActionBar().setCustomView(R.layout.action_bar_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         productCategory = getIntent().getExtras().getString(KEY_PRODUCT_CATEGORY);
+        searchQuery = getIntent().getExtras().getString(KEY_SEARCH_QUERY);
 
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(productCategory);
+        textEmptySearch = findViewById(R.id.textEmptySearch);
+        textEmptySearch2 = findViewById(R.id.textEmptySearch2);
+        imgEmptySearch = findViewById(R.id.imageEmptySearch);
 
 
         catalog_recyclerview = findViewById(R.id.category_recyclerview);
@@ -84,6 +81,13 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
 
             mQuery = mFirestore.collection("Produk");
             getSupportActionBar().setTitle("All Category");
+
+        }
+        if (productCategory.equals("Search Result")) {
+            mQuery = mFirestore.collection("Produk");
+            mQuery = mQuery.whereEqualTo("name", searchQuery);
+            Log.w("Query", searchQuery);
+            getSupportActionBar().setTitle(productCategory);
 
         } else {
 
@@ -106,10 +110,17 @@ public class CatalogActivity extends AppCompatActivity implements ProductAdapter
                 // Show/hide content if the query returns empty.
                 if (getItemCount() == 0) {
                     catalog_recyclerview.setVisibility(View.GONE);
+                    textEmptySearch.setVisibility(View.VISIBLE);
+                    textEmptySearch2.setVisibility(View.VISIBLE);
+                    imgEmptySearch.setVisibility(View.VISIBLE);
 
                     Log.w(TAG, "ItemCount = 0");
                 } else {
                     catalog_recyclerview.setVisibility(View.VISIBLE);
+                    textEmptySearch.setVisibility(View.GONE);
+                    textEmptySearch2.setVisibility(View.GONE);
+                    imgEmptySearch.setVisibility(View.GONE);
+
 
                     Log.w(TAG, "Show Produk");
                 }

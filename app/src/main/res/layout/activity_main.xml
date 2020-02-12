@@ -99,16 +99,7 @@
 
         </SearchView>
 
-        <ListView
-            android:id="@+id/listview"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@+id/searchView" />
-
     </RelativeLayout>
-
-
-
 
             <TextView
                 android:id="@+id/textView5"
@@ -392,15 +383,6 @@
         tools:listitem="@layout/item_discover">
 
     </androidx.recyclerview.widget.RecyclerView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hahaha"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/discover_recyclerview"/>
-
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation"

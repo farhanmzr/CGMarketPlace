@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -18,8 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cgmarketplace.R;
 import com.example.cgmarketplace.adapters.ProductAdapter;
-import com.example.cgmarketplace.adapters.SearchViewAdapter;
-import com.example.cgmarketplace.model.SearchModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,8 +26,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
-import java.util.ArrayList;
-
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 public class MainActivity extends AppCompatActivity implements ProductAdapter.OnProductSelectedListener{
@@ -38,16 +33,11 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
     private static final String TAG = "MainActivity";
     private static final int LIMIT = 50;
 
-    // Declare Variables Search
-    ListView list;
-    SearchViewAdapter adapter;
-    SearchView editsearch;
-    String[] productNameList;
-    ArrayList<SearchModel> arraylist = new ArrayList<SearchModel>();
+    private SearchView search;
 
     BottomNavigationView bottomNavigationView;
-    private ImageView img_profile, img_seats, img_bedroom, img_allcat, img_mirror, img_table, img_cabinet;
-    private TextView hello_user, titleCategory;
+    private ImageView img_profile, img_seats, img_bedroom, img_allcat, img_mirror, img_table, img_cabinet, imgEmptySearch;
+    private TextView hello_user, titleCategory, textEmptySearch, textEmptySearch2;
     private RecyclerView discover_recyclerview;
 
 
@@ -72,16 +62,18 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
         img_table = findViewById(R.id.category_table);
         img_allcat = findViewById(R.id.all_category);
         titleCategory = findViewById(R.id.tvTitleCategory);
+        search = findViewById(R.id.searchView);
 
 
         discover_recyclerview = findViewById(R.id.discover_recyclerview);
+
         mAuth = FirebaseAuth.getInstance();
+        mFirestore = FirebaseFirestore.getInstance();
+        mQuery = mFirestore.collection("Produk");
 
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        // Initialize Firestore and the main RecyclerView
-        initFirestore();
         categorySeats();
         categoryBedroom();
         categoryTable();
@@ -102,50 +94,26 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
             }
         });
 
-        // Generate sample data
-//
-//        productNameList = new String[]{"Adelie", "Carree", "Bois De Vincennes",
-//                "EUREKA", "EIGHT", "OVALE", "SABLIER", "PIROUETTE",
-//                "HIVER","FIOCCO","GRAPHITE"};
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
 
-        // Locate the ListView in listview_main.xml
-//        list = (ListView) findViewById(R.id.listview);
-//
-//        for (int i = 0; i < productNameList.length; i++) {
-//            SearchModel productName = new SearchModel(productNameList[i]);
-//            // Binds all strings into an array
-//            arraylist.add(productName);
-//        }
-//
-//        // Pass results to ListViewAdapter Class
-//        adapter = new SearchViewAdapter(this, arraylist);
-//
-//        // Binds the Adapter to the ListView
-//        list.setAdapter(adapter);
-//        list.setTextFilterEnabled(true);
-//
-//        // Locate the EditText in listview_main.xml
-//        editsearch = (SearchView) findViewById(R.id.searchView);
-//        editsearch.setOnQueryTextListener(this);
+                Log.w("Query", query);
+                Intent catalog = new Intent(MainActivity.this, CatalogActivity.class);
+                catalog.putExtra(CatalogActivity.KEY_PRODUCT_CATEGORY, "Search Result");
+                catalog.putExtra(CatalogActivity.KEY_SEARCH_QUERY, query);
+                startActivity(catalog);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                return false;
+            }
+        });
 
     }
-
-//    @Override
-//    public boolean onQueryTextSubmit(String query) {
-//
-//            Toast.makeText(MainActivity.this, "No Match found",Toast.LENGTH_LONG).show();
-//
-//
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean onQueryTextChange(String newText) {
-//        String text = newText;
-//        adapter.filter(text);
-//        return false;
-//    }
-
 
     private void categoryBedroom() {
 
@@ -216,18 +184,6 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
         });
     }
 
-    private void initFirestore() {
-
-        mFirestore = FirebaseFirestore.getInstance();
-
-        mQuery = mFirestore.collection("Produk");
-
-//          Query buat kategori
-//        CollectionReference product = mFirestore.collection("Produk");
-//
-//        mQuery = product.whereEqualTo("category", "seats");
-    }
-
     private void initRecyclerView() {
 
         if (mQuery == null) {
@@ -245,7 +201,6 @@ public class MainActivity extends AppCompatActivity implements ProductAdapter.On
                     Log.w(TAG, "ItemCount = 0");
                 } else {
                     discover_recyclerview.setVisibility(View.VISIBLE);
-
                     Log.w(TAG, "Show Produk");
                 }
             }
