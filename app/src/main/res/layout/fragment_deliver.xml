@@ -47,6 +47,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
+        android:paddingStart="@dimen/activity_horizontal_padding"
+        android:paddingEnd="@dimen/activity_horizontal_padding"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
         android:text="You don't have a transaction now, explore more and shortlist some furniture"
