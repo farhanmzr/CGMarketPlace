@@ -8,6 +8,19 @@
     android:background="@color/bg_app"
     tools:context=".activities.CartActivity">
 
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="72dp">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_wishlist"
         android:layout_width="match_parent"
@@ -16,6 +29,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_wishlist"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -30,5 +48,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/menu_navigation" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

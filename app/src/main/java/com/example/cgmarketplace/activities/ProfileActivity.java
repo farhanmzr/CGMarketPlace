@@ -180,6 +180,7 @@ public class ProfileActivity extends AppCompatActivity {
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
                                                         Log.d(TAG, "Password updated");
+                                                        ic_edit_password.setBackgroundResource(R.drawable.ic_edit_profile);
                                                         editPass = !editPass;
                                                         initDataPass();
 
