@@ -3,6 +3,7 @@ package com.example.cgmarketplace.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,6 +52,7 @@ public class TransactionAdapter extends FirestoreAdapter<TransactionAdapter.View
         private TextView tvAddress;
         private TextView tvCity;
         private TextView tvCountry;
+        private ImageView imgBefore_upload;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -61,6 +63,7 @@ public class TransactionAdapter extends FirestoreAdapter<TransactionAdapter.View
             tvAddress = itemView.findViewById(R.id.tvAddress);
             tvCity = itemView.findViewById(R.id.tvCity);
             tvCountry = itemView.findViewById(R.id.tvCountry);
+            imgBefore_upload = itemView.findViewById(R.id.imgBefore_upload);
         }
 
         public void bind(final DocumentSnapshot snapshot,
@@ -74,6 +77,7 @@ public class TransactionAdapter extends FirestoreAdapter<TransactionAdapter.View
             tvAddress.setText(orderModel.getAddress());
             tvCity.setText(orderModel.getCity());
             tvCountry.setText(orderModel.getCountry());
+            imgBefore_upload.setBackgroundResource(R.drawable.ic_before_upload);
 
             DateFormat dateFormat = DateFormat.getDateTimeInstance();
             String date = dateFormat.format(orderModel.getDate());

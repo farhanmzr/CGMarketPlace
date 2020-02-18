@@ -13,7 +13,7 @@ import com.example.cgmarketplace.R;
 
 public class SuccessUploadPaymentActivity extends AppCompatActivity {
 
-    private Button btn_goto_home;
+    private Button gotodashboard;
     private TextView tvTitle;
 
     @Override
@@ -28,13 +28,13 @@ public class SuccessUploadPaymentActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(R.string.success_payment);
 
-        btn_goto_home = findViewById(R.id.btn_goto_home);
-        btn_goto_home.setOnClickListener(new View.OnClickListener() {
+        gotodashboard = findViewById(R.id.gotodashboard);
+        gotodashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gotohome = new Intent(SuccessUploadPaymentActivity.this, MainActivity.class);
-                gotohome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(gotohome);
+                Intent gotodashboard = new Intent(SuccessUploadPaymentActivity.this, TransactionActivity.class);
+                gotodashboard.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(gotodashboard);
                 finish();
             }
         });
